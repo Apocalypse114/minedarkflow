@@ -1,0 +1,21 @@
+{
+  "attribute.mine_black_flow.mania_value": "Mania EP value",
+  "attribute.mine_black_flow.mania_limit": "Mania EP Limit",
+
+  "effect.mine_black_flow.mania_break": "Mania Break",
+
+  "death.attack.mania_swallow": "%1$s becomes a banana.",
+  "death.attack.mania_swallow.item": "%1$s becomes a banana for %2$s using %3$s.",
+  "death.attack.mania_swallow.player": "%1$s becomes a banana whilst trying to escape %2$s",
+
+  "subtitles.animal": "Animal",
+
+  "command.mine_black_flow.mania.hurt.success_single.1": "Deal ",
+  "command.mine_black_flow.mania.hurt.success_single.2": " Mania Injury to ",
+  "command.mine_black_flow.mania.hurt.success_multiple": " entities.",
+  "command.mine_black_flow.mania.heal.success_single.1": "Heal ",
+  "command.mine_black_flow.mania.heal.success_single.2": " Mania Injury for ",
+  "command.mine_black_flow.mania.fail": "No living entities found",
+
+  "config.jade.plugin_mine_black_flow.mania_provider": "Mania EP Value"
+}

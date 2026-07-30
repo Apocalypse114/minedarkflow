@@ -1,0 +1,11 @@
+{
+  "animal": {
+    "sounds": [
+      {
+        "subtitle": "subtitles.animal",
+        "name": "mine_black_flow:animal",
+        "stream": true
+      }
+    ]
+  }
+}

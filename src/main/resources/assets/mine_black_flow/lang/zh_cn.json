@@ -1,0 +1,22 @@
+{
+  "attribute.mine_black_flow.mania_value": "狂躁损伤",
+  "attribute.mine_black_flow.mania_limit": "狂躁损伤阈值",
+
+  "effect.mine_black_flow.mania_break": "香蕉出血热",
+
+  "death.attack.mania_swallow": "%1$s 死于“香蕉出血热”。",
+  "death.attack.mania_swallow.item": "%1$s 因 %2$s 与 %3$s 罹患了“香蕉出血热”。",
+  "death.attack.mania_swallow.player": "%1$s 在试图逃离 %2$s 时死于香蕉出血热。",
+
+  "subtitles.animal": "Animal",
+
+  "command.mine_black_flow.mania.hurt.success_single.1": "将 ",
+  "command.mine_black_flow.mania.hurt.success_single.2": " 点狂躁损伤施加于 ",
+  "command.mine_black_flow.mania.hurt.success_multiple": " 个生物。",
+  "command.mine_black_flow.mania.heal.success_single.1": "治愈 ",
+  "command.mine_black_flow.mania.heal.success_single.2": " 点狂躁损伤于 ",
+  "command.mine_black_flow.mania.fail": "未找到生物。",
+
+  "config.jade.plugin_mine_black_flow.mania_provider": "狂躁损伤"
+
+}
