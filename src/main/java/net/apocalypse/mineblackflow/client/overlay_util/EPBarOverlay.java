@@ -1,4 +1,4 @@
-package net.apocalypse.mineblackflow.client;
+package net.apocalypse.mineblackflow.client.overlay_util;
 
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.config.ConfigClient;

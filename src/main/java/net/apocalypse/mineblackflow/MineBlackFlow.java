@@ -3,9 +3,7 @@ package net.apocalypse.mineblackflow;
 import com.mojang.logging.LogUtils;
 import net.apocalypse.mineblackflow.config.ConfigClient;
 import net.apocalypse.mineblackflow.config.ConfigServer;
-import net.apocalypse.mineblackflow.init.MBFAttributes;
-import net.apocalypse.mineblackflow.init.MBFEffects;
-import net.apocalypse.mineblackflow.init.MBFSounds;
+import net.apocalypse.mineblackflow.init.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -30,6 +28,7 @@ public class MineBlackFlow {
     public static final String MODID = "mine_black_flow";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
+
     // Create a Deferred Register to hold Blocks which will all be registered under the "mine_dark_flow" namespace
 
     public static ResourceLocation modLoc(String loc){
@@ -54,6 +53,9 @@ public class MineBlackFlow {
         MBFAttributes.REGISTRY.register(modEventBus);
         MBFEffects.REGISTRY.register(modEventBus);
         MBFSounds.REGISTRY.register(modEventBus);
+        MBFEntities.REGISTRY.register(modEventBus);
+        MBFItems.REGISTRY.register(modEventBus);
+        MBFTabs.REGISTRY.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

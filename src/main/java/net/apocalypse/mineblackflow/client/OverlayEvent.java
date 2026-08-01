@@ -2,6 +2,8 @@ package net.apocalypse.mineblackflow.client;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.apocalypse.mineblackflow.client.overlay_util.EPBarOverlay;
+import net.apocalypse.mineblackflow.client.overlay_util.NullMaskOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;

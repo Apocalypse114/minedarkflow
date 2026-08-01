@@ -1,10 +1,9 @@
 package net.apocalypse.mineblackflow.event;
 
-import net.apocalypse.mineblackflow.client.NullMaskOverlay;
+import net.apocalypse.mineblackflow.client.overlay_util.NullMaskOverlay;
 import net.apocalypse.mineblackflow.config.ConfigServer;
 import net.apocalypse.mineblackflow.core.MBFUtil;
 import net.apocalypse.mineblackflow.core.ManiaInjury;
-import net.apocalypse.mineblackflow.core.ManiaInjurySource;
 import net.apocalypse.mineblackflow.mobeffect.ManiaBreakEffect;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;

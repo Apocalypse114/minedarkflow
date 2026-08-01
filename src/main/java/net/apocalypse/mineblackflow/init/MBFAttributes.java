@@ -31,11 +31,6 @@ public class MBFAttributes {
     }
 
     @SubscribeEvent
-    public static void registerAttribute(EntityAttributeCreationEvent event){
-
-    }
-
-    @SubscribeEvent
     public static void addAttributes(EntityAttributeModificationEvent event) {
         event.getTypes().forEach(entity -> {
             event.add(entity, MANIA_EP.get());

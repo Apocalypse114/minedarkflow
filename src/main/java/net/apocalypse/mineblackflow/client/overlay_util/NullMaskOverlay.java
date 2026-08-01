@@ -1,4 +1,4 @@
-package net.apocalypse.mineblackflow.client;
+package net.apocalypse.mineblackflow.client.overlay_util;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.apocalypse.mineblackflow.MineBlackFlow;

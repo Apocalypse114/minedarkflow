@@ -1,4 +1,8 @@
 {
+  "entity.mine_black_flow.the_null_value": "The Null Value",
+
+  "item.mine_black_flow.null_mask_wand": "Null Mask Wand",
+
   "attribute.mine_black_flow.mania_value": "Mania EP value",
   "attribute.mine_black_flow.mania_limit": "Mania EP Limit",
 

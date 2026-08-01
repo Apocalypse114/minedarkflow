@@ -1,4 +1,8 @@
 {
+  "entity.mine_black_flow.the_null_value": "空值体",
+
+  "item.mine_black_flow.null_mask_wand": "空值权杖",
+
   "attribute.mine_black_flow.mania_value": "狂躁损伤",
   "attribute.mine_black_flow.mania_limit": "狂躁损伤阈值",
 
@@ -18,5 +22,4 @@
   "command.mine_black_flow.mania.fail": "未找到生物。",
 
   "config.jade.plugin_mine_black_flow.mania_provider": "狂躁损伤"
-
 }

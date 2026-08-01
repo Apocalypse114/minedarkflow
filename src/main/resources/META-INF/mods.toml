@@ -61,3 +61,17 @@ mandatory = true
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
+[[dependencies."${mod_id}"]]
+modId = "curios"
+versionRange = "[5.2.0,)"
+mandatory = true
+ordering = "NONE"
+side = "BOTH"
+[[dependencies."${mod_id}"]]
+modId = "geckolib"
+mandatory = true
+versionRange = "[4.4.9,)"
+ordering = "NONE"
+side = "BOTH"
+[[mixins]]
+config = "mine_black_flow.mixins.json"
