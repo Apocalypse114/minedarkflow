@@ -2,17 +2,9 @@ package net.apocalypse.mineblackflow.config;
 
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 // An example config class. This is not required, but it's a good idea to have one to keep your config organized.
 // Demonstrates how to use Forge's config APIs
@@ -27,6 +19,7 @@ public class ConfigServer {
     private static final ForgeConfigSpec.DoubleValue MANIA_DAMAGE_BOOST_PER_HIT;
     private static final ForgeConfigSpec.IntValue MANIA_DAMAGE_BOOST_TIME;
     private static final ForgeConfigSpec.BooleanValue PLAY_ANIMAL_ON_MANIA_BURST;
+    private static final ForgeConfigSpec.BooleanValue MANIA_INJURY_DURING_SANITY_BREAK;
 
     static {
         BUILDER.push("mania_injury");
@@ -40,6 +33,10 @@ public class ConfigServer {
         BUILDER.push("sounds");
         PLAY_ANIMAL_ON_MANIA_BURST = BUILDER.comment("在狂躁损伤爆发时在客户端播放歌曲Animal，┗|｀O′|┛ 嗷~~")
                 .define("play_ANIMAL_on_mania_burst", false);
+        BUILDER.pop();
+        BUILDER.push("compat");
+        MANIA_INJURY_DURING_SANITY_BREAK = BUILDER.comment("神经损伤爆发期间能造成狂躁损伤")
+                .define("mania_during_sanity", false);
         BUILDER.pop();
         SPEC = BUILDER.build();
     }
@@ -59,5 +56,8 @@ public class ConfigServer {
     }
     public static boolean playAnimal(){
         return PLAY_ANIMAL_ON_MANIA_BURST.get();
+    }
+    public static boolean sharedEPImmunity(){
+        return !MANIA_INJURY_DURING_SANITY_BREAK.get();
     }
 }

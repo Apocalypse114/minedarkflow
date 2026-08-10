@@ -2,6 +2,7 @@ package net.apocalypse.mineblackflow.init;
 
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
@@ -32,10 +33,12 @@ public class MBFAttributes {
 
     @SubscribeEvent
     public static void addAttributes(EntityAttributeModificationEvent event) {
+        event.getTypes().stream().filter(t->t!= EntityType.PLAYER).forEach(entity -> {
+            event.add(entity, NULL_MASKED.get());
+        });
         event.getTypes().forEach(entity -> {
             event.add(entity, MANIA_EP.get());
             event.add(entity, MANIA_LIMIT.get());
-            event.add(entity, NULL_MASKED.get());
         });
     }
 

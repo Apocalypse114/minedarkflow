@@ -7,7 +7,7 @@ import snownee.jade.api.IWailaPlugin;
 import snownee.jade.api.WailaPlugin;
 
 @WailaPlugin
-public class CAJadePlugin implements IWailaPlugin {
+public class MBFPlugin implements IWailaPlugin {
     @Override
     public void register(IWailaCommonRegistration registration) {
     }

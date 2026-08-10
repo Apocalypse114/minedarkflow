@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,7 +18,14 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.util.thread.SidedThreadGroups;
 import org.slf4j.Logger;
+
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @SuppressWarnings("removal")
@@ -55,7 +63,10 @@ public class MineBlackFlow {
         MBFSounds.REGISTRY.register(modEventBus);
         MBFEntities.REGISTRY.register(modEventBus);
         MBFItems.REGISTRY.register(modEventBus);
+        MBFItems.NATURAL_OBJECTS.register(modEventBus);
         MBFTabs.REGISTRY.register(modEventBus);
+        MBFEnchantments.REGISTRY.register(modEventBus);
+        MBFPotions.REGISTRY.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -88,6 +99,27 @@ public class MineBlackFlow {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             // Some client setup code
+        }
+    }
+
+    private static final Collection<AbstractMap.SimpleEntry<Runnable, Integer>> workQueue = new ConcurrentLinkedQueue<>();
+
+    public static void queueServerWork(int tick, Runnable action) {
+        if (Thread.currentThread().getThreadGroup() == SidedThreadGroups.SERVER)
+            workQueue.add(new AbstractMap.SimpleEntry<>(action, tick));
+    }
+
+    @SubscribeEvent
+    public void tick(TickEvent.ServerTickEvent event) {
+        if (event.phase == TickEvent.Phase.END) {
+            List<AbstractMap.SimpleEntry<Runnable, Integer>> actions = new ArrayList<>();
+            workQueue.forEach(work -> {
+                work.setValue(work.getValue() - 1);
+                if (work.getValue() == 0)
+                    actions.add(work);
+            });
+            actions.forEach(e -> e.getKey().run());
+            workQueue.removeAll(actions);
         }
     }
 }

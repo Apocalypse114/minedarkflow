@@ -1,5 +1,6 @@
 package net.apocalypse.mineblackflow.client;
 
+import net.apocalypse.mineblackflow.entity.renderer.ForsakenEarthshakerRenderer;
 import net.apocalypse.mineblackflow.entity.renderer.TheNullValueRenderer;
 import net.apocalypse.mineblackflow.init.MBFEntities;
 import net.minecraftforge.api.distmarker.Dist;
@@ -12,5 +13,6 @@ public class MBFRenderers {
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event){
         event.registerEntityRenderer(MBFEntities.THE_NULL_VALUE.get(), TheNullValueRenderer::new);
+        event.registerEntityRenderer(MBFEntities.FORSAKEN_EARTHSHAKER.get(), ForsakenEarthshakerRenderer::new);
     }
 }

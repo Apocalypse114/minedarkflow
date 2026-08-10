@@ -1,7 +1,7 @@
 package net.apocalypse.mineblackflow.core;
 
 import net.apocalypse.mineblackflow.MineBlackFlow;
-import net.apocalypse.mineblackflow.config.ConfigClient;
+import net.apocalypse.mineblackflow.compat.ca.CAUtil;
 import net.apocalypse.mineblackflow.config.ConfigServer;
 import net.apocalypse.mineblackflow.init.MBFAttributes;
 import net.apocalypse.mineblackflow.init.MBFEffects;
@@ -35,6 +35,10 @@ public class ManiaInjury {
     public static void onManiaBreak(LivingEntity living){
         living.getPersistentData().putInt(ManiaBreakEffect.TAG_HIT_TIME, 0);
         living.addEffect(new MobEffectInstance(MBFEffects.MANIA_BREAK.get(), 300, 0, false, false));
+        if (!living.hasEffect(MBFEffects.MANIA_BREAK.get())){
+            Tool.setManiaEP(living, 0);
+            ManiaBreakEffect.doManiaDamage(living, 2);
+        }
         if (ConfigServer.playAnimal()){
             MineBlackFlow.LOGGER.info("animal played!");
             MBFUtil.playerSoundAtEntity(living, MBFSounds.ANIMAL.get(), SoundSource.NEUTRAL, 1, 1);
@@ -50,6 +54,14 @@ public class ManiaInjury {
             AttributeInstance instance = living.getAttribute(MBFAttributes.MANIA_LIMIT.get());
             return instance == null ? 0 : instance.getValue();
         }
+        public static double getManiaLimitBase (LivingEntity living){
+            AttributeInstance instance = living.getAttribute(MBFAttributes.MANIA_LIMIT.get());
+            return instance == null ? 0 : instance.getBaseValue();
+        }
+        public static void setManiaLimitBase (LivingEntity living, double base){
+            AttributeInstance instance = living.getAttribute(MBFAttributes.MANIA_LIMIT.get());
+            if(instance != null) instance.setBaseValue(base);
+        }
         public static void setManiaEP (LivingEntity living,double value){
             AttributeInstance instance = living.getAttribute(MBFAttributes.MANIA_EP.get());
             if (instance != null) instance.setBaseValue(Math.max(0, value));
@@ -59,6 +71,9 @@ public class ManiaInjury {
         }
         public static boolean immuneToMania (LivingEntity living){
             if (underManiaBreak(living)) return true;
+            if (ConfigServer.sharedEPImmunity() &&
+                    (CAUtil.checkEffect(living, CAUtil.Effects.sanityBreak())
+                    || CAUtil.checkEffect(living, CAUtil.Effects.sanityImmune()))) return true;
             if (living instanceof Player player) {
                 if (player.isSpectator() || player.isCreative()) return true;
             }

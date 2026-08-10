@@ -17,8 +17,8 @@ import java.util.UUID;
 
 public class ManiaBreakEffect extends SimpleModEffect {
 
-    public ManiaBreakEffect(MobEffectCategory p_19451_, int p_19452_) {
-        super(p_19451_, p_19452_);
+    public ManiaBreakEffect() {
+        super(MobEffectCategory.NEUTRAL, 0x825679);
         this.addAttributeModifier(Attributes.ATTACK_SPEED, "896091ba-ee06-31ec-8b03-663c0c4ba48b", 0.5, AttributeModifier.Operation.ADDITION);
     }
 
@@ -27,10 +27,7 @@ public class ManiaBreakEffect extends SimpleModEffect {
     @Override
     public void applyEffectTick(LivingEntity pEntity, int amplifier){
         if (SimpleModEffect.applyPerSecond(pEntity.tickCount, 0)){
-            float amount = ConfigServer.getManiaBaseDamage()
-                    + ConfigServer.getManiaBoost()
-                    * Math.min(pEntity.getPersistentData().getInt(TAG_HIT_TIME), ConfigServer.getManiaBoostTime());
-            pEntity.hurt(new DamageSource(MBFUtil.damageType(MBFDamageTypes.MANIA_SWALLOW, pEntity.level())), amount);
+            doManiaDamage(pEntity, 1);
         }
         MobEffectInstance instance = pEntity.getEffect(MBFEffects.MANIA_BREAK.get());
         int leftDuration;
@@ -41,5 +38,12 @@ public class ManiaBreakEffect extends SimpleModEffect {
                 ManiaInjury.Tool.setManiaEP(pEntity, ManiaInjury.Tool.getManiaLimit(pEntity) * perc);
             }
         }
+    }
+
+    public static void doManiaDamage(LivingEntity pEntity, float scale){
+        float amount = ConfigServer.getManiaBaseDamage()
+                + ConfigServer.getManiaBoost()
+                * Math.min(pEntity.getPersistentData().getInt(TAG_HIT_TIME), ConfigServer.getManiaBoostTime());
+        pEntity.hurt(new DamageSource(MBFUtil.damageType(MBFDamageTypes.MANIA_SWALLOW, pEntity.level())), amount * scale);
     }
 }

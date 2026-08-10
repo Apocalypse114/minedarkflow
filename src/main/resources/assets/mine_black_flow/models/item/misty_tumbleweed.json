@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mine_black_flow:item/misty_tumbleweed"
+  }
+}

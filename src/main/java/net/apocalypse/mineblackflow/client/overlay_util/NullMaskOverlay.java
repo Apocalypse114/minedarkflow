@@ -2,7 +2,10 @@ package net.apocalypse.mineblackflow.client.overlay_util;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.apocalypse.mineblackflow.MineBlackFlow;
+import net.minecraft.client.Camera;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,11 +14,11 @@ import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 
 import org.jetbrains.annotations.NotNull;
+import org.joml.Vector3f;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@SuppressWarnings("removal")
 public class NullMaskOverlay {
     private static final Set<LivingEntity> maskedEntities = new HashSet<>();
     private static final float modifier = 1, scaler = 256;
@@ -28,8 +31,6 @@ public class NullMaskOverlay {
     private static final int[] maskOrangeOffset = new int[]{0,0};
     private static int lastOffsetUpdateTick = 0;
 
-
-
     public static void renderNullMask(Player player, float halfWidth, float halfHeight, GuiGraphics gui){
         Set<LivingEntity> copy = new HashSet<>(maskedEntities);
         for (LivingEntity entity: copy){
@@ -37,9 +38,10 @@ public class NullMaskOverlay {
                 maskedEntities.remove(entity);
                 continue;
             }
-            double dist = player.position().distanceToSqr(entity.position());
+            Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
+            double dist = camera.getPosition().distanceToSqr(entity.position());
             if (dist > maxDist) return;
-            Vec2 offset = getScreenOffset(player, entity);
+            Vec2 offset = getScreenOffset(player, entity, camera);
             if (offset.x > 999) return;
             Vec2 size = getMaskSize(Math.sqrt(dist), entity);
             int px = (int) (halfWidth - halfWidth * offset.x - size.x * 0.5f), py = (int) (halfHeight - halfHeight * offset.y - size.y);
@@ -67,9 +69,11 @@ public class NullMaskOverlay {
     public static void putMaskedEntity(@NotNull LivingEntity entity){
         maskedEntities.add(entity);
     }
-    public static Vec2 getScreenOffset(@NotNull Player player, @NotNull LivingEntity living){
-        Vec3 a = player.getLookAngle();
-        Vec3 b = player.position().add(0, player.getEyeHeight(), 0).vectorTo(living.position());
+    public static Vec2 getScreenOffset(@NotNull Player player, @NotNull LivingEntity living, @NotNull Camera camera){
+        Vector3f cameraLook = camera.getLookVector();
+        Vec3 a = new Vec3(cameraLook.x, cameraLook.y, cameraLook.z), cameraPos = camera.getPosition();
+
+        Vec3 b = cameraPos.vectorTo(living.position());
 
         double dotProduct = a.dot(b);
         if (dotProduct < 1e-6) return Vec2.MAX;
@@ -78,15 +82,12 @@ public class NullMaskOverlay {
         Vec3 elementalX = new Vec3(a.z, 0, -a.x);
 
         float dx = (float) c.dot(elementalX), dy = (float) c.dot(elementalY);
-        return new Vec2(dx*0.8f, dy*1.5f).scale(modifier);
+        return new Vec2(dx * 0.8f, dy * 1.5f).scale(modifier);
     }
     public static Vec2 getMaskSize(double dist, LivingEntity living){
         float w = living.getBbWidth(), h = living.getBbHeight();
 
         dist = Math.max(dist, 1);
-        return new Vec2(w, h * 0.75f).scale((float) (1 / dist)).scale(scaler);
-    }
-    public static boolean canSee(Player player, LivingEntity living){
-        return true;
+        return new Vec2(w, h * 0.75f).scale((float) (scaler / dist));
     }
 }

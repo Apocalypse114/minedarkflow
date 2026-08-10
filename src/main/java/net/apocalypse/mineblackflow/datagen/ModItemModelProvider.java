@@ -17,13 +17,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         super(output, MineBlackFlow.MODID, existingFileHelper);
     }
 
-    private static final ResourceLocation EMPTY = new ResourceLocation("wooden_sword");
-    private static final ResourceLocation ITEM = new ResourceLocation("item/generated");
-    private static final ResourceLocation HANDHELD = new ResourceLocation("item/handheld");
-
     @Override
     protected void registerModels(){
-        handheldItem(MBFItems.NULL_MASK_WAND);
+        simpleItem(MBFItems.SPINDRIFT);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
@@ -31,10 +27,14 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item, String location) {
-        return withExistingParent(item.getId().getPath(), ITEM).texture("layer0", MineBlackFlow.modLoc("item/"+location+item.getId().getPath()));
+        return withExistingParent(item.getId().getPath(), new ResourceLocation("item/generated"))
+                .texture("layer0", MineBlackFlow.modLoc("item/"+location+item.getId().getPath()));
     }
     private ItemModelBuilder handheldItem(RegistryObject<Item> item) {
-        return withExistingParent(item.getId().getPath(), HANDHELD)
+        return withExistingParent(item.getId().getPath(), new ResourceLocation("item/handheld"))
                 .texture("layer0", MineBlackFlow.modLoc("item/" + item.getId().getPath()));
+    }
+    private ItemModelBuilder spawnEggItem(RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(), new ResourceLocation("item/template_spawn_egg"));
     }
 }

@@ -1,10 +1,96 @@
 {
   "animal": {
+    "subtitle": "subtitles.mbf_animal",
     "sounds": [
       {
-        "subtitle": "subtitles.animal",
         "name": "mine_black_flow:animal",
         "stream": true
+      }
+    ]
+  },
+  "elephant_ambient": {
+    "subtitle": "subtitles.mbf_elephant.ambient",
+    "sounds": [
+      {
+        "name": "mine_black_flow:elephant_ambient_0",
+        "stream": false
+      },
+      {
+        "name": "mine_black_flow:elephant_ambient_1",
+        "stream": false
+      },
+      {
+        "name": "mine_black_flow:elephant_ambient_2",
+        "stream": false
+      }
+    ]
+  },
+  "elephant_hurt": {
+    "subtitle": "subtitles.mbf_elephant.hurt",
+    "sounds": [
+      {
+        "name": "mine_black_flow:elephant_hurt_0",
+        "stream": false
+      },
+      {
+        "name": "mine_black_flow:elephant_ambient_1",
+        "stream": false
+      },
+      {
+        "name": "mine_black_flow:elephant_ambient_2",
+        "stream": false
+      }
+    ]
+  },
+  "elephant_die": {
+    "subtitle": "subtitles.mbf_elephant.die",
+    "sounds": [
+      {
+        "name": "mine_black_flow:elephant_die",
+        "stream": false
+      }
+    ]
+  },
+  "dog_ambient": {
+    "subtitle": "subtitles.mbf_dog.ambient",
+    "sounds": [
+      {
+        "name": "mine_black_flow:dog_ambient_0",
+        "stream": false
+      },
+      {
+        "name": "mine_black_flow:dog_ambient_1",
+        "stream": false
+      },
+      {
+        "name": "mine_black_flow:dog_ambient_2",
+        "stream": false
+      }
+    ]
+  },
+  "dog_hurt": {
+    "subtitle": "subtitles.mbf_dog.hurt",
+    "sounds": [
+      {
+        "name": "mine_black_flow:dog_hurt_0",
+        "stream": false
+      },
+      {
+        "name": "mine_black_flow:dog_ambient_1",
+        "stream": false
+      },
+      {
+        "name": "mine_black_flow:dog_ambient_2",
+        "stream": false
+      }
+    ]
+  },
+  "dog_die": {
+    "subtitle": "subtitles.mbf_dog.die",
+    "sounds": [
+      {
+        "name": "mine_black_flow:dog_die",
+        "stream": false
       }
     ]
   }

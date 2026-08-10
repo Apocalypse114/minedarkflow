@@ -12,6 +12,7 @@ public class MBFTabs {
     public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MineBlackFlow.MODID);
 
     public static final RegistryObject<CreativeModeTab> MBF_ITEMS = REGISTRY.register("mbf_items", MBFItems::mbfItemsTab);
+    public static final RegistryObject<CreativeModeTab> NATURAL_OBJECTS = REGISTRY.register("natural_objects", MBFItems::naturalObjectTab);
 
 
 }

@@ -20,6 +20,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.scores.Team;
 
 public class MBFUtil {
     public static boolean nullMasked(LivingEntity entity){
@@ -103,5 +105,15 @@ public class MBFUtil {
         Player player = Minecraft.getInstance().player;
         if (player==null)return 0;
         return player.tickCount + Minecraft.getInstance().getPartialTick();
+    }
+    public static boolean isSameTeam(Entity a, Entity b, boolean sameTeamIfNullTeam){
+        Team teamA = a.getTeam(), teamB = b.getTeam();
+        if (teamA == null || teamB == null){
+            return sameTeamIfNullTeam && teamA == null && teamB == null;
+        }
+        return teamA.isAlliedTo(teamB);
+    }
+    public static AABB aabbOnEntity(Entity entity, double size){
+        return new AABB(entity.position(), entity.position()).inflate(size / 2);
     }
 }

@@ -1,10 +1,12 @@
 package net.apocalypse.mineblackflow.entity;
 
-import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.core.MBFUtil;
 import net.apocalypse.mineblackflow.entity.base.AttackEveryoneGoal;
 import net.apocalypse.mineblackflow.entity.base.GeoBlackFlowMonster;
 import net.apocalypse.mineblackflow.init.MBFEntities;
+import net.apocalypse.mineblackflow.init.MBFSounds;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -15,9 +17,7 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
@@ -31,6 +31,20 @@ public class TheNullValueEntity extends GeoBlackFlowMonster {
     public TheNullValueEntity(PlayMessages.SpawnEntity ignored, Level world) {
         this(MBFEntities.THE_NULL_VALUE.get(), world);
     }
+
+    @Override
+    public SoundEvent getAmbientSound(){
+        return MBFSounds.DOG_AMBIENT.get();
+    }
+    @Override
+    public @NotNull SoundEvent getHurtSound(@NotNull DamageSource source){
+        return MBFSounds.DOG_HURT.get();
+    }
+    @Override
+    public @NotNull SoundEvent getDeathSound(){
+        return MBFSounds.DOG_DIE.get();
+    }
+
 
     public void registerGoals(){
         super.registerGoals();
@@ -51,7 +65,7 @@ public class TheNullValueEntity extends GeoBlackFlowMonster {
     }
 
     public PlayState moveHandler(AnimationState<?> event){
-        if (animationOccupationTick <= 0){
+        if (isAnimAvailable()){
             if(event.isMoving()){
                 if(this.isAggressive()) return event.setAndContinue(RawAnimation.begin().thenLoop("animation.the_null_value.run"));
                 return event.setAndContinue(RawAnimation.begin().thenLoop("animation.the_null_value.walk"));

@@ -1,6 +1,7 @@
 package net.apocalypse.mineblackflow.init;
 
 import net.apocalypse.mineblackflow.MineBlackFlow;
+import net.apocalypse.mineblackflow.entity.ForsakenEarthshakerEntity;
 import net.apocalypse.mineblackflow.entity.TheNullValueEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.Entity;
@@ -18,7 +19,10 @@ public class MBFEntities {
 
     public static final RegistryObject<EntityType<TheNullValueEntity>> THE_NULL_VALUE = register("the_null_value",
             EntityType.Builder.<TheNullValueEntity>of(TheNullValueEntity::new, MobCategory.MONSTER)
-                    .setCustomClientFactory(TheNullValueEntity::new), 24, 1, 0.8f);
+                    .setCustomClientFactory(TheNullValueEntity::new), 22, 1, 0.8f);
+    public static final RegistryObject<EntityType<ForsakenEarthshakerEntity>> FORSAKEN_EARTHSHAKER = register("forsaken_earthshaker",
+            EntityType.Builder.<ForsakenEarthshakerEntity>of(ForsakenEarthshakerEntity::new, MobCategory.MONSTER)
+                    .setCustomClientFactory(ForsakenEarthshakerEntity::new), 24, 3, 4);
 
     private static <T extends Entity> RegistryObject<EntityType<T>> register(
             String name, EntityType.Builder<T> entityTypeBuilder, int trackRange, float width, float height) {
@@ -31,5 +35,6 @@ public class MBFEntities {
     @SubscribeEvent
     public static void registerAttribute(EntityAttributeCreationEvent event){
         event.put(THE_NULL_VALUE.get(), TheNullValueEntity.createAttribute().build());
+        event.put(FORSAKEN_EARTHSHAKER.get(), ForsakenEarthshakerEntity.createAttribute().build());
     }
 }

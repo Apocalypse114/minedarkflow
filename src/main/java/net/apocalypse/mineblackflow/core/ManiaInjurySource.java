@@ -3,6 +3,7 @@ package net.apocalypse.mineblackflow.core;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -27,6 +28,9 @@ public record ManiaInjurySource<T>(T cause, T direct, @Nullable Vec3 pos, Factor
     public static ManiaInjurySource<ItemStack> fromItemStack(ItemStack stack) {
         return new ManiaInjurySource<>(stack, stack, null, FactorType.ITEM);
     }
+    public static ManiaInjurySource<MobEffect> fromEffect(MobEffect effect){
+        return new ManiaInjurySource<>(effect, effect, null,FactorType.EFFECT);
+    }
     public static ManiaInjurySource<?> fromNothing() {
         return new ManiaInjurySource<>(null, null, null, FactorType.VOID);
     }
@@ -36,6 +40,6 @@ public record ManiaInjurySource<T>(T cause, T direct, @Nullable Vec3 pos, Factor
 
     //用于快速简单判断来源类型
     public enum FactorType {
-        DAMAGE, ENTITY_DIRECT, ENTITY_INDIRECT, BLOCK, ITEM, VOID, COMMAND, OTHER;
+        DAMAGE, ENTITY_DIRECT, ENTITY_INDIRECT, BLOCK, ITEM, VOID, COMMAND, EFFECT, OTHER;
     }
 }

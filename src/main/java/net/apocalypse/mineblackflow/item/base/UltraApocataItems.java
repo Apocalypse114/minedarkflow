@@ -1,7 +1,6 @@
-package net.apocalypse.mineblackflow.item;
+package net.apocalypse.mineblackflow.item.base;
 
 import net.apocalypse.mineblackflow.core.MBFUtil;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
