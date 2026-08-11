@@ -3,6 +3,8 @@ package net.apocalypse.mineblackflow.compat.ca;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
@@ -11,10 +13,24 @@ import org.jetbrains.annotations.Nullable;
 public class CAUtil {
     private static boolean CALoaded = false, CALoadChecked = false;
     private static MobEffect sanity_break = null, sanity_immune = null;
+    private static Attribute sanity_resistance = null;
 
     public static boolean checkEffect(LivingEntity living, @Nullable MobEffect effect){
         if (effect == null) return false;
         return living.hasEffect(effect);
+    }
+
+    public static class Attributes{
+        @Nullable
+        public static Attribute sanityResistance(){
+            if (checkCALoaded()){
+                if (sanity_resistance == null){
+                    sanity_resistance = ForgeRegistries.ATTRIBUTES.getValue(new ResourceLocation("caerula_arbor:sanity_resistance"));
+                }
+                return sanity_resistance;
+            }
+            return null;
+        }
     }
 
     public static class Effects{

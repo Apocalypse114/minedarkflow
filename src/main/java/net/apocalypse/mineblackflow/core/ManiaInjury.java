@@ -10,6 +10,7 @@ import net.apocalypse.mineblackflow.mobeffect.ManiaBreakEffect;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
 
@@ -18,6 +19,8 @@ public class ManiaInjury {
     public static InjuryResult dealManiaInjury(LivingEntity living, float amount, ManiaInjurySource<?> source){
         if (Tool.immuneToMania(living)) return InjuryResult.FAIL;
         double currentEP = Tool.getManiaEP(living), newEP = currentEP, limit = Tool.getManiaLimit(living);
+        amount = amountAfterCognitiveReduction(amount, living);
+        if (CAUtil.checkCALoaded()) amount = amountAfterSanityResistanceReduction(amount, living);
         newEP += amount;
         if (newEP > limit){
             onManiaBreak(living);
@@ -43,6 +46,18 @@ public class ManiaInjury {
             MineBlackFlow.LOGGER.info("animal played!");
             MBFUtil.playerSoundAtEntity(living, MBFSounds.ANIMAL.get(), SoundSource.NEUTRAL, 1, 1);
         }
+    }
+    private static float amountAfterCognitiveReduction(float amount, LivingEntity living){
+        double resist = MBFAttributes.cognitiveResistance(living);
+        if (resist > 0) return (float) (amount * 50 / (resist + 50));
+        return amount;
+    }
+    public static float amountAfterSanityResistanceReduction(float amount, LivingEntity living){
+        Attribute attr = CAUtil.Attributes.sanityResistance();
+        if (attr == null) return amount;
+        AttributeInstance instance = living.getAttribute(attr);
+        if(instance == null) return amount;
+        return (float) (Math.max(0, amount * (100 - instance.getValue()) * 0.01));
     }
 
     public static class Tool {

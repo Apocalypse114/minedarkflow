@@ -3,6 +3,8 @@ package net.apocalypse.mineblackflow.init;
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.entity.ForsakenEarthshakerEntity;
 import net.apocalypse.mineblackflow.entity.TheNullValueEntity;
+import net.apocalypse.mineblackflow.entity.WaterPraiserEntity;
+import net.apocalypse.mineblackflow.entity.projectile.WaterPraiserArrow;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -23,6 +25,14 @@ public class MBFEntities {
     public static final RegistryObject<EntityType<ForsakenEarthshakerEntity>> FORSAKEN_EARTHSHAKER = register("forsaken_earthshaker",
             EntityType.Builder.<ForsakenEarthshakerEntity>of(ForsakenEarthshakerEntity::new, MobCategory.MONSTER)
                     .setCustomClientFactory(ForsakenEarthshakerEntity::new), 24, 3, 4);
+    public static final RegistryObject<EntityType<WaterPraiserEntity>> WATER_PRAISER = register("water_praiser",
+            EntityType.Builder.<WaterPraiserEntity>of(WaterPraiserEntity::new, MobCategory.MONSTER)
+                    .setCustomClientFactory(WaterPraiserEntity::new), 24, 0.8f, 2.2f);
+
+    public static final RegistryObject<EntityType<WaterPraiserArrow>> WATER_PRAISER_ARROW = register("water_praiser_arrow",
+            EntityType.Builder.<WaterPraiserArrow>of(WaterPraiserArrow::new, MobCategory.MISC)
+                    .setCustomClientFactory(WaterPraiserArrow::new), 24, 0.25f, 0.25f);
+
 
     private static <T extends Entity> RegistryObject<EntityType<T>> register(
             String name, EntityType.Builder<T> entityTypeBuilder, int trackRange, float width, float height) {
@@ -36,5 +46,6 @@ public class MBFEntities {
     public static void registerAttribute(EntityAttributeCreationEvent event){
         event.put(THE_NULL_VALUE.get(), TheNullValueEntity.createAttribute().build());
         event.put(FORSAKEN_EARTHSHAKER.get(), ForsakenEarthshakerEntity.createAttribute().build());
+        event.put(WATER_PRAISER.get(), WaterPraiserEntity.createAttribute().build());
     }
 }

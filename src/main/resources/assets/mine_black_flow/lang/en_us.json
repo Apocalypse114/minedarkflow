@@ -1,6 +1,7 @@
 {
   "entity.mine_black_flow.the_null_value": "The Null Value",
   "entity.mine_black_flow.forsaken_earthshaker": "Forsaken Earthshaker",
+  "entity.mine_black_flow.water_praiser": "Water Praiser",
 
   "item.mine_black_flow.null_mask_wand": "Null Mask Wand",
   "item.mine_black_flow.null_mask_wand.desc": "Right-click to make entity null masked.",
@@ -22,9 +23,17 @@
   "item.mine_black_flow.spindrift": "Spindrift Flower",
   "item.mine_black_flow.spindrift.desc": "Rendered by mind, changes are made by nature, for the livings to claim their freedom.",
   "item.mine_black_flow.spindrift.func": "Evaluation changes randomly when moving.",
+  "item.mine_black_flow.frost_tree": "Frost Tree",
+  "item.mine_black_flow.frost_tree.desc": "Show frozen delicacy before pierced by sunlight.",
+  "item.mine_black_flow.frost_tree.func": "25% chance to evaluation +2 when kill an enemy with health beyond 75%, break if not.",
+  "item.mine_black_flow.echo_corn": "Echo Corn",
+  "item.mine_black_flow.echo_corn.desc": "Every grain of sweet words being explicit and plump.",
+  "item.mine_black_flow.echo_corn.func": "Evaluation +3 when open a looted chest.",
 
   "item.mine_black_flow.the_null_value_spawn_egg": "The Null Value Spawn Egg",
   "item.mine_black_flow.forsaken_earthshaker_spawn_egg": "Forsaken Earthshaker Spawn Egg",
+  "item.mine_black_flow.water_praiser_spawn_egg": "Water Praiser Spawn Egg",
+
   "item.mine_black_flow.natural_object.evaluation": "Evaluation: ",
   "item.mine_black_flow.natural_object.base_evaluation": "-> Base Evaluation: ",
   "item.mine_black_flow.natural_object.carrying": "[When held in inventory]",
@@ -47,6 +56,7 @@
 
   "attribute.mine_black_flow.mania_value": "Mania EP value",
   "attribute.mine_black_flow.mania_limit": "Mania EP Limit",
+  "attribute.mine_black_flow.cognitive_resistance": "Cognitive Resistance",
 
   "effect.mine_black_flow.mania_break": "Mania Break",
   "effect.mine_black_flow.instant_mania_injury": "Instant Mania Injury",
@@ -68,6 +78,9 @@
   "subtitles.mbf_elephant.ambient": "Forsaken Earthshaker: Ambient",
   "subtitles.mbf_elephant.hurt": "Forsaken Earthshaker: Hurt",
   "subtitles.mbf_elephant.die": "Forsaken Earthshaker: Die",
+  "subtitles.mbf_sheep.ambient": "Water Praiser: Ambient",
+  "subtitles.mbf_sheep.hurt": "Water Praiser: Hurt",
+  "subtitles.mbf_sheep.die": "Water Praiser: Die",
 
   "command.mine_black_flow.mania.hurt.success_single.1": "Deal ",
   "command.mine_black_flow.mania.hurt.success_single.2": " Mania Injury to ",

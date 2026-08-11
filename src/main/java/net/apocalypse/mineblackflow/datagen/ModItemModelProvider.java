@@ -19,7 +19,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels(){
-        simpleItem(MBFItems.SPINDRIFT);
+        simpleItem(MBFItems.FROST_TREE);
+        simpleItem(MBFItems.ECHO_CORN);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

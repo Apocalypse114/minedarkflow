@@ -64,8 +64,6 @@ public class ForsakenEarthshakerEntity extends GeoBlackFlowMonster {
     private int speedModifierInAction = 0;
     private static final UUID uuid = UUID.fromString("6ab35f7e-e926-3999-b7db-e550d68b0add");
 
-    private LivingEntity attackingEntity;
-
     @Override
     public void tick() {
         super.tick();
@@ -130,12 +128,8 @@ public class ForsakenEarthshakerEntity extends GeoBlackFlowMonster {
     public void tickDeath(){
         deathTime++;
         if (deathTime == 46){
-            if (this.level().isClientSide())
-                this.level().playLocalSound(
-                        this.blockPosition(), SoundEvents.DRAGON_FIREBALL_EXPLODE, SoundSource.HOSTILE,
-                        1, 0.8f + 0.4f * this.getRandom().nextFloat(), false);
-            else this.level().playSound(null, this.blockPosition(), SoundEvents.DRAGON_FIREBALL_EXPLODE,
-                    SoundSource.HOSTILE, 1, 0.8f + 0.4f * this.getRandom().nextFloat());
+            MBFUtil.playerSoundAtEntity(this, SoundEvents.GENERIC_EXPLODE, SoundSource.HOSTILE,
+                    1, 0.8f + 0.4f * this.getRandom().nextFloat());
         }
         if (deathTime >= 50){
             this.remove(RemovalReason.KILLED);
@@ -155,8 +149,7 @@ public class ForsakenEarthshakerEntity extends GeoBlackFlowMonster {
         return MBFSounds.ELEPHANT_DIE.get();
     }
 
-    private static final EntityDataAccessor<Integer> DATA_BLEEDING =
-            SynchedEntityData.defineId(ForsakenEarthshakerEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_BLEEDING = SynchedEntityData.defineId(ForsakenEarthshakerEntity.class, EntityDataSerializers.INT);
     @Override
     public void defineSynchedData(){
         super.defineSynchedData();
@@ -243,9 +236,9 @@ public class ForsakenEarthshakerEntity extends GeoBlackFlowMonster {
         if (this.isDeadOrDying()){
             return event.setAndContinue(RawAnimation.begin().thenPlay(animLoc("die")));
         }
-        if (getAttackDuration() > 0){
-            return event.setAndContinue(RawAnimation.begin().thenPlay(animLoc("attack")));
-        }
+//        if (getAttackDuration() > 0){
+//            return event.setAndContinue(RawAnimation.begin().thenPlay(animLoc("attack")));
+//        }
         if (isAnimAvailable()){
             if(event.isMoving()){
                 return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("move")));

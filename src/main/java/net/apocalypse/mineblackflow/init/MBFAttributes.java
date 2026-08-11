@@ -3,6 +3,7 @@ package net.apocalypse.mineblackflow.init;
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
@@ -21,6 +22,7 @@ public class MBFAttributes {
 
     public static final RegistryObject<Attribute> MANIA_EP = rangedAttr("mania_value", 0, 0, Double.MAX_VALUE);
     public static final RegistryObject<Attribute> MANIA_LIMIT = rangedAttr("mania_limit", 1000, -1, Double.MAX_VALUE);
+    public static final RegistryObject<Attribute> COGNITIVE_RESISTANCE = rangedAttr("cognitive_resistance", 0, 0, 131072);
 
     public static final RegistryObject<Attribute> NULL_MASKED = booleanAttr("null_masked", false);
 
@@ -33,13 +35,18 @@ public class MBFAttributes {
 
     @SubscribeEvent
     public static void addAttributes(EntityAttributeModificationEvent event) {
-        event.getTypes().stream().filter(t->t!= EntityType.PLAYER).forEach(entity -> {
-            event.add(entity, NULL_MASKED.get());
-        });
         event.getTypes().forEach(entity -> {
             event.add(entity, MANIA_EP.get());
             event.add(entity, MANIA_LIMIT.get());
+            event.add(entity, COGNITIVE_RESISTANCE.get());
+            if (entity != EntityType.PLAYER) event.add(entity, NULL_MASKED.get());
         });
+    }
+
+    public static double cognitiveResistance(LivingEntity pLiving){
+        AttributeInstance instance = pLiving.getAttribute(COGNITIVE_RESISTANCE.get());
+        if (instance == null) return 0;
+        return instance.getValue();
     }
 
     @Mod.EventBusSubscriber

@@ -28,6 +28,8 @@ public class TheNullValueLayer extends GeoRenderLayer<TheNullValueEntity> {
     public void render(
             PoseStack poseStack, TheNullValueEntity animatable, BakedGeoModel bakedModel, RenderType renderType,
             MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
+        super.render(poseStack, animatable, bakedModel, renderType, bufferSource, buffer, partialTick, packedLight, packedOverlay);
+
         int tick = (int) animatable.level().getGameTime() / 2;
         if (tick != recordedTick) {
             recordedTick = tick;

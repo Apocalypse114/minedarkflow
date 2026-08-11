@@ -2,6 +2,7 @@ package net.apocalypse.mineblackflow.init;
 
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -16,6 +17,10 @@ public class MBFSounds {
     public static final RegistryObject<SoundEvent> ELEPHANT_AMBIENT = register("elephant_ambient", false);
     public static final RegistryObject<SoundEvent> ELEPHANT_HURT = register("elephant_hurt", false);
     public static final RegistryObject<SoundEvent> ELEPHANT_DIE = register("elephant_die", false);
+    public static final RegistryObject<SoundEvent> SHEEP_AMBIENT = register("sheep_ambient", false);
+    public static final RegistryObject<SoundEvent> SHEEP_HURT = register("sheep_hurt", false);
+    public static final RegistryObject<SoundEvent> SHEEP_DIE = register("sheep_die", false);
+    //public static final RegistryObject<SoundEvent> SHEEP_TP = SoundEvents.FOX_TELEPORT.
 
     public static RegistryObject<SoundEvent> register(String name, boolean fixed){
         return fixed ? REGISTRY.register(name, ()->SoundEvent.createFixedRangeEvent(MineBlackFlow.modLoc(name), 1))

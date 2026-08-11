@@ -32,10 +32,13 @@ public class MBFItems {
     public static final RegistryObject<Item> MISTY_TUMBLEWEED = NATURAL_OBJECTS.register("misty_tumbleweed", MistyTumbleweedItem::new);
     public static final RegistryObject<Item> BLOOD_MUSHROOM = NATURAL_OBJECTS.register("blood_mushroom", BloodMushroomItem::new);
     public static final RegistryObject<Item> SPINDRIFT = NATURAL_OBJECTS.register("spindrift", SpindriftItem::new);
+    public static final RegistryObject<Item> FROST_TREE = NATURAL_OBJECTS.register("frost_tree", FrostTree::new);
+    public static final RegistryObject<Item> ECHO_CORN = NATURAL_OBJECTS.register("echo_corn", EchoCorn::new);
 
     public static final RegistryObject<Item> BUCKET_APOCATA = REGISTRY.register("bucket_apocata", AABucketApocataItem::new);
 
     public static final RegistryObject<Item> NULL_DOG_SPAWN_EGG = spawnEgg("the_null_value", MBFEntities.THE_NULL_VALUE, 0x000000, 0xffffff);
+    public static final RegistryObject<Item> WATER_PRAISER_SPAWN_EGG = spawnEgg("water_praiser", MBFEntities.WATER_PRAISER, 0xcfbdb1, 0x3b6b65);
     public static final RegistryObject<Item> ELEPHANT_SPAWN_EGG = spawnEgg("forsaken_earthshaker", MBFEntities.FORSAKEN_EARTHSHAKER, 0x61797e, 0x454b4d);
 
     @SubscribeEvent
@@ -54,9 +57,11 @@ public class MBFItems {
                 .displayItems((para, tab)->{
                     tab.accept(BLACKFLOWIUM_INGOT.get());
 
-                    tab.accept(NULL_MASK_WAND.get());
                     tab.accept(NULL_DOG_SPAWN_EGG.get());
+                    tab.accept(WATER_PRAISER_SPAWN_EGG.get());
                     tab.accept(ELEPHANT_SPAWN_EGG.get());
+
+                    tab.accept(NULL_MASK_WAND.get());
                 }).withTabsAfter(MineBlackFlow.modLoc("natural_objects")).build();
     }
     public static CreativeModeTab naturalObjectTab(){
@@ -66,9 +71,11 @@ public class MBFItems {
                 .withTabsImage(MineBlackFlow.modLoc("textures/gui/tab/tabs.png"))
                 .displayItems(((pParameters, tab) -> {
                     tab.accept(SEEDS.get());
-                    tab.accept(MISTY_TUMBLEWEED.get());
                     tab.accept(BLOOD_MUSHROOM.get());
+                    tab.accept(MISTY_TUMBLEWEED.get());
+                    tab.accept(ECHO_CORN.get());
                     tab.accept(SPINDRIFT.get());
+                    tab.accept(FROST_TREE.get());
 
                     tab.accept(BUCKET_APOCATA.get());
                 })).withTabsBefore(MineBlackFlow.modLoc("mbf_items")).build();

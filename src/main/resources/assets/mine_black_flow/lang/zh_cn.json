@@ -1,6 +1,7 @@
 {
   "entity.mine_black_flow.the_null_value": "空值体",
   "entity.mine_black_flow.forsaken_earthshaker": "撼地遗众",
+  "entity.mine_black_flow.water_praiser": "颂水贤者",
 
   "item.mine_black_flow.null_mask_wand": "空值权杖",
   "item.mine_black_flow.null_mask_wand.desc": "右键使生物成为空值体。",
@@ -22,9 +23,16 @@
   "item.mine_black_flow.spindrift": "浪花",
   "item.mine_black_flow.spindrift.desc": "自然造就改变，思维将之渲染，好让生灵傲然宣称自我的自由。",
   "item.mine_black_flow.spindrift.func": "移动时估价随机变化。",
+  "item.mine_black_flow.frost_tree": "霜晶树",
+  "item.mine_black_flow.frost_tree.desc": "在阳光穿透脏腑前，展现未融的精致。",
+  "item.mine_black_flow.frost_tree.func": "25%概率：玩家杀敌时若生命高于75%则估价+2，否则损坏。",
+  "item.mine_black_flow.echo_corn": "回声玉米",
+  "item.mine_black_flow.echo_corn.desc": "每一粒甜言蜜语都清晰而饱满。",
+  "item.mine_black_flow.echo_corn.func": "打开战利品箱时估价+3.",
 
   "item.mine_black_flow.the_null_value_spawn_egg": "空值体刷怪蛋",
   "item.mine_black_flow.forsaken_earthshaker_spawn_egg": "撼地遗众刷怪蛋",
+  "item.mine_black_flow.water_praiser_spawn_egg": "颂水贤者刷怪蛋",
 
   "item.mine_black_flow.natural_object.evaluation": "估价：",
   "item.mine_black_flow.natural_object.base_evaluation": "-> 基础估价：",
@@ -48,6 +56,7 @@
 
   "attribute.mine_black_flow.mania_value": "狂躁损伤",
   "attribute.mine_black_flow.mania_limit": "狂躁损伤阈值",
+  "attribute.mine_black_flow.cognitive_resistance": "认知阻值",
 
   "effect.mine_black_flow.mania_break": "香蕉出血热",
   "effect.mine_black_flow.instant_mania_injury": "瞬间狂躁损伤",
@@ -69,6 +78,9 @@
   "subtitles.mbf_elephant.ambient": "撼地遗众：低鸣",
   "subtitles.mbf_elephant.hurt": "撼地遗众：受伤",
   "subtitles.mbf_elephant.die": "撼地遗众：死亡",
+  "subtitles.mbf_sheep.ambient": "颂水贤者：咩",
+  "subtitles.mbf_sheep.hurt": "颂水贤者：受伤",
+  "subtitles.mbf_sheep.die": "颂水贤者：死亡",
 
   "command.mine_black_flow.mania.hurt.success_single.1": "将 ",
   "command.mine_black_flow.mania.hurt.success_single.2": " 点狂躁损伤施加于 ",

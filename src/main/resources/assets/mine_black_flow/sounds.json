@@ -1,4 +1,35 @@
 {
+  "sheep_ambient": {
+    "subtitle": "subtitles.mbf_sheep.ambient",
+    "sounds": [
+      {
+        "name": "mine_black_flow:sheep_ambient",
+        "stream": false
+      }
+    ]
+  },
+  "sheep_hurt": {
+    "subtitle": "subtitles.mbf_sheep.hurt",
+    "sounds": [
+      {
+        "name": "mine_black_flow:sheep_hurt_0",
+        "stream": false
+      },
+      {
+        "name": "mine_black_flow:sheep_hurt_1",
+        "stream": false
+      }
+    ]
+  },
+  "sheep_die": {
+    "subtitle": "subtitles.mbf_sheep.die",
+    "sounds": [
+      {
+        "name": "mine_black_flow:sheep_die",
+        "stream": false
+      }
+    ]
+  },
   "animal": {
     "subtitle": "subtitles.mbf_animal",
     "sounds": [
@@ -33,11 +64,11 @@
         "stream": false
       },
       {
-        "name": "mine_black_flow:elephant_ambient_1",
+        "name": "mine_black_flow:elephant_hurt_1",
         "stream": false
       },
       {
-        "name": "mine_black_flow:elephant_ambient_2",
+        "name": "mine_black_flow:elephant_hurt_2",
         "stream": false
       }
     ]
