@@ -2,6 +2,7 @@
   "entity.mine_black_flow.the_null_value": "The Null Value",
   "entity.mine_black_flow.forsaken_earthshaker": "Forsaken Earthshaker",
   "entity.mine_black_flow.water_praiser": "Water Praiser",
+  "entity.mine_black_flow.wind_hunter": "Wind Hunter",
 
   "item.mine_black_flow.null_mask_wand": "Null Mask Wand",
   "item.mine_black_flow.null_mask_wand.desc": "Right-click to make entity null masked.",
@@ -29,10 +30,30 @@
   "item.mine_black_flow.echo_corn": "Echo Corn",
   "item.mine_black_flow.echo_corn.desc": "Every grain of sweet words being explicit and plump.",
   "item.mine_black_flow.echo_corn.func": "Evaluation +3 when open a looted chest.",
+  "item.mine_black_flow.multi_moss": "Multi Birth Moss",
+  "item.mine_black_flow.multi_moss.desc": "Cover the dirt, tree, dreaming, growing.",
+  "item.mine_black_flow.multi_moss.func": "Give 3 Dea Moss Ball on gain. Evaluation +1 when gain new accessory.",
+  "item.mine_black_flow.dead_moss_ball": "Dead Moss Ball",
+  "item.mine_black_flow.dead_moss_ball.desc": "Then rotting, withering, despair and die.",
+  "item.mine_black_flow.dead_moss_ball.func": "Natural object of low evaluation.",
+  "item.mine_black_flow.homesick_fruit": "Homesick Fruit",
+  "item.mine_black_flow.homesick_fruit.desc": "Blind by praise, starting the count down of destruction.",
+  "item.mine_black_flow.homesick_fruit.func": "Reduce evaluation if far from original place on gain.",
+  "item.mine_black_flow.homesick_fruit.pos": "Init Pos ",
+  "item.mine_black_flow.plate_vine": "Plate Vine",
+  "item.mine_black_flow.plate_vine.desc": "Catch the fellows, never releasing.",
+  "item.mine_black_flow.plate_vine.func": "Evaluation +4 when gain a new accessory.",
+  "item.mine_black_flow.shiny_truffle": "Shiny Truffle",
+  "item.mine_black_flow.shiny_truffle.desc": "It's unworthy of the privilege if not excavated and tasted.",
+  "item.mine_black_flow.shiny_truffle.func": "Natural object of high evaluation.",
+  "item.mine_black_flow.cage_controller": "Cage Controller",
+  "item.mine_black_flow.cage_controller.desc": "Transient silence doesn't mean truly control.",
+  "item.mine_black_flow.cage_controller.func": "???",
 
   "item.mine_black_flow.the_null_value_spawn_egg": "The Null Value Spawn Egg",
   "item.mine_black_flow.forsaken_earthshaker_spawn_egg": "Forsaken Earthshaker Spawn Egg",
   "item.mine_black_flow.water_praiser_spawn_egg": "Water Praiser Spawn Egg",
+  "item.mine_black_flow.wind_hunter_spawn_egg": "Wind Hunter Spawn Egg",
 
   "item.mine_black_flow.natural_object.evaluation": "Evaluation: ",
   "item.mine_black_flow.natural_object.base_evaluation": "-> Base Evaluation: ",
@@ -72,6 +93,7 @@
   "death.attack.mania_swallow.player": "%1$s becomes a banana whilst trying to escape %2$s",
 
   "subtitles.mbf_animal": "Animal",
+  "subtitles.mbf_mania_break": "Mania Break",
   "subtitles.mbf_dog.ambient": "The Null Value: Ambient",
   "subtitles.mbf_dog.hurt": "The Null Value: Hurt",
   "subtitles.mbf_dog.die": "The Null Value: Die",
@@ -88,6 +110,9 @@
   "command.mine_black_flow.mania.heal.success_single.1": "Heal ",
   "command.mine_black_flow.mania.heal.success_single.2": " Mania Injury for ",
   "command.mine_black_flow.mania.fail": "No living entities found",
+  "command.mine_black_flow.accessory.give.1": "Give accessory ",
+  "command.mine_black_flow.accessory.give.2": " to ",
+  "command.mine_black_flow.accessory.give.3": " players.",
 
   "config.jade.plugin_mine_black_flow.mania_provider": "Mania EP Value"
 }

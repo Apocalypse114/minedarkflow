@@ -4,6 +4,7 @@ import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.entity.ForsakenEarthshakerEntity;
 import net.apocalypse.mineblackflow.entity.TheNullValueEntity;
 import net.apocalypse.mineblackflow.entity.WaterPraiserEntity;
+import net.apocalypse.mineblackflow.entity.WindHunterEntity;
 import net.apocalypse.mineblackflow.entity.projectile.WaterPraiserArrow;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.Entity;
@@ -28,6 +29,9 @@ public class MBFEntities {
     public static final RegistryObject<EntityType<WaterPraiserEntity>> WATER_PRAISER = register("water_praiser",
             EntityType.Builder.<WaterPraiserEntity>of(WaterPraiserEntity::new, MobCategory.MONSTER)
                     .setCustomClientFactory(WaterPraiserEntity::new), 24, 0.8f, 2.2f);
+    public static final RegistryObject<EntityType<WindHunterEntity>> WIND_HUNTER = register("wind_hunter",
+            EntityType.Builder.<WindHunterEntity>of(WindHunterEntity::new, MobCategory.MONSTER)
+                    .setCustomClientFactory(WindHunterEntity::new), 24, 0.8f, 1.8f);
 
     public static final RegistryObject<EntityType<WaterPraiserArrow>> WATER_PRAISER_ARROW = register("water_praiser_arrow",
             EntityType.Builder.<WaterPraiserArrow>of(WaterPraiserArrow::new, MobCategory.MISC)
@@ -47,5 +51,6 @@ public class MBFEntities {
         event.put(THE_NULL_VALUE.get(), TheNullValueEntity.createAttribute().build());
         event.put(FORSAKEN_EARTHSHAKER.get(), ForsakenEarthshakerEntity.createAttribute().build());
         event.put(WATER_PRAISER.get(), WaterPraiserEntity.createAttribute().build());
+        event.put(WIND_HUNTER.get(), WindHunterEntity.createAttribute().build());
     }
 }

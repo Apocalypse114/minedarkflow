@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.apocalypse.mineblackflow.config.ConfigClient;
 import net.apocalypse.mineblackflow.config.ConfigServer;
 import net.apocalypse.mineblackflow.init.*;
+import net.minecraft.commands.synchronization.ArgumentTypeInfos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -63,7 +64,7 @@ public class MineBlackFlow {
         MBFSounds.REGISTRY.register(modEventBus);
         MBFEntities.REGISTRY.register(modEventBus);
         MBFItems.REGISTRY.register(modEventBus);
-        MBFItems.NATURAL_OBJECTS.register(modEventBus);
+        MBFItems.ACCESSORY.register(modEventBus);
         MBFTabs.REGISTRY.register(modEventBus);
         MBFEnchantments.REGISTRY.register(modEventBus);
         MBFPotions.REGISTRY.register(modEventBus);

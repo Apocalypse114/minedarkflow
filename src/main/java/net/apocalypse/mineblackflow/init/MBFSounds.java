@@ -11,6 +11,7 @@ public class MBFSounds {
     public static final DeferredRegister<SoundEvent> REGISTRY = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, MineBlackFlow.MODID);
 
     public static final RegistryObject<SoundEvent> ANIMAL = register("animal", true);
+    public static final RegistryObject<SoundEvent> MANIA_BREAK = register("mania_break", false);
     public static final RegistryObject<SoundEvent> DOG_AMBIENT = register("dog_ambient", false);
     public static final RegistryObject<SoundEvent> DOG_HURT = register("dog_hurt", false);
     public static final RegistryObject<SoundEvent> DOG_DIE = register("dog_die", false);

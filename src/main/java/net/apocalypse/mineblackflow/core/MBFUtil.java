@@ -2,7 +2,6 @@ package net.apocalypse.mineblackflow.core;
 
 import net.apocalypse.mineblackflow.init.MBFAttributes;
 import net.apocalypse.mineblackflow.init.MBFEntities;
-import net.apocalypse.mineblackflow.init.MBFSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -12,16 +11,19 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.scores.Team;
+
+import java.util.function.Consumer;
 
 public class MBFUtil {
     public static boolean nullMasked(LivingEntity entity){
@@ -66,8 +68,12 @@ public class MBFUtil {
         if (level.isClientSide()) level.playLocalSound(x, y, z, event, source, volume, pitch, false);
         else level.playSound(null, pos, event, source, volume, pitch);
     }
-    public static void playerSoundAtEntity(Entity entity, SoundEvent event, SoundSource source, float volume, float pitch){
+    public static void playSoundAtEntity(Entity entity, SoundEvent event, SoundSource source, float volume, float pitch){
         playSoundAt(entity.level(), entity.getX(), entity.getY(), entity.getZ(), entity.blockPosition(), event, source, volume, pitch);
+    }
+    public static void playDifferedSoundAtEntity(Entity entity, SoundEvent event, SoundSource source, float volume, float dPitch){
+        playSoundAt(entity.level(), entity.getX(), entity.getY(), entity.getZ(),
+                entity.blockPosition(), event, source, volume, 1 - dPitch / 2 + entity.level().getRandom().nextFloat() * dPitch);
     }
 
     public static AttributeSupplier.Builder fastBuildAttribute(
@@ -115,5 +121,12 @@ public class MBFUtil {
     }
     public static AABB aabbOnEntity(Entity entity, double size){
         return new AABB(entity.position(), entity.position()).inflate(size / 2);
+    }
+    public static void forEachItemInPlayerInventory(Player player, Consumer<ItemStack> action){
+        Inventory inventory = player.getInventory();
+        for (int i = 0; i < inventory.getContainerSize(); i++){
+            ItemStack stackGotten = inventory.getItem(i);
+            action.accept(stackGotten);
+        }
     }
 }

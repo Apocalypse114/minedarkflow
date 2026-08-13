@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mine_black_flow:item/dead_moss_ball"
+  }
+}

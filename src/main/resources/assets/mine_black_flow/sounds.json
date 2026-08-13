@@ -1,4 +1,13 @@
 {
+  "mania_break": {
+    "subtitle": "subtitles.mbf_mania_break",
+    "sounds": [
+      {
+        "name": "mine_black_flow:mania_break",
+        "stream": false
+      }
+    ]
+  },
   "sheep_ambient": {
     "subtitle": "subtitles.mbf_sheep.ambient",
     "sounds": [

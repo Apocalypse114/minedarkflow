@@ -35,7 +35,6 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
@@ -128,8 +127,8 @@ public class ForsakenEarthshakerEntity extends GeoBlackFlowMonster {
     public void tickDeath(){
         deathTime++;
         if (deathTime == 46){
-            MBFUtil.playerSoundAtEntity(this, SoundEvents.GENERIC_EXPLODE, SoundSource.HOSTILE,
-                    1, 0.8f + 0.4f * this.getRandom().nextFloat());
+            MBFUtil.playDifferedSoundAtEntity(this, SoundEvents.GENERIC_EXPLODE, SoundSource.HOSTILE,
+                    1, 0.4f);
         }
         if (deathTime >= 50){
             this.remove(RemovalReason.KILLED);
@@ -193,7 +192,7 @@ public class ForsakenEarthshakerEntity extends GeoBlackFlowMonster {
                 return 16;
             }
         });
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<Player>(this, Player.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(4, new AttackEveryoneGoal(this));
         this.goalSelector.addGoal(5, new RandomStrollGoal(this, 1));
         this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
@@ -226,7 +225,6 @@ public class ForsakenEarthshakerEntity extends GeoBlackFlowMonster {
         return false;
     }
 
-
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
         controllers.add(moveController(this, 1, this::moveHandler));
         controllers.add(attackController(this, 0, this::attackingHandler));
@@ -236,9 +234,6 @@ public class ForsakenEarthshakerEntity extends GeoBlackFlowMonster {
         if (this.isDeadOrDying()){
             return event.setAndContinue(RawAnimation.begin().thenPlay(animLoc("die")));
         }
-//        if (getAttackDuration() > 0){
-//            return event.setAndContinue(RawAnimation.begin().thenPlay(animLoc("attack")));
-//        }
         if (isAnimAvailable()){
             if(event.isMoving()){
                 return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("move")));
@@ -254,8 +249,7 @@ public class ForsakenEarthshakerEntity extends GeoBlackFlowMonster {
         if (this.swinging && this.lastSwing + 94L <= level().getGameTime()) {
             this.swinging = false;
         }
-        if (this.swinging && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
-            //MineBlackFlow.LOGGER.info("attack anim played!");
+        if (getAttackDuration() > 0 && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
             event.getController().forceAnimationReset();
             return event.setAndContinue(RawAnimation.begin().thenPlay(animLoc("attack")));
         }

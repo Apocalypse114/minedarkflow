@@ -42,9 +42,10 @@ public class ManiaInjury {
             Tool.setManiaEP(living, 0);
             ManiaBreakEffect.doManiaDamage(living, 2);
         }
+        MBFUtil.playSoundAtEntity(living, MBFSounds.MANIA_BREAK.get(), SoundSource.AMBIENT, 1.5f, 1);
         if (ConfigServer.playAnimal()){
             MineBlackFlow.LOGGER.info("animal played!");
-            MBFUtil.playerSoundAtEntity(living, MBFSounds.ANIMAL.get(), SoundSource.NEUTRAL, 1, 1);
+            MBFUtil.playSoundAtEntity(living, MBFSounds.ANIMAL.get(), SoundSource.AMBIENT, 1, 1);
         }
     }
     private static float amountAfterCognitiveReduction(float amount, LivingEntity living){

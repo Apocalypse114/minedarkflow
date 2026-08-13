@@ -19,15 +19,15 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels(){
-        simpleItem(MBFItems.FROST_TREE);
-        simpleItem(MBFItems.ECHO_CORN);
+        simpleItem(MBFItems.SHINY_TRUFFLE);
+        simpleItem(MBFItems.CAGE_CONTROLLER);
     }
 
-    private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
+    private ItemModelBuilder simpleItem(RegistryObject<? extends Item> item) {
         return simpleItem(item, "");
     }
 
-    private ItemModelBuilder simpleItem(RegistryObject<Item> item, String location) {
+    private ItemModelBuilder simpleItem(RegistryObject<? extends Item> item, String location) {
         return withExistingParent(item.getId().getPath(), new ResourceLocation("item/generated"))
                 .texture("layer0", MineBlackFlow.modLoc("item/"+location+item.getId().getPath()));
     }

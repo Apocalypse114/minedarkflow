@@ -3,7 +3,6 @@ package net.apocalypse.mineblackflow.entity;
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.core.MBFUtil;
 import net.apocalypse.mineblackflow.entity.base.AttackEveryoneGoal;
-import net.apocalypse.mineblackflow.entity.base.GeoBlackFlowMonster;
 import net.apocalypse.mineblackflow.entity.base.RangedBlackFlowMonster;
 import net.apocalypse.mineblackflow.entity.projectile.WaterPraiserArrow;
 import net.apocalypse.mineblackflow.init.MBFEntities;
@@ -51,15 +50,11 @@ public class WaterPraiserEntity extends RangedBlackFlowMonster {
     }
 
     private static final EntityDataAccessor<Byte> DATA_COLOR = SynchedEntityData.defineId(WaterPraiserEntity.class, EntityDataSerializers.BYTE);
-    private static final EntityDataAccessor<Integer> DATA_COOLDOWN = SynchedEntityData.defineId(WaterPraiserEntity.class, EntityDataSerializers.INT);
+    private int COOLDOWN = 0;
     private static final EntityDataAccessor<Byte> DATA_TP_TICK = SynchedEntityData.defineId(WaterPraiserEntity.class, EntityDataSerializers.BYTE);
 
-    public boolean canTp(){
-        return this.entityData.get(DATA_COOLDOWN) <= 0;
-    }
-    public void setCooldown(){
-        this.entityData.set(DATA_COOLDOWN, 200);
-    }
+    public boolean canTp(){return COOLDOWN <= 0;}
+    public void setCooldown(){COOLDOWN = 200;}
     public boolean isNotTeleporting(){
         return getTpTick() <= 0;
     }
@@ -71,7 +66,7 @@ public class WaterPraiserEntity extends RangedBlackFlowMonster {
     }
     private void tickCooldowns(){
         setTpTick((byte) Math.max(0, getTpTick() - 1));
-        this.entityData.set(DATA_COOLDOWN, Math.max(0, this.entityData.get(DATA_COOLDOWN) - 1));
+        if (COOLDOWN > 0) COOLDOWN --;
     }
     public int getColor(){
         return colorFromId(this.entityData.get(DATA_COLOR));
@@ -94,6 +89,10 @@ public class WaterPraiserEntity extends RangedBlackFlowMonster {
     }
 
     @Override
+    public boolean hurt(DamageSource source, float amount){
+        return isNotTeleporting() && super.hurt(source, amount);
+    }
+    @Override
     public void actuallyHurt(DamageSource source, float amount){
         if (isNotTeleporting()) {
             super.actuallyHurt(source, amount);
@@ -111,7 +110,9 @@ public class WaterPraiserEntity extends RangedBlackFlowMonster {
         tickCooldowns();
         int t = getTpTick();
         if (t == 10) tpBackWards();
-        if (t > 0) this.setDeltaMovement(Vec3.ZERO);
+        if (t > 0){
+            this.setDeltaMovement(new Vec3(0, this.getDeltaMovement().y, 0));
+        }
     }
 
     private void tpBackWards(){
@@ -127,8 +128,8 @@ public class WaterPraiserEntity extends RangedBlackFlowMonster {
                 break;
             }
         }
-        MBFUtil.playerSoundAtEntity(this, SoundEvents.FOX_TELEPORT, SoundSource.HOSTILE,
-                1, 0.9f + this.getRandom().nextFloat() * 0.2f);
+        MBFUtil.playDifferedSoundAtEntity(this, SoundEvents.FOX_TELEPORT, SoundSource.HOSTILE,
+                1, 0.2f);
         this.teleportTo(targetPos.x, targetPos.y, targetPos.z);
     }
 
@@ -149,14 +150,6 @@ public class WaterPraiserEntity extends RangedBlackFlowMonster {
         }
         this.setColor(c);
         return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
-    }
-    @Override
-    public void tickDeath(){
-        deathTime++;
-        if (deathTime >= 20){
-            this.remove(RemovalReason.KILLED);
-            this.dropExperience();
-        }
     }
 
     public static int colorFromId(byte id){
@@ -179,7 +172,6 @@ public class WaterPraiserEntity extends RangedBlackFlowMonster {
     public void defineSynchedData(){
         super.defineSynchedData();
         this.entityData.define(DATA_COLOR, (byte)0);
-        this.entityData.define(DATA_COOLDOWN, 0);
         this.entityData.define(DATA_TP_TICK, (byte)0);
     }
 
@@ -245,14 +237,14 @@ public class WaterPraiserEntity extends RangedBlackFlowMonster {
     public void readAdditionalSaveData(@NotNull CompoundTag tag){
         super.readAdditionalSaveData(tag);
         if (tag.contains("color")) this.setColor(tag.getByte("color"));
-        if (tag.contains("cooldown")) this.entityData.set(DATA_COOLDOWN, tag.getInt("cooldown"));
+        if (tag.contains("cooldown"))COOLDOWN = tag.getInt("cooldown");
         if (tag.contains("tpTick")) this.entityData.set(DATA_TP_TICK, tag.getByte("tpTick"));
     }
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag tag){
         super.addAdditionalSaveData(tag);
         tag.putInt("color", this.entityData.get(DATA_COLOR));
-        tag.putInt("cooldown", this.entityData.get(DATA_COOLDOWN));
+        tag.putInt("cooldown", COOLDOWN);
         tag.putByte("tpTick", this.entityData.get(DATA_TP_TICK));
     }
 

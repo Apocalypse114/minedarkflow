@@ -14,6 +14,8 @@ import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
@@ -45,7 +47,6 @@ public class TheNullValueEntity extends GeoBlackFlowMonster {
         return MBFSounds.DOG_DIE.get();
     }
 
-
     public void registerGoals(){
         super.registerGoals();
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
@@ -55,9 +56,10 @@ public class TheNullValueEntity extends GeoBlackFlowMonster {
                 return 4;
             }
         });
-        this.targetSelector.addGoal(3, new AttackEveryoneGoal(this));
-        this.goalSelector.addGoal(4, new RandomStrollGoal(this, 1));
-        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.targetSelector.addGoal(4, new AttackEveryoneGoal(this));
+        this.goalSelector.addGoal(5, new RandomStrollGoal(this, 1));
+        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
     }
 
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers){

@@ -14,13 +14,14 @@ import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
-public class WaterPriaserFurLayer extends GeoRenderLayer<WaterPraiserEntity> {
-    public WaterPriaserFurLayer(GeoRenderer<WaterPraiserEntity> entityRendererIn) {
+public class WaterPraiserFurLayer extends GeoRenderLayer<WaterPraiserEntity> {
+    public WaterPraiserFurLayer(GeoRenderer<WaterPraiserEntity> entityRendererIn) {
         super(entityRendererIn);
     }
 
     public static final ResourceLocation FUR_VANILLA = MineBlackFlow.modLoc("textures/entity/water_praiser_vanilla.png");
     public static final ResourceLocation FUR = MineBlackFlow.modLoc("textures/entity/water_praiser_fur.png");
+    public static final ResourceLocation FULL = MineBlackFlow.modLoc("textures/entity/water_praiser.png");
 
     @Override
     public void render(
@@ -40,19 +41,33 @@ public class WaterPriaserFurLayer extends GeoRenderLayer<WaterPraiserEntity> {
 
         BakedGeoModel model = getDefaultBakedModel(animatable);
 
+        float t = animatable.getTpTick() - partialTick;
+        float alpha = 1;
+        if (t>0){
+            if (12<t && t<17) alpha = (t - 12) / 5;
+            else if (4<t && t<9) alpha = (9 - t) / 5;
+            else if (9<=t && t<= 12) alpha = 0;
+        }
+
+        RenderType typeFull = RenderType.entityTranslucent(FULL);
+        VertexConsumer consumerFull = bufferSource.getBuffer(typeFull);
+        getRenderer().reRender(model, poseStack, bufferSource, animatable, typeFull,
+                consumerFull, partialTick, packedLight,
+                packedOverlay, 1, 1, 1, alpha);
+
         if (color == 0){
-            RenderType type = RenderType.entityCutout(FUR_VANILLA);
+            RenderType type = RenderType.entityTranslucent(FUR_VANILLA);
             VertexConsumer consumer = bufferSource.getBuffer(type);
             getRenderer().reRender(model, poseStack, bufferSource, animatable, type,
                     consumer, partialTick, packedLight,
-                    packedOverlay, 1, 1, 1, 1);
+                    packedOverlay, 1, 1, 1, alpha);
         } else {
-            RenderType type = RenderType.entityCutout(FUR);
+            RenderType type = RenderType.entityTranslucent(FUR);
             VertexConsumer consumer = bufferSource.getBuffer(type);
             float[] splitColor = MBFMath.splitRGB(color);
             getRenderer().reRender(model, poseStack, bufferSource, animatable, type,
                     consumer, partialTick, packedLight,
-                    packedOverlay, splitColor[0], splitColor[1], splitColor[2], 1);
+                    packedOverlay, splitColor[0], splitColor[1], splitColor[2], alpha);
         }
     }
 
