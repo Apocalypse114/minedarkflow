@@ -43,7 +43,7 @@ public class SpindriftItem extends AccessoryBase {
     public void inventoryTick(@NotNull ItemStack pStack, @NotNull Level pLevel, @NotNull Entity pEntity, int pSlotId, boolean pIsSelected){
         super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
         if (pEntity.tickCount % 10 == 0) {
-            if (pEntity.moveDist >= getLastMove(pStack) + 4 * scale(pStack.getCount())){
+            if (pEntity.moveDist >= getLastMove(pStack) + 4){
                 boostEvaluation(pStack, nextChange(pLevel));
                 setLastMove(pStack, pEntity.moveDist);
             }
@@ -58,9 +58,5 @@ public class SpindriftItem extends AccessoryBase {
             return nums[Mth.nextInt(pLevel.getRandom(), 0, 3)];
         }
         return Mth.nextInt(pLevel.getRandom(), -6, 8);
-    }
-    private static int scale(int size){
-        if (size > 16) size = 16;
-        return scales[size];
     }
 }

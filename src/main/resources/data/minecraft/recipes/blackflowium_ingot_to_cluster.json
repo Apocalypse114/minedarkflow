@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "mine_black_flow:blackflowium_ingot"
+    },
+    {
+      "item": "mine_black_flow:blackflowium_ingot"
+    },
+    {
+      "item": "mine_black_flow:blackflowium_ingot"
+    },
+    {
+      "item": "mine_black_flow:blackflowium_ingot"
+    },
+    {
+      "item": "mine_black_flow:blackflowium_ingot"
+    },
+    {
+      "item": "mine_black_flow:blackflowium_ingot"
+    },
+    {
+      "item": "mine_black_flow:blackflowium_ingot"
+    },
+    {
+      "item": "mine_black_flow:blackflowium_ingot"
+    }
+  ],
+  "result": {
+    "item": "mine_black_flow:blackflowium_cluster"
+  }
+}

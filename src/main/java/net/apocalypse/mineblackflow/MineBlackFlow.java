@@ -68,6 +68,7 @@ public class MineBlackFlow {
         MBFTabs.REGISTRY.register(modEventBus);
         MBFEnchantments.REGISTRY.register(modEventBus);
         MBFPotions.REGISTRY.register(modEventBus);
+        MBFBlocks.REGISTRY.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

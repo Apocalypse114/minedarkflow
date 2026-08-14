@@ -11,6 +11,9 @@
   "item.mine_black_flow.bucket_apocata.func": "Deal 5% of mac health damage every tick to player.",
   "item.mine_black_flow.blackflowium_ingot": "Blackflowium Ingot",
   "item.mine_black_flow.blackflowium_ingot.desc": "Currency available in the Black Flow, congeal from mind of the resident.",
+  "block.mine_black_flow.blackflowium_cluster": "Blackflowium Cluster",
+  "block.mine_black_flow.blackflowium_block": "Blackflowium Block",
+  "block.mine_black_flow.blackflowium.value": "Value: ",
 
   "item.mine_black_flow.seeds": "Seeds",
   "item.mine_black_flow.seeds.desc": "What is it breeding?",
@@ -103,6 +106,12 @@
   "subtitles.mbf_sheep.ambient": "Water Praiser: Ambient",
   "subtitles.mbf_sheep.hurt": "Water Praiser: Hurt",
   "subtitles.mbf_sheep.die": "Water Praiser: Die",
+  "subtitles.mbf_mouse.ambient": "Wind Hunter: Ambient",
+  "subtitles.mbf_mouse.hurt": "Wind Hunter: Hurt",
+  "subtitles.mbf_mouse.die": "Wind Hunter: Die",
+  "subtitles.mbf_mouse.attack": "Wind Hunter: Attack",
+  "subtitles.mbf_sheep.attack": "Water Praiser: Attack",
+  "subtitles.mbf_tp": "Teleport",
 
   "command.mine_black_flow.mania.hurt.success_single.1": "Deal ",
   "command.mine_black_flow.mania.hurt.success_single.2": " Mania Injury to ",
@@ -113,6 +122,11 @@
   "command.mine_black_flow.accessory.give.1": "Give accessory ",
   "command.mine_black_flow.accessory.give.2": " to ",
   "command.mine_black_flow.accessory.give.3": " players.",
+  "command.mine_black_flow.accessory.sell": "Sold ",
+  "command.mine_black_flow.accessory.sell_fail": "Nothing can be sold.",
+  "command.mine_black_flow.accessory.sell_many": "Sell a lot!",
+
+  "gameplay.mine_black_flow.sell_apocata": "<Apocata> Oh no why sell me?",
 
   "config.jade.plugin_mine_black_flow.mania_provider": "Mania EP Value"
 }

@@ -6,10 +6,12 @@ import net.apocalypse.mineblackflow.entity.base.AttackEveryoneGoal;
 import net.apocalypse.mineblackflow.entity.base.ComplexMeleeAttackGoal;
 import net.apocalypse.mineblackflow.entity.base.GeoBlackFlowMonster;
 import net.apocalypse.mineblackflow.init.MBFEntities;
+import net.apocalypse.mineblackflow.init.MBFSounds;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.DifficultyInstance;
@@ -73,8 +75,22 @@ public class WindHunterEntity extends GeoBlackFlowMonster {
                 this.setTpTick((byte) 13);
                 this.setCooldown();
                 this.setDuration(13);
+                MBFUtil.playDifferedSoundAtEntity(this, MBFSounds.TP_START.get(), SoundSource.HOSTILE, 1, 0.2f);
             }
         }
+    }
+
+    @Override
+    public SoundEvent getAmbientSound(){
+        return MBFSounds.MOUSE_AMBIENT.get();
+    }
+    @Override
+    public @NotNull SoundEvent getHurtSound(@NotNull DamageSource source){
+        return MBFSounds.MOUSE_HURT.get();
+    }
+    @Override
+    public @NotNull SoundEvent getDeathSound(){
+        return MBFSounds.MOUSE_DIE.get();
     }
 
     @Override
@@ -99,7 +115,7 @@ public class WindHunterEntity extends GeoBlackFlowMonster {
         offset = offset.scale(targetDx / dx);
         Vec3 pos = entity.position().add(offset);
         this.teleportTo(pos.x, entity.getY(), pos.z);
-        MBFUtil.playDifferedSoundAtEntity(this, SoundEvents.FOX_TELEPORT, SoundSource.HOSTILE, 1, 0.2f);
+        MBFUtil.playDifferedSoundAtEntity(this, MBFSounds.TP_DONE.get(), SoundSource.HOSTILE, 1, 0.2f);
     }
     private boolean canTpToBb(@Nullable Entity entity){
         if (entity == null) return false;
@@ -133,8 +149,12 @@ public class WindHunterEntity extends GeoBlackFlowMonster {
     @Override
     public boolean doHurtTarget(@NotNull Entity pTarget){
         this.setAttackDuration(26);
+        MBFUtil.playDifferedSoundAtEntity(this, MBFSounds.MOUSE_ATTACK_PRE.get(), SoundSource.HOSTILE, 1, 0.1f);
         MineBlackFlow.queueServerWork(13, ()-> {
-            if (!this.isDeadOrDying() && this.distanceToSqr(pTarget) <= 4) super.doHurtTarget(pTarget);
+            if (!this.isDeadOrDying() && this.distanceToSqr(pTarget) <= 6.25){
+                super.doHurtTarget(pTarget);
+                MBFUtil.playDifferedSoundAtEntity(this, MBFSounds.MOUSE_ATTACK_HIT.get(), SoundSource.HOSTILE, 1, 0.1f);
+            }
         });
         return true;
     }
@@ -143,7 +163,7 @@ public class WindHunterEntity extends GeoBlackFlowMonster {
         return 1.55F;
     }
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
-        controllers.add(moveController(this, 1, this::moveHandler));
+        controllers.add(moveController(this, 1, this::moveHandler).setAnimationSpeed(1.5));
         controllers.add(attackController(this, 0, this::attackingHandler));
     }
 
@@ -192,7 +212,7 @@ public class WindHunterEntity extends GeoBlackFlowMonster {
         return PlayState.CONTINUE;
     }
     public static AttributeSupplier.Builder createAttribute() {
-        return MBFUtil.fastBuildAttribute(60, 6, 0.2, 3, 1, 0, 27);
+        return MBFUtil.fastBuildAttribute(60, 6, 0.25, 3, 1, 0, 27);
     }
     public boolean isReserve(){
         return this.entityData.get(MIRROR);

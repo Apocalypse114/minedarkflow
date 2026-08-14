@@ -4,7 +4,7 @@ import net.apocalypse.mineblackflow.item.base.AccessoryBase;
 
 public class SeedItem extends AccessoryBase {
     public SeedItem() {
-        super(0, "seeds", FuncCase.EMPTY);
+        super(0, "seeds", FuncCase.EMPTY, true);
     }
 
     public int getBaseEvaluation(){return 2;}

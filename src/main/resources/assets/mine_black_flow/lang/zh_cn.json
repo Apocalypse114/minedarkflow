@@ -11,6 +11,9 @@
   "item.mine_black_flow.bucket_apocata.func": "每游戏刻对玩家造成5%最大生命的伤害。",
   "item.mine_black_flow.blackflowium_ingot": "黑流源石锭",
   "item.mine_black_flow.blackflowium_ingot.desc": "黑流树海内流通的货币，由居民的意识凝结而成。",
+  "block.mine_black_flow.blackflowium_cluster": "黑流源石簇",
+  "block.mine_black_flow.blackflowium_block": "黑流源石块",
+  "block.mine_black_flow.blackflowium.value": "价值：",
 
   "item.mine_black_flow.seeds": "种子",
   "item.mine_black_flow.seeds.desc": "它在孕育什么？",
@@ -103,6 +106,12 @@
   "subtitles.mbf_sheep.ambient": "颂水贤者：咩",
   "subtitles.mbf_sheep.hurt": "颂水贤者：受伤",
   "subtitles.mbf_sheep.die": "颂水贤者：死亡",
+  "subtitles.mbf_mouse.ambient": "聆风猎手：吱吱",
+  "subtitles.mbf_mouse.hurt": "聆风猎手：受伤",
+  "subtitles.mbf_mouse.die": "聆风猎手：死亡",
+  "subtitles.mbf_mouse.attack": "聆风猎手：攻击",
+  "subtitles.mbf_sheep.attack": "颂水贤者：攻击",
+  "subtitles.mbf_tp": "位移",
 
   "command.mine_black_flow.mania.hurt.success_single.1": "将 ",
   "command.mine_black_flow.mania.hurt.success_single.2": " 点狂躁损伤施加于 ",
@@ -113,6 +122,11 @@
   "command.mine_black_flow.accessory.give.1": "将零件 ",
   "command.mine_black_flow.accessory.give.2": " 给予 ",
   "command.mine_black_flow.accessory.give.3": " 个玩家。",
+  "command.mine_black_flow.accessory.sell": "已出售 ",
+  "command.mine_black_flow.accessory.sell_fail": "主手物品无法出售！",
+  "command.mine_black_flow.accessory.sell_many": "出售了一背包配件！",
+
+  "gameplay.mine_black_flow.sell_apocata": "<Apocata> 竟敢卖我，顶死你喵",
 
   "config.jade.plugin_mine_black_flow.mania_provider": "狂躁损伤"
 }

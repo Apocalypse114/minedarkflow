@@ -1,9 +1,12 @@
 package net.apocalypse.mineblackflow.entity.projectile;
 
+import net.apocalypse.mineblackflow.core.MBFUtil;
 import net.apocalypse.mineblackflow.core.ManiaInjury;
 import net.apocalypse.mineblackflow.core.ManiaInjurySource;
 import net.apocalypse.mineblackflow.init.MBFEntities;
+import net.apocalypse.mineblackflow.init.MBFSounds;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,13 +33,15 @@ public class WaterPraiserArrow extends SimpleProjectile{
         if (owner instanceof LivingEntity living){
             double attack = living.getAttributeValue(Attributes.ATTACK_DAMAGE);
             ManiaInjury.dealManiaInjury(pTarget, (float) (attack * 25), ManiaInjurySource.fromEntity(owner, this));
+            MBFUtil.playDifferedSoundAtEntity(this, MBFSounds.SHEEP_ATTACK_HIT.get(),
+                    SoundSource.HOSTILE, 1, 0.1f);
         }
     }
 
     public static WaterPraiserArrow shootTo(LivingEntity shooter, LivingEntity target){
         WaterPraiserArrow arrow = new WaterPraiserArrow(MBFEntities.WATER_PRAISER_ARROW.get(), shooter, shooter.level());
         SimpleProjectile.shootTo(arrow, shooter, target, 1,
-                shooter.getAttributeValue(Attributes.ATTACK_DAMAGE), 3, SoundEvents.LLAMA_SPIT, 0);
+                shooter.getAttributeValue(Attributes.ATTACK_DAMAGE), 3,  0);
         return arrow;
     }
 }

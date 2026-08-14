@@ -100,6 +100,8 @@ public class WaterPraiserEntity extends RangedBlackFlowMonster {
                 this.setTpTick((byte) 20);
                 this.setCooldown();
                 this.setDuration(20);
+                MBFUtil.playDifferedSoundAtEntity(this, MBFSounds.TP_START.get(), SoundSource.HOSTILE,
+                        1, 0.2f);
             }
         }
     }
@@ -128,7 +130,7 @@ public class WaterPraiserEntity extends RangedBlackFlowMonster {
                 break;
             }
         }
-        MBFUtil.playDifferedSoundAtEntity(this, SoundEvents.FOX_TELEPORT, SoundSource.HOSTILE,
+        MBFUtil.playDifferedSoundAtEntity(this, MBFSounds.TP_DONE.get(), SoundSource.HOSTILE,
                 1, 0.2f);
         this.teleportTo(targetPos.x, targetPos.y, targetPos.z);
     }
@@ -177,6 +179,7 @@ public class WaterPraiserEntity extends RangedBlackFlowMonster {
 
     public void performRangedAttack(@NotNull LivingEntity pTarget, float pVelocity){
         startShootAnim(28);
+        MBFUtil.playDifferedSoundAtEntity(this, MBFSounds.SHEEP_ATTACK_PRE.get(), SoundSource.HOSTILE, 1, 0.1f);
         MineBlackFlow.queueServerWork(15, ()-> WaterPraiserArrow.shootTo(this, pTarget));
     }
 

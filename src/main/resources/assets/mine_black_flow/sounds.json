@@ -8,6 +8,95 @@
       }
     ]
   },
+  "tp_start": {
+    "subtitle": "subtitles.mbf_tp",
+    "sounds": [
+      {
+        "name": "mine_black_flow:tp_start",
+        "stream": false
+      }
+    ]
+  },
+  "tp_done": {
+    "subtitle": "subtitles.mbf_tp",
+    "sounds": [
+      {
+        "name": "mine_black_flow:tp_done",
+        "stream": false
+      }
+    ]
+  },
+  "mouse_attack_pre": {
+    "subtitle": "subtitles.mbf_mouse.attack",
+    "sounds": [
+      {
+        "name": "mine_black_flow:mouse_attack_pre",
+        "stream": false
+      }
+    ]
+  },
+  "mouse_attack_done": {
+    "subtitle": "subtitles.mbf_mouse.attack",
+    "sounds": [
+      {
+        "name": "mine_black_flow:mouse_attack_hit",
+        "stream": false
+      }
+    ]
+  },
+  "mouse_ambient": {
+    "subtitle": "subtitles.mbf_mouse.ambient",
+    "sounds": [
+      {
+        "name": "mine_black_flow:mouse_ambient_0",
+        "stream": false
+      },
+      {
+        "name": "mine_black_flow:mouse_ambient_1",
+        "stream": false
+      }
+    ]
+  },
+  "mouse_hurt": {
+    "subtitle": "subtitles.mbf_mouse.hurt",
+    "sounds": [
+      {
+        "name": "mine_black_flow:mouse_hurt_0",
+        "stream": false
+      },
+      {
+        "name": "mine_black_flow:mouse_hurt_1",
+        "stream": false
+      }
+    ]
+  },
+  "mouse_die": {
+    "subtitle": "subtitles.mbf_mouse.die",
+    "sounds": [
+      {
+        "name": "mine_black_flow:mouse_die",
+        "stream": false
+      }
+    ]
+  },
+  "sheep_attack_pre": {
+    "subtitle": "subtitles.mbf_sheep.attack",
+    "sounds": [
+      {
+        "name": "mine_black_flow:sheep_attack_pre",
+        "stream": false
+      }
+    ]
+  },
+  "sheep_attack_done": {
+    "subtitle": "subtitles.mbf_sheep.attack",
+    "sounds": [
+      {
+        "name": "mine_black_flow:sheep_attack_hit",
+        "stream": false
+      }
+    ]
+  },
   "sheep_ambient": {
     "subtitle": "subtitles.mbf_sheep.ambient",
     "sounds": [

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class HomesickFruitItem extends AccessoryBase {
     public HomesickFruitItem() {
-        super(2, "homesick_fruit", FuncCase.EMPTY);
+        super(2, "homesick_fruit", FuncCase.EMPTY, true);
     }
 
     public int getBaseEvaluation(){return 32;}

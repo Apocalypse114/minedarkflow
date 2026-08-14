@@ -2,11 +2,11 @@ package net.apocalypse.mineblackflow.item.base;
 
 import net.apocalypse.mineblackflow.core.MBFUtil;
 import net.apocalypse.mineblackflow.init.CollectibleRarity;
+import net.apocalypse.mineblackflow.init.MBFBlocks;
 import net.apocalypse.mineblackflow.init.MBFItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -23,8 +23,8 @@ import java.util.List;
 public abstract class AccessoryBase extends Item implements IBlackflowiumPriced{
     private final String DESC, FUNC;
     public final FuncCase functionCase;
-    public AccessoryBase(int intRarity, String id, FuncCase funcCase) {
-        super(new Properties().stacksTo(16).rarity(switch (intRarity){
+    public AccessoryBase(int intRarity, String id, FuncCase funcCase, boolean canStack) {
+        super(new Properties().stacksTo(canStack?16:1).rarity(switch (intRarity){
             case 0-> CollectibleRarity.COMMON;
             case 1-> CollectibleRarity.UNCOMMON;
             case 2-> CollectibleRarity.RARE;
@@ -37,6 +37,7 @@ public abstract class AccessoryBase extends Item implements IBlackflowiumPriced{
     public AccessoryBase(int intRarity, String id){
         this(intRarity, id, FuncCase.EMPTY);
     }
+    public AccessoryBase(int intRarity, String id, FuncCase funcCase){this(intRarity, id, funcCase, false);}
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvance){
@@ -60,7 +61,7 @@ public abstract class AccessoryBase extends Item implements IBlackflowiumPriced{
     public abstract int getBaseEvaluation();
     public static int getEvaluation(ItemStack stack){
         if (stack.getItem() instanceof AccessoryBase obj)
-            return obj.getBaseEvaluation() + stack.getOrCreateTag().getInt(TAG_CHANGE);
+            return Math.min(999, obj.getBaseEvaluation() + stack.getOrCreateTag().getInt(TAG_CHANGE));
         return 0;
     }
 
@@ -70,10 +71,40 @@ public abstract class AccessoryBase extends Item implements IBlackflowiumPriced{
     public static void boostEvaluation(ItemStack stack, int boost){
         setEvaluation(stack, stack.getOrCreateTag().getInt(TAG_CHANGE) + boost);}
 
-    public static ItemStack soldResult(ItemStack good){
-        int num = getEvaluation(good);
-        if (num <= 0) return ItemStack.EMPTY;
-        return new ItemStack(MBFItems.BLACKFLOWIUM_INGOT.get(), num);
+    public static List<ItemStack> soldResult(ItemStack good){
+        int num = getEvaluation(good) * good.getCount();
+        List<ItemStack> list = new ArrayList<>();
+        if (num <= 0) return list;
+        if (num > 999) num = 999;
+        int num_64_raw = num / 64, num_8_raw = num / 8;
+        if (num <= 64) list.add(new ItemStack(MBFItems.BLACKFLOWIUM_INGOT.get(), num));
+        else if (num_8_raw <= 64){
+            list.add(new ItemStack(MBFItems.BLACKFLOWIUM_CLUSTER.get(), num_8_raw));
+            num -= num_8_raw * 8;
+            if (num > 0) list.add(new ItemStack(MBFItems.BLACKFLOWIUM_INGOT.get(), num));
+        }else {
+            list.add(new ItemStack(MBFItems.BLACKFLOWIUM_BLOCK.get(), num_64_raw));
+            num -= num_64_raw * 64; num_8_raw = num / 8;
+            if (num_8_raw > 0) list.add(new ItemStack(MBFItems.BLACKFLOWIUM_CLUSTER.get(), num_8_raw));
+            num -= num_8_raw * 8;
+            if (num > 0) list.add(new ItemStack(MBFItems.BLACKFLOWIUM_INGOT.get(), num));
+        }
+        return list;
+    }
+
+    public static boolean sellFromPlayer(ItemStack pStack, Player pPlayer){
+        if (pStack.getItem() == MBFItems.BUCKET_APOCATA.get()){
+            pPlayer.displayClientMessage(Component.translatable("gameplay.mine_black_flow.sell_apocata"), false);
+            pPlayer.hurt(pPlayer.level().damageSources().genericKill(), 32);
+            return false;
+        }
+        List<ItemStack> income = soldResult(pStack);
+        if (!income.isEmpty()){
+            pStack.shrink(pStack.getCount());
+            income.forEach(stack -> ItemHandlerHelper.giveItemToPlayer(pPlayer, stack));
+            return true;
+        }
+        return false;
     }
     public List<ItemStack> giveTo(Player player, int pCount){
         return giveAccessoryTo(this, player, pCount);
@@ -85,15 +116,14 @@ public abstract class AccessoryBase extends Item implements IBlackflowiumPriced{
         if (pCount <= 0) return stacks;
         int countLeft = pCount;
         while (countLeft > 0){
-            int givenCount = Math.min(countLeft, 16);
-            stacks.add(giveAccessoryToRaw(accessory, pPlayer, givenCount));
-            countLeft -= givenCount;
+            stacks.add(giveAccessoryToRaw(accessory, pPlayer));
+            countLeft -= 1;
         }
         return stacks;
     }
 
-    private static ItemStack giveAccessoryToRaw(AccessoryBase accessory, Player pPlayer, int pCount){
-        ItemStack stack = new ItemStack(accessory, pCount);
+    private static ItemStack giveAccessoryToRaw(AccessoryBase accessory, Player pPlayer){
+        ItemStack stack = new ItemStack(accessory, 1);
         ItemHandlerHelper.giveItemToPlayer(pPlayer, stack);
         accessory.onGain(stack, pPlayer);
         MBFUtil.forEachItemInPlayerInventory(pPlayer, item ->{

@@ -4,7 +4,7 @@ import net.apocalypse.mineblackflow.item.base.AccessoryBase;
 
 public class ShinyTruffleItem extends AccessoryBase{
     public ShinyTruffleItem() {
-        super(2, "shiny_truffle", AccessoryBase.FuncCase.EMPTY);
+        super(2, "shiny_truffle", AccessoryBase.FuncCase.EMPTY, true);
     }
 
     public int getBaseEvaluation(){return 32;}

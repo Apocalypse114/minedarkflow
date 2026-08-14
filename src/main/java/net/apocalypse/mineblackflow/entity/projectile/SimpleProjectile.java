@@ -48,7 +48,7 @@ public class SimpleProjectile extends AbstractArrow {
     }
 
     public static void shootTo(SimpleProjectile entityArrow, LivingEntity shooter, LivingEntity target,
-                               float v, double damage, float inaccuracy, SoundEvent shootSound, double heightOffset) {
+                               float v, double damage, float inaccuracy,  double heightOffset) {
         double dx = target.getX() - shooter.getX();
         double dy = target.getY() + target.getEyeHeight() - heightOffset;
         double dz = target.getZ() - shooter.getZ();
@@ -58,7 +58,7 @@ public class SimpleProjectile extends AbstractArrow {
         entityArrow.setKnockback(0);
         entityArrow.setCritArrow(false);
         shooter.level().addFreshEntity(entityArrow);
-        shooter.level().playSound(null, shooter.getX(), shooter.getY(), shooter.getZ(),shootSound, SoundSource.HOSTILE, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
+        //shooter.level().playSound(null, shooter.getX(), shooter.getY(), shooter.getZ(),shootSound, SoundSource.HOSTILE, 1, 1f / (RandomSource.create().nextFloat() * 0.5f + 1));
     }
 
 }

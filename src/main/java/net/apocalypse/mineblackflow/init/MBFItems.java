@@ -10,9 +10,11 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -48,12 +50,18 @@ public class MBFItems {
     public static final RegistryObject<Item> ELEPHANT_SPAWN_EGG = spawnEgg("forsaken_earthshaker", MBFEntities.FORSAKEN_EARTHSHAKER, 0x61797e, 0x454b4d);
     public static final RegistryObject<Item> WIND_HUNTER_SPAWN_EGG = spawnEgg("wind_hunter", MBFEntities.WIND_HUNTER, 0x90705c, 0x335f4b);
 
+    public static final RegistryObject<Item> BLACKFLOWIUM_CLUSTER = blockItem(MBFBlocks.BLACKFLOWIUM_CLUSTER);
+    public static final RegistryObject<Item> BLACKFLOWIUM_BLOCK = blockItem(MBFBlocks.BLACKFLOWIUM_BLOCK);
+
     @SubscribeEvent
     public static void buildTabContentsVanilla(BuildCreativeModeTabContentsEvent tabData){
 
     }
     public static RegistryObject<Item> spawnEgg(String name, Supplier<? extends EntityType<? extends Mob>> type, int backColor, int spotColor){
         return REGISTRY.register(name+"_spawn_egg", ()->new ForgeSpawnEggItem(type, backColor, spotColor, new Item.Properties()));
+    }
+    public static RegistryObject<Item> blockItem(RegistryObject<Block> block){
+        return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
     public static CreativeModeTab mbfItemsTab(){
@@ -63,6 +71,8 @@ public class MBFItems {
                 .withTabsImage(MineBlackFlow.modLoc("textures/gui/tab/tabs.png"))
                 .displayItems((para, tab)->{
                     tab.accept(BLACKFLOWIUM_INGOT.get());
+                    tab.accept(BLACKFLOWIUM_CLUSTER.get());
+                    tab.accept(BLACKFLOWIUM_BLOCK.get());
 
                     tab.accept(NULL_DOG_SPAWN_EGG.get());
                     tab.accept(WATER_PRAISER_SPAWN_EGG.get());
