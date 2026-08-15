@@ -2,7 +2,6 @@ package net.apocalypse.mineblackflow.item.base;
 
 import net.apocalypse.mineblackflow.core.MBFUtil;
 import net.apocalypse.mineblackflow.init.CollectibleRarity;
-import net.apocalypse.mineblackflow.init.MBFBlocks;
 import net.apocalypse.mineblackflow.init.MBFItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -111,6 +110,16 @@ public abstract class AccessoryBase extends Item implements IBlackflowiumPriced{
     }
     public List<ItemStack> giveTo(Player player){return giveTo(player, 1);}
 
+    public List<ItemStack> giveWithMessage(Player player){
+        List<ItemStack> list = this.giveTo(player);
+        MutableComponent message = Component.translatable("gameplay.mine_black_flow.gain_acc");
+        for (ItemStack stack : list){
+            message.append(stack.getDisplayName());
+        }
+        player.displayClientMessage(message, true);
+        return list;
+    }
+
     public static List<ItemStack> giveAccessoryTo(AccessoryBase accessory, Player pPlayer, int pCount){
         List<ItemStack> stacks = new ArrayList<>();
         if (pCount <= 0) return stacks;
@@ -123,14 +132,14 @@ public abstract class AccessoryBase extends Item implements IBlackflowiumPriced{
     }
 
     private static ItemStack giveAccessoryToRaw(AccessoryBase accessory, Player pPlayer){
-        ItemStack stack = new ItemStack(accessory, 1);
-        ItemHandlerHelper.giveItemToPlayer(pPlayer, stack);
+        ItemStack stack = new ItemStack(accessory);
         accessory.onGain(stack, pPlayer);
         MBFUtil.forEachItemInPlayerInventory(pPlayer, item ->{
-            if (item != stack && item.getItem() instanceof AccessoryBase base){
+            if (item.getItem() instanceof AccessoryBase base){
                 base.onOuterGain(stack, item, pPlayer);
             }
         });
+        ItemHandlerHelper.giveItemToPlayer(pPlayer, stack);
         return stack;
     }
 

@@ -15,11 +15,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        cubeBlockWithItem(MBFBlocks.BLACKFLOWIUM_BLOCK.get());
-        simpleBlock(MBFBlocks.BLACKFLOWIUM_CLUSTER.get(), models()
-                .cross("blackflowium_cluster", MineBlackFlow.modLoc("block/blackflowium_cluster"))
-                .renderType("cutout"));
-        //simpleBlockItem(MBFBlocks.BLACKFLOWIUM_CLUSTER.get(), itemModels().basicItem(MineBlackFlow.modLoc("block/blackflowium_cluster")));
+        simpleBlock(MBFBlocks.BLOOD_MUSHROOM_BLOCK.get(), models().cross("blood_mushroom_plant", MineBlackFlow.modLoc("item/blood_mushroom")));
+        simpleBlockItem(MBFBlocks.BLOOD_MUSHROOM_BLOCK.get(), itemModels().basicItem(MineBlackFlow.modLoc("blood_mushroom")));
     }
 
     private void cubeBlockWithItem(Block block){

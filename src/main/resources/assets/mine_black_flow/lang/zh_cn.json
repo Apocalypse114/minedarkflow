@@ -14,6 +14,7 @@
   "block.mine_black_flow.blackflowium_cluster": "黑流源石簇",
   "block.mine_black_flow.blackflowium_block": "黑流源石块",
   "block.mine_black_flow.blackflowium.value": "价值：",
+  "block.mine_black_flow.blood_mushroom_plant": "血蕈植株",
 
   "item.mine_black_flow.seeds": "种子",
   "item.mine_black_flow.seeds.desc": "它在孕育什么？",
@@ -127,6 +128,7 @@
   "command.mine_black_flow.accessory.sell_many": "出售了一背包配件！",
 
   "gameplay.mine_black_flow.sell_apocata": "<Apocata> 竟敢卖我，顶死你喵",
+  "gameplay.mine_black_flow.gain_acc": "你获得了 ",
 
   "config.jade.plugin_mine_black_flow.mania_provider": "狂躁损伤"
 }

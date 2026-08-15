@@ -14,6 +14,7 @@
   "block.mine_black_flow.blackflowium_cluster": "Blackflowium Cluster",
   "block.mine_black_flow.blackflowium_block": "Blackflowium Block",
   "block.mine_black_flow.blackflowium.value": "Value: ",
+  "block.mine_black_flow.blood_mushroom_plant": "Blood Mushroom Plant",
 
   "item.mine_black_flow.seeds": "Seeds",
   "item.mine_black_flow.seeds.desc": "What is it breeding?",
@@ -127,6 +128,7 @@
   "command.mine_black_flow.accessory.sell_many": "Sell a lot!",
 
   "gameplay.mine_black_flow.sell_apocata": "<Apocata> Oh no why sell me?",
+  "gameplay.mine_black_flow.gain_acc": "You've gain ",
 
   "config.jade.plugin_mine_black_flow.mania_provider": "Mania EP Value"
 }

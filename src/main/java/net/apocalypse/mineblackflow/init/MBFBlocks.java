@@ -3,6 +3,7 @@ package net.apocalypse.mineblackflow.init;
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.block.BlackflowiumBlock;
 import net.apocalypse.mineblackflow.block.BlackflowiumClusterBlock;
+import net.apocalypse.mineblackflow.block.natural.BloodMushroomBlock;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
@@ -13,4 +14,5 @@ public class MBFBlocks {
 
     public static final RegistryObject<Block> BLACKFLOWIUM_CLUSTER = REGISTRY.register("blackflowium_cluster", BlackflowiumClusterBlock::new);
     public static final RegistryObject<Block> BLACKFLOWIUM_BLOCK = REGISTRY.register("blackflowium_block", BlackflowiumBlock::new);
+    public static final RegistryObject<Block> BLOOD_MUSHROOM_BLOCK = REGISTRY.register("blood_mushroom_plant", BloodMushroomBlock::new);
 }

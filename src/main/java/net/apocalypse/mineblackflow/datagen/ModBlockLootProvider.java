@@ -16,8 +16,9 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        dropSelf(MBFBlocks.BLACKFLOWIUM_BLOCK.get());
         dropSelf(MBFBlocks.BLACKFLOWIUM_CLUSTER.get());
+        dropSelf(MBFBlocks.BLACKFLOWIUM_BLOCK.get());
+        dropWhenSilkTouch(MBFBlocks.BLOOD_MUSHROOM_BLOCK.get());
     }
 
     @Override

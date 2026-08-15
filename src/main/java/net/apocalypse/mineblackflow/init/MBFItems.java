@@ -52,6 +52,7 @@ public class MBFItems {
 
     public static final RegistryObject<Item> BLACKFLOWIUM_CLUSTER = blockItem(MBFBlocks.BLACKFLOWIUM_CLUSTER);
     public static final RegistryObject<Item> BLACKFLOWIUM_BLOCK = blockItem(MBFBlocks.BLACKFLOWIUM_BLOCK);
+    public static final RegistryObject<Item> BLOOD_MUSHROOM_PLANT = blockItem(MBFBlocks.BLOOD_MUSHROOM_BLOCK);
 
     @SubscribeEvent
     public static void buildTabContentsVanilla(BuildCreativeModeTabContentsEvent tabData){
@@ -70,6 +71,8 @@ public class MBFItems {
                 .withBackgroundLocation(MineBlackFlow.modLoc("textures/gui/tab/tab_items_1.png"))
                 .withTabsImage(MineBlackFlow.modLoc("textures/gui/tab/tabs.png"))
                 .displayItems((para, tab)->{
+                    tab.accept(BLOOD_MUSHROOM_PLANT.get());
+
                     tab.accept(BLACKFLOWIUM_INGOT.get());
                     tab.accept(BLACKFLOWIUM_CLUSTER.get());
                     tab.accept(BLACKFLOWIUM_BLOCK.get());
