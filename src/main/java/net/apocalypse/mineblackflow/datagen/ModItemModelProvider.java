@@ -19,8 +19,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels(){
-        simpleItem(MBFItems.SHINY_TRUFFLE);
-        simpleItem(MBFItems.CAGE_CONTROLLER);
+        spawnEggItem(MBFItems.HUNTING_DOG_PROTO_SPAWN_EGG);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<? extends Item> item) {

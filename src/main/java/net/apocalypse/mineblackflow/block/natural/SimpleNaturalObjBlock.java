@@ -1,8 +1,12 @@
 package net.apocalypse.mineblackflow.block.natural;
 
+import net.apocalypse.mineblackflow.core.Accessories;
+import net.apocalypse.mineblackflow.init.MBFItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
@@ -54,6 +58,10 @@ public class SimpleNaturalObjBlock extends BushBlock implements SimpleWaterlogge
             world.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
         return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
+    }
+
+    protected static void checkSilkTouchAndGive(Accessories accessory, Player entity){
+        if (!EnchantmentHelper.hasSilkTouch(entity.getMainHandItem())) accessory.giveTo(entity, true);
     }
 
 }

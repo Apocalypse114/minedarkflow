@@ -2,9 +2,14 @@ package net.apocalypse.mineblackflow.core;
 
 import net.apocalypse.mineblackflow.init.MBFItems;
 import net.apocalypse.mineblackflow.item.base.AccessoryBase;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.IExtensibleEnum;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.List;
+
+@SuppressWarnings("UnusedReturnValue")
 public enum Accessories implements IExtensibleEnum {
     SEEDS(MBFItems.SEEDS),
     MISTY_TUMBLEWEED(MBFItems.MISTY_TUMBLEWEED),
@@ -26,6 +31,13 @@ public enum Accessories implements IExtensibleEnum {
     }
     public AccessoryBase getAccessory(){
         return accessory.get();
+    }
+
+    public List<ItemStack> giveTo(Player pPlayer, boolean displayMessage){
+        return displayMessage ? getAccessory().giveWithMessage(pPlayer): getAccessory().giveTo(pPlayer);
+    }
+    public List<ItemStack> giveTo(Player pPlayer){
+        return getAccessory().giveTo(pPlayer);
     }
     public static Accessories create(String name, RegistryObject<AccessoryBase> registryObject)
     {

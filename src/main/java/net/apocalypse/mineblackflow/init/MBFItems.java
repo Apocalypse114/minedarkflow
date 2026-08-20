@@ -49,6 +49,7 @@ public class MBFItems {
     public static final RegistryObject<Item> WATER_PRAISER_SPAWN_EGG = spawnEgg("water_praiser", MBFEntities.WATER_PRAISER, 0xcfbdb1, 0x3b6b65);
     public static final RegistryObject<Item> ELEPHANT_SPAWN_EGG = spawnEgg("forsaken_earthshaker", MBFEntities.FORSAKEN_EARTHSHAKER, 0x61797e, 0x454b4d);
     public static final RegistryObject<Item> WIND_HUNTER_SPAWN_EGG = spawnEgg("wind_hunter", MBFEntities.WIND_HUNTER, 0x90705c, 0x335f4b);
+    public static final RegistryObject<Item> HUNTING_DOG_PROTO_SPAWN_EGG = spawnEgg("huntingdog_proto", MBFEntities.HUNTING_DOG_PROTO, 0x3f4244, 0x354b41);
 
     public static final RegistryObject<Item> BLACKFLOWIUM_CLUSTER = blockItem(MBFBlocks.BLACKFLOWIUM_CLUSTER);
     public static final RegistryObject<Item> BLACKFLOWIUM_BLOCK = blockItem(MBFBlocks.BLACKFLOWIUM_BLOCK);
@@ -81,6 +82,7 @@ public class MBFItems {
                     tab.accept(WATER_PRAISER_SPAWN_EGG.get());
                     tab.accept(WIND_HUNTER_SPAWN_EGG.get());
                     tab.accept(ELEPHANT_SPAWN_EGG.get());
+                    tab.accept(HUNTING_DOG_PROTO_SPAWN_EGG.get());
 
                     tab.accept(NULL_MASK_WAND.get());
                 }).withTabsAfter(MineBlackFlow.modLoc("natural_objects")).build();

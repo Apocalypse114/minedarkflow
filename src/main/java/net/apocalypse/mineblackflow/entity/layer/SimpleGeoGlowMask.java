@@ -19,7 +19,7 @@ public class SimpleGeoGlowMask<T extends GeoEntity> extends GeoRenderLayer<T> {
 
     public SimpleGeoGlowMask(GeoRenderer<T> entityRendererIn, String layerLoc, float lit) {
         super(entityRendererIn);
-        this.LAYER = MineBlackFlow.modLoc("textures/entity/glow_mask" + layerLoc + ".png");
+        this.LAYER = MineBlackFlow.modLoc("textures/entity/glow_mask/" + layerLoc + ".png");
         this.lit = lit;
     }
     public SimpleGeoGlowMask(GeoRenderer<T> entityRendererIn, String layerLoc){
@@ -33,5 +33,7 @@ public class SimpleGeoGlowMask<T extends GeoEntity> extends GeoRenderLayer<T> {
                 getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, glowRenderType,
                 bufferSource.getBuffer(glowRenderType), partialTick, packedLight, OverlayTexture.NO_OVERLAY,
                 lit, lit, lit, 1);
+
+        super.render(poseStack, animatable, bakedModel, renderType, bufferSource, buffer, partialTick, packedLight, packedOverlay);
     }
 }

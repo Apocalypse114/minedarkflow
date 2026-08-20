@@ -1,5 +1,6 @@
 package net.apocalypse.mineblackflow.client;
 
+import net.apocalypse.mineblackflow.client.model.ProtoSignModel;
 import net.apocalypse.mineblackflow.client.model.SquareProjectile;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -11,5 +12,6 @@ public class MBFModels {
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(SquareProjectile.LAYER_LOCATION, SquareProjectile::createBodyLayer);
+        event.registerLayerDefinition(ProtoSignModel.LAYER_LOCATION, ProtoSignModel::createBodyLayer);
     }
 }

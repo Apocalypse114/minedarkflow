@@ -3,6 +3,7 @@
   "entity.mine_black_flow.forsaken_earthshaker": "Forsaken Earthshaker",
   "entity.mine_black_flow.water_praiser": "Water Praiser",
   "entity.mine_black_flow.wind_hunter": "Wind Hunter",
+  "entity.mine_black_flow.huntingdog_proto": "Hunting Dog Proto",
 
   "item.mine_black_flow.null_mask_wand": "Null Mask Wand",
   "item.mine_black_flow.null_mask_wand.desc": "Right-click to make entity null masked.",
@@ -58,6 +59,7 @@
   "item.mine_black_flow.forsaken_earthshaker_spawn_egg": "Forsaken Earthshaker Spawn Egg",
   "item.mine_black_flow.water_praiser_spawn_egg": "Water Praiser Spawn Egg",
   "item.mine_black_flow.wind_hunter_spawn_egg": "Wind Hunter Spawn Egg",
+  "item.mine_black_flow.huntingdog_proto_spawn_egg": "hunting Dog Proto Spawn Egg",
 
   "item.mine_black_flow.natural_object.evaluation": "Evaluation: ",
   "item.mine_black_flow.natural_object.base_evaluation": "-> Base Evaluation: ",

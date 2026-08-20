@@ -3,6 +3,7 @@
   "entity.mine_black_flow.forsaken_earthshaker": "撼地遗众",
   "entity.mine_black_flow.water_praiser": "颂水贤者",
   "entity.mine_black_flow.wind_hunter": "聆风猎手",
+  "entity.mine_black_flow.huntingdog_proto": "猎犬Proto",
 
   "item.mine_black_flow.null_mask_wand": "空值权杖",
   "item.mine_black_flow.null_mask_wand.desc": "右键使生物成为空值体。",
@@ -58,6 +59,7 @@
   "item.mine_black_flow.forsaken_earthshaker_spawn_egg": "撼地遗众刷怪蛋",
   "item.mine_black_flow.water_praiser_spawn_egg": "颂水贤者刷怪蛋",
   "item.mine_black_flow.wind_hunter_spawn_egg": "聆风猎手刷怪蛋",
+  "item.mine_black_flow.huntingdog_proto_spawn_egg": "猎犬Proto刷怪蛋",
 
   "item.mine_black_flow.natural_object.evaluation": "估价：",
   "item.mine_black_flow.natural_object.base_evaluation": "-> 基础估价：",
