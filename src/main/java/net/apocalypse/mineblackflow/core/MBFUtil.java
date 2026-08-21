@@ -11,6 +11,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -50,7 +52,7 @@ public class MBFUtil {
         if (instance != null) instance.setBaseValue(0);
         BlockPos pos = maskedEntity.blockPosition();
         Level level = maskedEntity.level();
-        maskedEntity.discard();
+        maskedEntity.setRemoved(Entity.RemovalReason.CHANGED_DIMENSION);
         if (maskedEntity.isRemoved() && level instanceof ServerLevel serverLevel){
             Entity dog = MBFEntities.THE_NULL_VALUE.get().spawn(serverLevel, pos, MobSpawnType.MOB_SUMMONED);
             if (dog != null){
@@ -77,11 +79,12 @@ public class MBFUtil {
     }
 
     public static AttributeSupplier.Builder fastBuildAttribute(
-            double health, double attack, double speed, double armor, double resistance, double knockback_resist, double follow_range) {
+            double health, double attack, double speed, double armor, double toughness, double knockback_resist, double follow_range) {
         AttributeSupplier.Builder builder = Mob.createMobAttributes();
         builder = builder.add(Attributes.MOVEMENT_SPEED, speed);
         builder = builder.add(Attributes.MAX_HEALTH, health);
         builder = builder.add(Attributes.ARMOR, armor);
+        builder = builder.add(Attributes.ARMOR_TOUGHNESS, toughness);
         builder = builder.add(Attributes.ATTACK_DAMAGE, attack);
         builder = builder.add(Attributes.FOLLOW_RANGE, follow_range);
         builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, knockback_resist);
@@ -128,5 +131,9 @@ public class MBFUtil {
             ItemStack stackGotten = inventory.getItem(i);
             action.accept(stackGotten);
         }
+    }
+    public static boolean isNotRealDamage(DamageSource source){
+        return !(source.is(DamageTypeTags.BYPASSES_EFFECTS)
+                || source.is(DamageTypeTags.BYPASSES_INVULNERABILITY));
     }
 }

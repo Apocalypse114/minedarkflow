@@ -8,15 +8,21 @@ import net.apocalypse.mineblackflow.entity.base.AttackEveryoneGoal;
 import net.apocalypse.mineblackflow.entity.base.ComplexMeleeAttackGoal;
 import net.apocalypse.mineblackflow.entity.base.GeoBlackFlowMonster;
 import net.apocalypse.mineblackflow.entity.base.IBlackFlowMonster;
+import net.apocalypse.mineblackflow.entity.technical.ProtoSignEntity;
+import net.apocalypse.mineblackflow.init.MBFEffects;
 import net.apocalypse.mineblackflow.init.MBFEntities;
+import net.apocalypse.mineblackflow.init.MBFParticleTypes;
+import net.apocalypse.mineblackflow.init.MBFSounds;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
@@ -51,6 +57,8 @@ public class HuntingDogProtoEntity extends GeoBlackFlowMonster {
     private Vec3 previousPos = Vec3.ZERO;
     private UUID attackedEntityUUID = null;
 
+    public Vec3 posPrevious(){return previousPos;}
+
     public int getSkillTick(){
         return entityData.get(SKILL_TICK);
     }
@@ -63,6 +71,8 @@ public class HuntingDogProtoEntity extends GeoBlackFlowMonster {
     public boolean inSkill(){
         return getSkillTick() > 0;
     }
+
+    @Override
     public void tick(){
         super.tick();
         if (!this.isDeadOrDying() && !this.level().isClientSide()) {
@@ -73,10 +83,18 @@ public class HuntingDogProtoEntity extends GeoBlackFlowMonster {
                 int t = getSkillTick();
                 if (t > 0) setSkillTick(t - 1);
                 this.setDeltaMovement(Vec3.ZERO);
-                this.setPos(attachedEntity.position());
-                if (inSkillMainPart() && attachedEntity != null && attachedEntity.isAlive() && (t - 3) % 20 == 10){
-                    hurtEnemy(attachedEntity);
-                } else if (t == 8 || (attachedEntity == null || !attachedEntity.isAlive())){
+                if (t >= 8 && t <= 208) this.setPos(attachedEntity.position());
+                boolean isValidTarget = attachedEntity != null && attachedEntity.isAlive();
+                if (t > 3 && t % 2 == 0
+                        && isValidTarget
+                        && attachedEntity instanceof LivingEntity living && !living.hasEffect(MBFEffects.DOG_PROTO_BITE.get())){
+                    living.addEffect(new MobEffectInstance(MBFEffects.DOG_PROTO_BITE.get(), 20));
+                }
+                if (inSkillMainPart() && isValidTarget && ((t - 3) % 20 == 7 || (t - 3) % 20 == 12)){
+                    if ((t - 3) % 20 == 7) MBFUtil.playDifferedSoundAtEntity(this, MBFSounds.DOG_PROTO_BITE.get(), SoundSource.HOSTILE, 0.75f, 0.15f);
+                    hurtEnemy(attachedEntity, true);
+                } else if (t == 8 || !isValidTarget){
+                    MBFUtil.playDifferedSoundAtEntity(this, MBFSounds.TP_DONE.get(), SoundSource.HOSTILE, 1, 0.1f);
                     this.setPos(previousPos);
                     if (t > 8) setSkillTick(8);
                 }
@@ -88,6 +106,8 @@ public class HuntingDogProtoEntity extends GeoBlackFlowMonster {
                         setSkillTick(211);
                         skillCooldown = 600;
                         attachedEntity = target;
+                        ProtoSignEntity.setup(this);
+                        MBFUtil.playDifferedSoundAtEntity(this, MBFSounds.DOG_PROTO_SKILL.get(), SoundSource.HOSTILE, 1, 0.1f);
                         previousPos = this.position();
                     }
                 }
@@ -98,12 +118,34 @@ public class HuntingDogProtoEntity extends GeoBlackFlowMonster {
     }
 
     @Override
+    public void actuallyHurt(@NotNull DamageSource source, float amount){
+        if (MBFUtil.isNotRealDamage(source)){
+            if (inSkillPostPart() || inSkillPrePart()) return;
+            if (inSkill()) amount *= 0.2f;
+        }
+        super.actuallyHurt(source, amount);
+    }
+
+    @Override
     public void doPush(@NotNull Entity entity){
         if (!inSkill()) super.doPush(entity);
     }
     @Override
     public void push(@NotNull Entity entity){
         if (!inSkill()) super.push(entity);
+    }
+
+    @Override
+    public SoundEvent getAmbientSound(){
+        return MBFSounds.DOG_PROTO.ambient().get();
+    }
+    @Override
+    public @NotNull SoundEvent getHurtSound(@NotNull DamageSource source){
+        return MBFSounds.DOG_PROTO.hurt().get();
+    }
+    @Override
+    public @NotNull SoundEvent getDeathSound(){
+        return MBFSounds.DOG_PROTO.die().get();
     }
 
     @Override
@@ -118,20 +160,34 @@ public class HuntingDogProtoEntity extends GeoBlackFlowMonster {
     }
 
     @Override
+    public EntityDimensions getDimensions(Pose pPose) {
+        return inSkill() ? super.getDimensions(pPose).scale(0.1f): super.getDimensions(pPose);
+    }
+
+    @Override
     public boolean doHurtTarget(@NotNull Entity pTarget){
         this.setAttackDuration(29);
+        MBFUtil.playDifferedSoundAtEntity(this, MBFSounds.DOG_PROTO_ATTACK.get(), SoundSource.HOSTILE, 1, 0.15f);
         MineBlackFlow.queueServerWork(16, ()-> {
-            if (!this.isDeadOrDying() && this.distanceToSqr(pTarget) <= 12.25){
-                hurtEnemy(pTarget);
+            if (!this.isDeadOrDying() && this.distanceToSqr(pTarget) <= 16){
+                hurtEnemy(pTarget, false);
             }
         });
         return true;
     }
-    private void hurtEnemy(Entity enemy){
-        super.doHurtTarget(enemy);
+    private void hurtEnemy(Entity enemy, boolean skill){
+        float atk = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
+        if (skill) {
+            atk *= 0.5f;
+            IBlackFlowMonster.dealMagicDamage(enemy, this, atk);
+        } else super.doHurtTarget(enemy);
+        if (this.level() instanceof ServerLevel serverLevel){
+            serverLevel.sendParticles(MBFParticleTypes.BOG_BITE.get(),
+                    enemy.getX(), enemy.getY() + 1.5, enemy.getZ(), 1,
+                    0.125, 0.125, 0.125, 0);
+        }
         if (enemy instanceof LivingEntity living){
-            double atk = this.getAttributeValue(Attributes.ATTACK_DAMAGE);
-            ManiaInjury.dealManiaInjury(living, (float) (atk * 30), ManiaInjurySource.fromEntity(this));
+            ManiaInjury.dealManiaInjury(living, atk * 30, ManiaInjurySource.fromEntity(this));
         }
     }
 
@@ -224,6 +280,6 @@ public class HuntingDogProtoEntity extends GeoBlackFlowMonster {
     }
 
     public static AttributeSupplier.Builder createAttribute() {
-        return MBFUtil.fastBuildAttribute(72, 3, 0.35, 3, 1, 0.9, 29);
+        return MBFUtil.fastBuildAttribute(72, 4, 0.4, 3, 1, 0.9, 29);
     }
 }

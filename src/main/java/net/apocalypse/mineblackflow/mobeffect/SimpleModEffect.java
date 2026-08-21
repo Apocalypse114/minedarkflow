@@ -5,7 +5,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 
 public class SimpleModEffect extends MobEffect {
 
-    protected SimpleModEffect(MobEffectCategory category, int color) {
+    public SimpleModEffect(MobEffectCategory category, int color) {
         super(category, color);
     }
 

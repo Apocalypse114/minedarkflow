@@ -3,6 +3,7 @@ package net.apocalypse.mineblackflow.init;
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.entity.*;
 import net.apocalypse.mineblackflow.entity.projectile.WaterPraiserArrow;
+import net.apocalypse.mineblackflow.entity.technical.ProtoSignEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -36,6 +37,10 @@ public class MBFEntities {
     public static final RegistryObject<EntityType<WaterPraiserArrow>> WATER_PRAISER_ARROW = register("water_praiser_arrow",
             EntityType.Builder.<WaterPraiserArrow>of(WaterPraiserArrow::new, MobCategory.MISC)
                     .setCustomClientFactory(WaterPraiserArrow::new), 24, 0.25f, 0.25f);
+
+    public static final RegistryObject<EntityType<ProtoSignEntity>> PROTO_SIGN = register("proto_sign",
+            EntityType.Builder.<ProtoSignEntity>of(ProtoSignEntity::new, MobCategory.MISC)
+                    .setCustomClientFactory(ProtoSignEntity::new), 16, 0.5f, 0.75f);
 
 
     private static <T extends Entity> RegistryObject<EntityType<T>> register(

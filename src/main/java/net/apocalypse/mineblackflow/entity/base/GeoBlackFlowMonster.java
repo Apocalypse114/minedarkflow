@@ -1,10 +1,13 @@
 package net.apocalypse.mineblackflow.entity.base;
 
+import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.core.MBFUtil;
 import net.apocalypse.mineblackflow.entity.model.SimpleGeoModel;
+import net.apocalypse.mineblackflow.init.MBFSounds;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -63,6 +66,8 @@ public abstract class GeoBlackFlowMonster extends Monster implements IBlackFlowM
     public String animLoc(String animName){
         return "animation."+resource_id+"."+(animName.isEmpty() ? "idle": animName);
     }
+
+    @Override
     public void tick(){
         super.tick();
         this.tickAttack();
@@ -71,6 +76,12 @@ public abstract class GeoBlackFlowMonster extends Monster implements IBlackFlowM
     public void tickAttack(){
         int d = this.getAttackDuration();
         if (d > 0) this.setAttackDuration(d - 1);
+    }
+
+    @Override
+    public boolean doHurtTarget(@NotNull Entity pTarget){
+        pTarget.invulnerableTime = 0;
+        return super.doHurtTarget(pTarget);
     }
 
     public static <T extends GeoBlackFlowMonster> AnimationController<T> moveController(

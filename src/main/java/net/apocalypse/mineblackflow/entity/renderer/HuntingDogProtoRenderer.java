@@ -15,9 +15,9 @@ public class HuntingDogProtoRenderer extends SimpleGeoRenderer<HuntingDogProtoEn
 
     @Override
     public void render(HuntingDogProtoEntity pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
-        super.render(pEntity, pEntityYaw, pPartialTick, pPoseStack, pBuffer, pPackedLight);
         int t = pEntity.getCommonSkillTick();
         if (1 <= t && t <= 205) this.shadowRadius = 0;
         else this.shadowRadius = 1f;
+        if (!(3 < t && t < 203)) super.render(pEntity, pEntityYaw, pPartialTick, pPoseStack, pBuffer, pPackedLight);
     }
 }

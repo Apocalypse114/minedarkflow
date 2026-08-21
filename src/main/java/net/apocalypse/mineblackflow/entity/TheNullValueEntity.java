@@ -36,15 +36,15 @@ public class TheNullValueEntity extends GeoBlackFlowMonster {
 
     @Override
     public SoundEvent getAmbientSound(){
-        return MBFSounds.DOG_AMBIENT.get();
+        return MBFSounds.DOG.ambient().get();
     }
     @Override
     public @NotNull SoundEvent getHurtSound(@NotNull DamageSource source){
-        return MBFSounds.DOG_HURT.get();
+        return MBFSounds.DOG.hurt().get();
     }
     @Override
     public @NotNull SoundEvent getDeathSound(){
-        return MBFSounds.DOG_DIE.get();
+        return MBFSounds.DOG.die().get();
     }
 
     public void registerGoals(){

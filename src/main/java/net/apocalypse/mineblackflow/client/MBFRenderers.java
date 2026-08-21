@@ -18,5 +18,6 @@ public class MBFRenderers {
         event.registerEntityRenderer(MBFEntities.HUNTING_DOG_PROTO.get(), HuntingDogProtoRenderer::new);
         event.registerEntityRenderer(MBFEntities.WATER_PRAISER_ARROW.get(), (context) ->
                 new SimpleProjectileRenderer<>(context, "textures/entity/water_praiser_arrow.png"));
+        event.registerEntityRenderer(MBFEntities.PROTO_SIGN.get(), ProtoSignRenderer::new);
     }
 }

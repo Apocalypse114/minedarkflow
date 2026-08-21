@@ -93,7 +93,7 @@ public class ForsakenEarthshakerEntity extends GeoBlackFlowMonster {
             for (LivingEntity living : entityInBound) {
                 if (!smashingEntityList.contains(living)) {
                     smashingEntityList.add(living);
-                    living.hurt(this.level().damageSources().mobAttack(this), amount);
+                    IBlackFlowMonster.dealCommonDamage(living, this, amount);
                 }
             }
             smashingEntityList.removeIf(entity -> !entityInBound.contains(entity) || !entity.isAlive());
@@ -137,15 +137,15 @@ public class ForsakenEarthshakerEntity extends GeoBlackFlowMonster {
     }
     @Override
     public SoundEvent getAmbientSound(){
-        return MBFSounds.ELEPHANT_AMBIENT.get();
+        return MBFSounds.ELEPHANT.ambient().get();
     }
     @Override
     public @NotNull SoundEvent getHurtSound(@NotNull DamageSource source){
-        return MBFSounds.ELEPHANT_HURT.get();
+        return MBFSounds.ELEPHANT.hurt().get();
     }
     @Override
     public @NotNull SoundEvent getDeathSound(){
-        return MBFSounds.ELEPHANT_DIE.get();
+        return MBFSounds.ELEPHANT.die().get();
     }
 
     private static final EntityDataAccessor<Integer> DATA_BLEEDING = SynchedEntityData.defineId(ForsakenEarthshakerEntity.class, EntityDataSerializers.INT);
@@ -213,7 +213,7 @@ public class ForsakenEarthshakerEntity extends GeoBlackFlowMonster {
                         MBFUtil.aabbOnEntity(pEntity, 3), e-> isValidTarget(e) && e != pEntity);
                 entityInBound.forEach(e->{
                     if (this.distanceToSqr(e) <= 6.25){
-                        e.hurt(this.level().damageSources().mobAttack(this), amount);
+                        IBlackFlowMonster.dealCommonDamage(e, this, amount);
                         e.push(0, 0.75, 0);
                     }
                 });

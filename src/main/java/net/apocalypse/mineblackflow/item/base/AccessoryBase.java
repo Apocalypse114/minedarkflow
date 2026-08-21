@@ -1,7 +1,7 @@
 package net.apocalypse.mineblackflow.item.base;
 
 import net.apocalypse.mineblackflow.core.MBFUtil;
-import net.apocalypse.mineblackflow.init.CollectibleRarity;
+import net.apocalypse.mineblackflow.core.CollectibleRarity;
 import net.apocalypse.mineblackflow.init.MBFItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;

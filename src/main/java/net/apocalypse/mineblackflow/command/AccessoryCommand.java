@@ -12,6 +12,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -81,18 +82,20 @@ public class AccessoryCommand {
         argument.getSource().sendSuccess(()-> Component.translatable("command.mine_black_flow.accessory.sell_many"), true);
         return 0;
     }
+    private static MutableComponent itemDescWithCount(AccessoryBase accessory, int count){
+        return Component.empty().append(accessory.getDescription()).append("x"+count);
+    }
     private static void sendSuccessInfo(int count, AccessoryBase accessory, CommandSourceStack source, int num){
-        source.sendSuccess(()-> Component.translatable("command.mine_black_flow.accessory.give.1")
-                .append(accessory.getDescription()).append(count > 1 ? " x "+count: "")
-                .append(Component.translatable("command.mine_black_flow.accessory.give.2"))
-                .append(""+num)
-                .append(Component.translatable("command.mine_black_flow.accessory.give.3")), true);;
+        source.sendSuccess(()->
+                        Component.translatable("command.mine_black_flow.accessory.give_multiple",
+                                itemDescWithCount(accessory, count), num),
+                true);
     }
     private static void sendSuccessInfoSingle(int count, AccessoryBase accessory, CommandSourceStack source, Player player){
-        source.sendSuccess(()-> Component.translatable("command.mine_black_flow.accessory.give.1")
-                .append(accessory.getDescription()).append(count > 1 ? " x "+count: "")
-                .append(Component.translatable("command.mine_black_flow.accessory.give.2"))
-                .append(player.getDisplayName()), true);
+        source.sendSuccess(()->
+                        Component.translatable("command.mine_black_flow.accessory.give_single",
+                                itemDescWithCount(accessory, count), player.getDisplayName())
+                , true);
     }
     private static void sendSoldInfo(ItemStack accessory, CommandSourceStack source){
         source.sendSuccess(()-> Component.translatable("command.mine_black_flow.accessory.sell")

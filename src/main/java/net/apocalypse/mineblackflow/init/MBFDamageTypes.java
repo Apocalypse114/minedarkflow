@@ -10,7 +10,11 @@ import net.minecraft.world.damagesource.DamageType;
 
 public class MBFDamageTypes {
 
-    public static final ResourceKey<DamageType> MANIA_SWALLOW = RegistryDataProvider.MANIA_SWALLOW;
+    public static final ResourceKey<DamageType> MANIA_SWALLOW = create("mania_swallow");
+    public static final ResourceKey<DamageType> BLACKFLOW_COMMON = create("blackflow_common");
+    public static final ResourceKey<DamageType> BLACKFLOW_MAGIC = create("blackflow_magic");
 
-
+    public static ResourceKey<DamageType> create(String name){
+        return ResourceKey.create(Registries.DAMAGE_TYPE, MineBlackFlow.modLoc(name));
+    }
 }

@@ -1,4 +1,70 @@
 {
+  "dog_proto_skill": {
+    "subtitle": "subtitles.mbf_dog_proto.skill",
+    "sounds": [
+      {
+        "name": "mine_black_flow:dog_proto_skill",
+        "stream": false
+      }
+    ]
+  },
+  "dog_proto_bite": {
+    "subtitle": "subtitles.mbf_dog_proto.bite",
+    "sounds": [
+      {
+        "name": "mine_black_flow:dog_proto_skill_bite",
+        "stream": false
+      }
+    ]
+  },
+  "dog_proto_attack": {
+    "subtitle": "subtitles.mbf_dog_proto.attack",
+    "sounds": [
+      {
+        "name": "mine_black_flow:dog_proto_attack",
+        "stream": false
+      }
+    ]
+  },
+  "dog_proto_ambient": {
+    "subtitle": "subtitles.mbf_dog_proto.ambient",
+    "sounds": [
+      {
+        "name": "mine_black_flow:dog_proto_ambient_0",
+        "stream": false
+      },
+      {
+        "name": "mine_black_flow:dog_proto_ambient_1",
+        "stream": false
+      },
+      {
+        "name": "mine_black_flow:dog_proto_ambient",
+        "stream": false
+      }
+    ]
+  },
+  "dog_proto_hurt": {
+    "subtitle": "subtitles.mbf_dog_proto.hurt",
+    "sounds": [
+      {
+        "name": "mine_black_flow:dog_proto_hurt_0",
+        "stream": false
+      },
+      {
+        "name": "mine_black_flow:dog_proto_hurt_1",
+        "stream": false
+      }
+    ]
+  },
+  "dog_proto_die": {
+    "subtitle": "subtitles.mbf_dog_proto.die",
+    "sounds": [
+      {
+        "name": "mine_black_flow:dog_proto_die",
+        "stream": false
+      }
+    ]
+  },
   "mania_break": {
     "subtitle": "subtitles.mbf_mania_break",
     "sounds": [

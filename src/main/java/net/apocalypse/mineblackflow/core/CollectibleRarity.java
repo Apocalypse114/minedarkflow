@@ -1,4 +1,4 @@
-package net.apocalypse.mineblackflow.init;
+package net.apocalypse.mineblackflow.core;
 
 import net.minecraft.world.item.Rarity;
 

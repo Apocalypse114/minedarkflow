@@ -81,15 +81,15 @@ public class WindHunterEntity extends GeoBlackFlowMonster {
 
     @Override
     public SoundEvent getAmbientSound(){
-        return MBFSounds.MOUSE_AMBIENT.get();
+        return MBFSounds.MOUSE.ambient().get();
     }
     @Override
     public @NotNull SoundEvent getHurtSound(@NotNull DamageSource source){
-        return MBFSounds.MOUSE_HURT.get();
+        return MBFSounds.MOUSE.hurt().get();
     }
     @Override
     public @NotNull SoundEvent getDeathSound(){
-        return MBFSounds.MOUSE_DIE.get();
+        return MBFSounds.MOUSE.die().get();
     }
 
     @Override

@@ -70,19 +70,11 @@ public class ManiaCommand {
     }
 
     private static Component successMessageHurt(int number, float amount, Component name){
-        return number == 1 ? Component.translatable("command.mine_black_flow.mania.hurt.success_single.1")
-                    .append(""+amount).append(Component.translatable("command.mine_black_flow.mania.hurt.success_single.2"))
-                    .append(name) :
-                Component.translatable("command.mine_black_flow.mania.hurt.success_single.1")
-                    .append(""+amount).append(Component.translatable("command.mine_black_flow.mania.hurt.success_single.2"))
-                    .append(""+number).append(Component.translatable("command.mine_black_flow.mania.hurt.success_multiple"));
+        return number == 1 ? Component.translatable("command.mine_black_flow.mania.hurt.success_single", amount, name) :
+                Component.translatable("command.mine_black_flow.mania.hurt.success_multiple", amount, number);
     }
     private static Component successMessageHeal(int number, float amount, Component name){
-        return number == 1 ? Component.translatable("command.mine_black_flow.mania.heal.success_single.1")
-                .append(""+amount).append(Component.translatable("command.mine_black_flow.mania.heal.success_single.2"))
-                .append(name) :
-                Component.translatable("command.mine_black_flow.mania.heal.success_single.1")
-                        .append(""+amount).append(Component.translatable("command.mine_black_flow.mania.heal.success_single.2"))
-                        .append(""+number).append(Component.translatable("command.mine_black_flow.mania.hurt.success_multiple"));
+        return number == 1 ? Component.translatable("command.mine_black_flow.mania.heal.success_single", amount, name) :
+                Component.translatable("command.mine_black_flow.mania.heal.success_multiple", amount, number);
     }
 }

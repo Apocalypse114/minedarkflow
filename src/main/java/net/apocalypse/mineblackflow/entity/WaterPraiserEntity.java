@@ -77,15 +77,15 @@ public class WaterPraiserEntity extends RangedBlackFlowMonster {
 
     @Override
     public SoundEvent getAmbientSound(){
-        return MBFSounds.SHEEP_AMBIENT.get();
+        return MBFSounds.SHEEP.ambient().get();
     }
     @Override
     public @NotNull SoundEvent getHurtSound(@NotNull DamageSource source){
-        return MBFSounds.SHEEP_HURT.get();
+        return MBFSounds.SHEEP.hurt().get();
     }
     @Override
     public @NotNull SoundEvent getDeathSound(){
-        return MBFSounds.SHEEP_DIE.get();
+        return MBFSounds.SHEEP.die().get();
     }
 
     @Override
