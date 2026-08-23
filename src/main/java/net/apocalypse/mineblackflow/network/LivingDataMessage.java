@@ -42,7 +42,6 @@ public class LivingDataMessage {
                     if (clientEntity instanceof LivingEntity living) {
                         LivingData livingData = MBFCapabilities.getLivingData(living);
                         LivingData.syncFromMessage(livingData, message);
-                        MineBlackFlow.LOGGER.info("living data message handled, hash {}, value: {}", message.hashCode(), message.data.MANIA_EP);
                     }
                 }
             }

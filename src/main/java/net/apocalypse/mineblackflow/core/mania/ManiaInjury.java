@@ -1,10 +1,11 @@
-package net.apocalypse.mineblackflow.core;
+package net.apocalypse.mineblackflow.core.mania;
 
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.capability.MBFCapabilities;
 import net.apocalypse.mineblackflow.capability.data.LivingData;
 import net.apocalypse.mineblackflow.compat.ca.CAUtil;
 import net.apocalypse.mineblackflow.config.ConfigServer;
+import net.apocalypse.mineblackflow.core.MBFUtil;
 import net.apocalypse.mineblackflow.init.MBFAttributes;
 import net.apocalypse.mineblackflow.init.MBFEffects;
 import net.apocalypse.mineblackflow.init.MBFSounds;

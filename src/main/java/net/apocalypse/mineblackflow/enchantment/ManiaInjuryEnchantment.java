@@ -1,8 +1,8 @@
 package net.apocalypse.mineblackflow.enchantment;
 
 import net.apocalypse.mineblackflow.core.MBFEnchantmentCat;
-import net.apocalypse.mineblackflow.core.ManiaInjury;
-import net.apocalypse.mineblackflow.core.ManiaInjurySource;
+import net.apocalypse.mineblackflow.core.mania.ManiaInjury;
+import net.apocalypse.mineblackflow.core.mania.ManiaInjurySource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;

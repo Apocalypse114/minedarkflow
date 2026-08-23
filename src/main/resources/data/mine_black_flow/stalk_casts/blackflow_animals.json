@@ -1,0 +1,34 @@
+[
+  {
+    "type": "mine_black_flow:water_praiser",
+    "count": 10,
+    "maxDist": 15.0,
+    "minDist": 5.0,
+    "nullMaskProb": 0.1,
+    "occurrenceTick": 60
+  },
+  {
+    "type": "mine_black_flow:wind_hunter",
+    "count": 8,
+    "maxDist": 15.0,
+    "minDist": 5.0,
+    "nullMaskProb": 0.1,
+    "occurrenceTick": 80
+  },
+  {
+    "type": "mine_black_flow:forsaken_earthshaker",
+    "count": 2,
+    "maxDist": 16.0,
+    "minDist": 9.0,
+    "nullMaskProb": 0.25,
+    "occurrenceTick": 180
+  },
+  {
+    "type": "mine_black_flow:huntingdog_proto",
+    "count": 4,
+    "maxDist": 12.0,
+    "minDist": 3.0,
+    "nullMaskProb": 0.1,
+    "occurrenceTick": 100
+  }
+]

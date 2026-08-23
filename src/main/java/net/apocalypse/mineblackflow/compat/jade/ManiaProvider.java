@@ -1,7 +1,7 @@
 package net.apocalypse.mineblackflow.compat.jade;
 
 import net.apocalypse.mineblackflow.MineBlackFlow;
-import net.apocalypse.mineblackflow.core.ManiaInjury;
+import net.apocalypse.mineblackflow.core.mania.ManiaInjury;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;

@@ -6,7 +6,7 @@ import net.apocalypse.mineblackflow.capability.data.PlayerData;
 import net.apocalypse.mineblackflow.client.overlay_util.NullMaskOverlay;
 import net.apocalypse.mineblackflow.config.ConfigServer;
 import net.apocalypse.mineblackflow.core.MBFUtil;
-import net.apocalypse.mineblackflow.core.ManiaInjury;
+import net.apocalypse.mineblackflow.core.mania.ManiaInjury;
 import net.apocalypse.mineblackflow.entity.base.IBlackFlowMonster;
 import net.apocalypse.mineblackflow.init.MBFEffects;
 import net.apocalypse.mineblackflow.init.MBFTags;

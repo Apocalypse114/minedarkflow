@@ -23,7 +23,6 @@ public class LivingData implements INBTSerializable<CompoundTag> {
         if (!entity.level().isClientSide()) {
             MBFNetwork.PACKET_HANDLER.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity),
                     new LivingDataMessage(this, entity.getId()));
-            MineBlackFlow.LOGGER.info("living data message sent, hash: {}, value: {}", this.hashCode(), this.MANIA_EP);
         }
     }
     public static void syncFromMessage(LivingData clientData, LivingDataMessage message){
@@ -35,7 +34,6 @@ public class LivingData implements INBTSerializable<CompoundTag> {
     }
     public LivingData syncFrom(LivingData data){
         this.MANIA_EP = data.MANIA_EP;
-        MineBlackFlow.LOGGER.info("receive data ,hash:{}", this.hashCode());
         return this;
     }
     public Tag writeNBT() {

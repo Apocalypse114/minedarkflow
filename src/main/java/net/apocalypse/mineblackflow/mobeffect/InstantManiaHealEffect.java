@@ -1,7 +1,6 @@
 package net.apocalypse.mineblackflow.mobeffect;
 
-import net.apocalypse.mineblackflow.core.ManiaInjury;
-import net.apocalypse.mineblackflow.core.ManiaInjurySource;
+import net.apocalypse.mineblackflow.core.mania.ManiaInjury;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;

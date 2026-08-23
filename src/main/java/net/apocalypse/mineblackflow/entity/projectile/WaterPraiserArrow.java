@@ -1,11 +1,10 @@
 package net.apocalypse.mineblackflow.entity.projectile;
 
 import net.apocalypse.mineblackflow.core.MBFUtil;
-import net.apocalypse.mineblackflow.core.ManiaInjury;
-import net.apocalypse.mineblackflow.core.ManiaInjurySource;
+import net.apocalypse.mineblackflow.core.mania.ManiaInjury;
+import net.apocalypse.mineblackflow.core.mania.ManiaInjurySource;
 import net.apocalypse.mineblackflow.init.MBFEntities;
 import net.apocalypse.mineblackflow.init.MBFSounds;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;

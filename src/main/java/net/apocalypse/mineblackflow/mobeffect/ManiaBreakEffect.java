@@ -3,7 +3,7 @@ package net.apocalypse.mineblackflow.mobeffect;
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.config.ConfigServer;
 import net.apocalypse.mineblackflow.core.MBFUtil;
-import net.apocalypse.mineblackflow.core.ManiaInjury;
+import net.apocalypse.mineblackflow.core.mania.ManiaInjury;
 import net.apocalypse.mineblackflow.init.MBFDamageTypes;
 import net.apocalypse.mineblackflow.init.MBFEffects;
 import net.minecraft.world.damagesource.DamageSource;
@@ -12,8 +12,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-
-import java.util.UUID;
 
 public class ManiaBreakEffect extends SimpleModEffect {
 

@@ -3,11 +3,10 @@ package net.apocalypse.mineblackflow.client.overlay_util;
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.compat.ca.CAUtil;
 import net.apocalypse.mineblackflow.config.ConfigClient;
-import net.apocalypse.mineblackflow.core.ManiaInjury;
+import net.apocalypse.mineblackflow.core.mania.ManiaInjury;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.fml.ModList;
 
 public class EPBarOverlay {
     public static final ResourceLocation BAR = MineBlackFlow.modLoc("textures/gui/mania_player_bar.png");

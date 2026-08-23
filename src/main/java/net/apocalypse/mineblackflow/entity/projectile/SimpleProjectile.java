@@ -1,17 +1,10 @@
 package net.apocalypse.mineblackflow.entity.projectile;
 
-import net.apocalypse.mineblackflow.core.ManiaInjury;
-import net.apocalypse.mineblackflow.core.ManiaInjurySource;
-import net.apocalypse.mineblackflow.entity.base.GeoBlackFlowMonster;
 import net.apocalypse.mineblackflow.entity.base.IBlackFlowMonster;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;

@@ -1,0 +1,26 @@
+[
+  {
+    "type": "minecraft:zombie",
+    "count": 5,
+    "maxDist": 15.0,
+    "minDist": 5.0,
+    "nullMaskProb": 0.1,
+    "occurrenceTick": 20
+  },
+  {
+    "type": "minecraft:zombie_villager",
+    "count": 5,
+    "maxDist": 15.0,
+    "minDist": 5.0,
+    "nullMaskProb": 0.1,
+    "occurrenceTick": 80
+  },
+  {
+    "type": "minecraft:stray",
+    "count": 5,
+    "maxDist": 15.0,
+    "minDist": 5.0,
+    "nullMaskProb": 0.1,
+    "occurrenceTick": 140
+  }
+]

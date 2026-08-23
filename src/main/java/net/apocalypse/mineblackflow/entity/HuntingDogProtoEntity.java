@@ -2,8 +2,8 @@ package net.apocalypse.mineblackflow.entity;
 
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.core.MBFUtil;
-import net.apocalypse.mineblackflow.core.ManiaInjury;
-import net.apocalypse.mineblackflow.core.ManiaInjurySource;
+import net.apocalypse.mineblackflow.core.mania.ManiaInjury;
+import net.apocalypse.mineblackflow.core.mania.ManiaInjurySource;
 import net.apocalypse.mineblackflow.entity.base.AttackEveryoneGoal;
 import net.apocalypse.mineblackflow.entity.base.ComplexMeleeAttackGoal;
 import net.apocalypse.mineblackflow.entity.base.GeoBlackFlowMonster;

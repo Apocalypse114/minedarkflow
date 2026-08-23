@@ -1,4 +1,4 @@
-package net.apocalypse.mineblackflow.core;
+package net.apocalypse.mineblackflow.core.mania;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
