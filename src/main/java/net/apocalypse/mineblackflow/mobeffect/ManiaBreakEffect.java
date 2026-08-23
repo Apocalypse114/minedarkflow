@@ -35,7 +35,7 @@ public class ManiaBreakEffect extends SimpleModEffect {
             leftDuration = instance.getDuration();
             if (leftDuration <= 300){
                 double perc = leftDuration <= 1? 0: (double) leftDuration / 300;
-                ManiaInjury.Tool.setManiaEP(pEntity, ManiaInjury.Tool.getManiaLimit(pEntity) * perc);
+                ManiaInjury.Tool.setManiaEP(pEntity, (float) (ManiaInjury.Tool.getManiaLimit(pEntity) * perc));
             }
         }
     }

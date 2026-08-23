@@ -1,5 +1,8 @@
 package net.apocalypse.mineblackflow.event;
 
+import net.apocalypse.mineblackflow.MineBlackFlow;
+import net.apocalypse.mineblackflow.capability.MBFCapabilities;
+import net.apocalypse.mineblackflow.capability.data.PlayerData;
 import net.apocalypse.mineblackflow.client.overlay_util.NullMaskOverlay;
 import net.apocalypse.mineblackflow.config.ConfigServer;
 import net.apocalypse.mineblackflow.core.MBFUtil;
@@ -47,6 +50,12 @@ public class LivingEvents {
                 && sourceEnt instanceof LivingEntity living && living.hasEffect(MBFEffects.DOG_PROTO_BITE.get())
                 && living.getRandom().nextFloat() < 0.8f){
             event.setCanceled(true);
+        }
+        if (event.getEntity() instanceof Player player){
+            PlayerData data = MBFCapabilities.getData(player);
+            data.player_lifetime_example++;
+            data.sendToClient(player);
+            MineBlackFlow.LOGGER.info("debug; player data:{}", MBFCapabilities.getData(player).player_lifetime_example);
         }
     }
     @SubscribeEvent

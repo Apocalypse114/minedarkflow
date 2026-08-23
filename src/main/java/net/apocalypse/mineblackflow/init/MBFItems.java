@@ -85,7 +85,7 @@ public class MBFItems {
                     tab.accept(HUNTING_DOG_PROTO_SPAWN_EGG.get());
 
                     tab.accept(NULL_MASK_WAND.get());
-                }).withTabsAfter(MineBlackFlow.modLoc("natural_objects")).build();
+                }).build();
     }
     public static CreativeModeTab naturalObjectTab(){
         return CreativeModeTab.builder().icon(()->new ItemStack(SEEDS.get()))
@@ -107,6 +107,6 @@ public class MBFItems {
                     tab.accept(CAGE_CONTROLLER.get());
 
                     tab.accept(BUCKET_APOCATA.get());
-                })).withTabsBefore(MineBlackFlow.modLoc("mbf_items")).build();
+                })).build();
     }
 }

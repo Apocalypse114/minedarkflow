@@ -1,6 +1,8 @@
 package net.apocalypse.mineblackflow.core;
 
 import net.apocalypse.mineblackflow.MineBlackFlow;
+import net.apocalypse.mineblackflow.capability.MBFCapabilities;
+import net.apocalypse.mineblackflow.capability.data.LivingData;
 import net.apocalypse.mineblackflow.compat.ca.CAUtil;
 import net.apocalypse.mineblackflow.config.ConfigServer;
 import net.apocalypse.mineblackflow.init.MBFAttributes;
@@ -18,7 +20,8 @@ public class ManiaInjury {
     @SuppressWarnings("UnusedReturnValue")
     public static InjuryResult dealManiaInjury(LivingEntity living, float amount, ManiaInjurySource<?> source){
         if (Tool.immuneToMania(living)) return InjuryResult.FAIL;
-        double currentEP = Tool.getManiaEP(living), newEP = currentEP, limit = Tool.getManiaLimit(living);
+        float currentEP = Tool.getManiaEP(living), newEP = currentEP;
+        double limit = Tool.getManiaLimit(living);
         amount = amountAfterCognitiveReduction(amount, living);
         if (CAUtil.checkCALoaded()) amount = amountAfterSanityResistanceReduction(amount, living);
         newEP += amount;
@@ -31,7 +34,7 @@ public class ManiaInjury {
     }
     public static void healManiaInjury(LivingEntity living, float amount){
         if (Tool.underManiaBreak(living)) return;
-        double currentEP = Tool.getManiaEP(living), newEP = currentEP;
+        float currentEP = Tool.getManiaEP(living), newEP = currentEP;
         newEP -= amount;
         Tool.setManiaEP(living, newEP);
     }
@@ -62,9 +65,8 @@ public class ManiaInjury {
     }
 
     public static class Tool {
-        public static double getManiaEP (LivingEntity living){
-            AttributeInstance instance = living.getAttribute(MBFAttributes.MANIA_EP.get());
-            return instance == null ? 0 : instance.getBaseValue();
+        public static float getManiaEP (LivingEntity living){
+            return MBFCapabilities.getLivingData(living).MANIA_EP;
         }
         public static double getManiaLimit (LivingEntity living){
             AttributeInstance instance = living.getAttribute(MBFAttributes.MANIA_LIMIT.get());
@@ -78,9 +80,12 @@ public class ManiaInjury {
             AttributeInstance instance = living.getAttribute(MBFAttributes.MANIA_LIMIT.get());
             if(instance != null) instance.setBaseValue(base);
         }
-        public static void setManiaEP (LivingEntity living,double value){
-            AttributeInstance instance = living.getAttribute(MBFAttributes.MANIA_EP.get());
-            if (instance != null) instance.setBaseValue(Math.max(0, value));
+        public static void setManiaEP (LivingEntity living,float value){
+            if (living.level().isClientSide()) return;
+            value = Math.max(0, value);
+            LivingData data = MBFCapabilities.getLivingData(living);
+            data.MANIA_EP = value;
+            data.sendToTracker(living);
         }
         public static float getInjuryProgress (LivingEntity living){
             return (float) (1 - getManiaEP(living) / getManiaLimit(living));

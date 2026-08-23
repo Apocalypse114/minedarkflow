@@ -8,7 +8,6 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,7 +19,6 @@ import net.minecraftforge.registries.RegistryObject;
 public class MBFAttributes {
     public static final DeferredRegister<Attribute> REGISTRY = DeferredRegister.create(Registries.ATTRIBUTE, MineBlackFlow.MODID);
 
-    public static final RegistryObject<Attribute> MANIA_EP = rangedAttr("mania_value", 0, 0, Double.MAX_VALUE);
     public static final RegistryObject<Attribute> MANIA_LIMIT = rangedAttr("mania_limit", 1000, -1, Double.MAX_VALUE);
     public static final RegistryObject<Attribute> COGNITIVE_RESISTANCE = rangedAttr("cognitive_resistance", 0, 0, 131072);
 
@@ -36,7 +34,6 @@ public class MBFAttributes {
     @SubscribeEvent
     public static void addAttributes(EntityAttributeModificationEvent event) {
         event.getTypes().forEach(entity -> {
-            event.add(entity, MANIA_EP.get());
             event.add(entity, MANIA_LIMIT.get());
             event.add(entity, COGNITIVE_RESISTANCE.get());
             if (entity != EntityType.PLAYER) event.add(entity, NULL_MASKED.get());
@@ -60,7 +57,6 @@ public class MBFAttributes {
         public static void playerClone(PlayerEvent.Clone event) {
             Player oldPlayer = event.getOriginal();
             Player newPlayer = event.getEntity();
-            syncBaseValue(oldPlayer, newPlayer, MANIA_EP.get());
             syncBaseValue(oldPlayer, newPlayer, MANIA_LIMIT.get());
             syncBaseValue(oldPlayer, newPlayer, NULL_MASKED.get());
         }

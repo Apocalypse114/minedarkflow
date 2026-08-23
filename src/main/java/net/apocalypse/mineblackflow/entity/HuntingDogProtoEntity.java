@@ -21,6 +21,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -90,8 +91,8 @@ public class HuntingDogProtoEntity extends GeoBlackFlowMonster {
                         && attachedEntity instanceof LivingEntity living && !living.hasEffect(MBFEffects.DOG_PROTO_BITE.get())){
                     living.addEffect(new MobEffectInstance(MBFEffects.DOG_PROTO_BITE.get(), 20));
                 }
-                if (inSkillMainPart() && isValidTarget && ((t - 3) % 20 == 7 || (t - 3) % 20 == 12)){
-                    if ((t - 3) % 20 == 7) MBFUtil.playDifferedSoundAtEntity(this, MBFSounds.DOG_PROTO_BITE.get(), SoundSource.HOSTILE, 0.75f, 0.15f);
+                if (inSkillMainPart() && isValidTarget && (t - 3) % 10 == 5){
+                    MBFUtil.playDifferedSoundAtEntity(this, MBFSounds.DOG_PROTO_BITE.get(), SoundSource.HOSTILE, 0.75f, 0.2f);
                     hurtEnemy(attachedEntity, true);
                 } else if (t == 8 || !isValidTarget){
                     MBFUtil.playDifferedSoundAtEntity(this, MBFSounds.TP_DONE.get(), SoundSource.HOSTILE, 1, 0.1f);
@@ -115,6 +116,12 @@ public class HuntingDogProtoEntity extends GeoBlackFlowMonster {
         } else if (this.isDeadOrDying()){
             setSkillTick(0);
         }
+    }
+
+    @Override
+    public boolean hurt(@NotNull DamageSource source, float amount){
+        if (inSkill() && source.is(DamageTypes.CRAMMING)) return false;
+        return super.hurt(source, amount);
     }
 
     @Override
