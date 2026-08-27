@@ -1,6 +1,5 @@
 package net.apocalypse.mineblackflow.core.stalk;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.mojang.serialization.JsonOps;
 import net.apocalypse.mineblackflow.MineBlackFlow;
@@ -49,7 +48,9 @@ public class StalkCastManager extends SimpleJsonResourceReloadListener {
                         .getOrThrow(true, msg -> {
                             throw new IllegalStateException("Failed to parse StalkCast " + key.getPath() + ": " + msg);
                         });
+                cast.setLocation(key);
                 parsed.put(key, cast);
+                MineBlackFlow.LOGGER.info("Stalk info read: {}", key);
             } catch (Exception e){
                 MineBlackFlow.LOGGER.error(e.getMessage());
             }

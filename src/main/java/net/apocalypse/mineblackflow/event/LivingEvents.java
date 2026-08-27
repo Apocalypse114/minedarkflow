@@ -51,12 +51,6 @@ public class LivingEvents {
                 && living.getRandom().nextFloat() < 0.8f){
             event.setCanceled(true);
         }
-        if (event.getEntity() instanceof Player player){
-            PlayerData data = MBFCapabilities.getData(player);
-            data.player_lifetime_example++;
-            data.sendToClient(player);
-            MineBlackFlow.LOGGER.info("debug; player data:{}", MBFCapabilities.getData(player).player_lifetime_example);
-        }
     }
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event){

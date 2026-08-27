@@ -26,6 +26,8 @@ public class MBFSounds {
     public static final RegistryObject<SoundEvent> DOG_PROTO_SKILL = register("dog_proto_skill", false);
     public static final RegistryObject<SoundEvent> DOG_PROTO_BITE = register("dog_proto_bite", false);
 
+    public static final RegistryObject<SoundEvent> STALK_PURCHASE = register("stalk_purchase", false);
+
     public static RegistryObject<SoundEvent> register(String name, boolean fixed){
         return fixed ? REGISTRY.register(name, ()->SoundEvent.createFixedRangeEvent(MineBlackFlow.modLoc(name), 1))
                 : REGISTRY.register(name, ()->SoundEvent.createVariableRangeEvent(MineBlackFlow.modLoc(name)));

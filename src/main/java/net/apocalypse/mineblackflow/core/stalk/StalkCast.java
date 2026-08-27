@@ -2,6 +2,9 @@ package net.apocalypse.mineblackflow.core.stalk;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
@@ -23,26 +26,35 @@ public class StalkCast {
                     Codec.FLOAT.fieldOf("nullMaskProb").forGetter(EnemyGroupEntry::possibilityToBeNullMasked)
             ).apply(instance, EnemyGroupEntry::new)
     );
-    public static final Codec<StalkCast> STALK_CAST_CODEC = ENEMY_GROUP_ENTRY_CODEC.listOf().xmap(StalkCast::new, StalkCast::getCasts);
+    public static final Codec<StalkCast> STALK_CAST_CODEC = ENEMY_GROUP_ENTRY_CODEC.listOf().xmap(StalkCast::new, StalkCast::getGroups);
 
-    private final List<EnemyGroupEntry> casts;
+    private final List<EnemyGroupEntry> groups;
 
-    public List<EnemyGroupEntry> getCasts(){return casts;}
-    public int getSize(){return casts.size();}
+    private ResourceLocation location = null;
+    private String descId = "";
+
+    public List<EnemyGroupEntry> getGroups(){return groups;}
+    public int getSize(){return groups.size();}
+    public ResourceLocation getLocation(){return location;}
+    protected void setLocation(@NotNull ResourceLocation location1){
+        location = location1;
+        descId = "stalk.mine_black_flow."+location1.getPath();
+    }
+    public MutableComponent getDesc(){return Component.translatable(descId);}
 
     public StalkCast(List<EnemyGroupEntry> entries){
-        this.casts = new ArrayList<>(entries);
+        this.groups = new ArrayList<>(entries);
     }
     public EnemyGroupEntry getGroup(int index){
-        index = Mth.clamp(index, 0, casts.size()-1);
-        return casts.get(index);
+        index = Mth.clamp(index, 0, groups.size()-1);
+        return groups.get(index);
     }
     public static StalkCast create(){
         return new StalkCast(List.of());
     }
 
     public @NotNull StalkCast addEntry(EnemyGroupEntry entry){
-        this.casts.add(entry);
+        this.groups.add(entry);
         return this;
     }
     public @NotNull StalkCast addEntry(EntityType<?> type, int count, int occurrenceTick, double minDist, double maxDist, float nullMaskProb){

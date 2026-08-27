@@ -17,7 +17,8 @@ public class MBFCommand {
 
         LiteralArgumentBuilder<CommandSourceStack> command = Commands.literal(MineBlackFlow.MODID)
                 .then(ManiaCommand.get())
-                .then(AccessoryCommand.get());
+                .then(AccessoryCommand.get())
+                .then(StalkCommand.get());
 
         dispatcher.register(command);
     }

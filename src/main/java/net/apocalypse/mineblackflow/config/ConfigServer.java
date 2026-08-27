@@ -24,9 +24,9 @@ public class ConfigServer {
     static {
         BUILDER.push("mania_injury");
         MANIA_DAMAGE_LOWEST = BUILDER.comment("狂躁损伤附加伤害初始值。")
-                .defineInRange("mania_damage_lowest", 0.5, 0, Double.MAX_VALUE);
+                .defineInRange("mania_damage_lowest", 1, 0, Double.MAX_VALUE);
         MANIA_DAMAGE_BOOST_PER_HIT = BUILDER.comment("狂躁损伤附加伤害每次。")
-                .defineInRange("mania_damage_boost_per_hit", 0.25, 0, Double.MAX_VALUE);
+                .defineInRange("mania_damage_boost_per_hit", 0.5, 0, Double.MAX_VALUE);
         MANIA_DAMAGE_BOOST_TIME = BUILDER.comment("狂躁损伤附加伤害最大叠加次数。")
                 .defineInRange("mania_damage_boost_time", 10, 0, 32768);
         BUILDER.pop();

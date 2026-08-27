@@ -20,12 +20,14 @@ public class ConfigClient {
 
     private static final ForgeConfigSpec.IntValue EP_BAR_RENDER_OFFSET_X;
     private static final ForgeConfigSpec.IntValue EP_BAR_RENDER_OFFSET_Y;
-
+    private static final ForgeConfigSpec.BooleanValue SCREEN_SIZE_EP_BAR;
 
     static {
         BUILDER.push("overlay");
+        SCREEN_SIZE_EP_BAR = BUILDER.comment("狂躁损伤条渲染为全屏格式。开启后下方偏移设置不生效。")
+                .define("ep_var-with_screen_style", true);
         EP_BAR_RENDER_OFFSET_X = BUILDER.comment("狂躁损伤条渲染x偏移。正值代表向右。范围为正负999999。")
-                        .defineInRange("ep_bar_render_offset_x", 0, -999999, 999999);
+                .defineInRange("ep_bar_render_offset_x", 0, -999999, 999999);
         EP_BAR_RENDER_OFFSET_Y = BUILDER.comment("狂躁损伤条渲染y偏移。正值代表向下。范围为正负999999。")
                 .defineInRange("ep_bar_render_offset_y", 0, -999999, 999999);
         BUILDER.pop();
@@ -38,5 +40,8 @@ public class ConfigClient {
 
     public static int[] getEpOffset(){
         return new int[]{EP_BAR_RENDER_OFFSET_X.get(), EP_BAR_RENDER_OFFSET_Y.get()};
+    }
+    public static boolean renderInScreenStyle(){
+        return SCREEN_SIZE_EP_BAR.get();
     }
 }

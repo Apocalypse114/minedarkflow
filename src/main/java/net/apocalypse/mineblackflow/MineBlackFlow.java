@@ -1,10 +1,14 @@
 package net.apocalypse.mineblackflow;
 
 import com.mojang.logging.LogUtils;
+import net.apocalypse.mineblackflow.capability.MBFCapabilities;
+import net.apocalypse.mineblackflow.capability.data.DimensionData;
+import net.apocalypse.mineblackflow.capability.data.MBFDataHandler;
 import net.apocalypse.mineblackflow.config.ConfigClient;
 import net.apocalypse.mineblackflow.config.ConfigServer;
 import net.apocalypse.mineblackflow.init.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -122,5 +126,9 @@ public class MineBlackFlow {
             actions.forEach(e -> e.getKey().run());
             workQueue.removeAll(actions);
         }
+        MinecraftServer server = event.getServer();
+        server.getAllLevels().forEach(level ->{
+            MBFDataHandler.tickStalks(MBFCapabilities.getDimensionData(level), level);
+        });
     }
 }

@@ -1,4 +1,13 @@
 {
+  "stalk_purchase": {
+    "subtitle": "subtitles.mbf.stalk_purchase",
+    "sounds": [
+      {
+        "name": "mine_black_flow:purchase",
+        "stream": false
+      }
+    ]
+  },
   "dog_proto_skill": {
     "subtitle": "subtitles.mbf_dog_proto.skill",
     "sounds": [
