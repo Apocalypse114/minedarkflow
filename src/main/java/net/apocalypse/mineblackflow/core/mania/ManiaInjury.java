@@ -48,7 +48,6 @@ public class ManiaInjury {
         }
         MBFUtil.playSoundAtEntity(living, MBFSounds.MANIA_BREAK.get(), SoundSource.AMBIENT, 1.5f, 1);
         if (ConfigServer.playAnimal()){
-            MineBlackFlow.LOGGER.info("animal played!");
             MBFUtil.playSoundAtEntity(living, MBFSounds.ANIMAL.get(), SoundSource.AMBIENT, 1, 1);
         }
     }

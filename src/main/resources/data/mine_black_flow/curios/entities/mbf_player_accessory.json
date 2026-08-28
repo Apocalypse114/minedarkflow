@@ -1,0 +1,6 @@
+
+{
+  "conditions": [],
+  "entities": ["minecraft:player"],
+  "slots": ["mbf_accessory"]
+}

@@ -1,6 +1,7 @@
 package net.apocalypse.mineblackflow.capability.data;
 
 import net.apocalypse.mineblackflow.capability.MBFCapabilities;
+import net.apocalypse.mineblackflow.core.accessory_box.AccessoryBoxHandler;
 import net.apocalypse.mineblackflow.init.MBFNetwork;
 import net.apocalypse.mineblackflow.network.PlayerDataMessage;
 import net.minecraft.core.Direction;
@@ -17,7 +18,11 @@ import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
 public class PlayerData implements INBTSerializable<CompoundTag> {
-    public double player_lifetime_example = 0;
+
+    protected int ACCESSORY_CAPACITY = 12;
+    protected AccessoryBoxHandler ACCESSORY_BOX = new AccessoryBoxHandler();
+
+    public AccessoryBoxHandler getAccessoryBoxhandler(){return ACCESSORY_BOX;}
 
     public void sendToClient(Entity entity) {
         if (entity instanceof ServerPlayer serverPlayer)
@@ -34,18 +39,22 @@ public class PlayerData implements INBTSerializable<CompoundTag> {
     }
 
     public PlayerData syncFrom(PlayerData data){
-        this.player_lifetime_example = data.player_lifetime_example;
+        this.ACCESSORY_CAPACITY = data.ACCESSORY_CAPACITY;
+        this.ACCESSORY_BOX.setValidSlot(data.ACCESSORY_BOX.getValidSlot());
+        this.ACCESSORY_BOX.syncStacks(data.ACCESSORY_BOX);
         return this;
     }
 
     public Tag writeNBT() {
         CompoundTag nbt = new CompoundTag();
-        nbt.putDouble("MANIA_EP", player_lifetime_example);
+        nbt.putInt("accessory_capacity", ACCESSORY_CAPACITY);
+        nbt.put("accessory_box", ACCESSORY_BOX.serializeNBT());
         return nbt;
     }
     public void readNBT(Tag tag) {
         CompoundTag nbt = (CompoundTag) tag;
-        player_lifetime_example = nbt.getDouble("MANIA_EP");
+        ACCESSORY_CAPACITY = Math.max(9, nbt.getInt("accessory_capacity"));
+        ACCESSORY_BOX.deserializeNBT(nbt.getCompound("accessory_box"));
     }
 
     public CompoundTag serializeNBT(){

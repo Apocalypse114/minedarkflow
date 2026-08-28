@@ -8,6 +8,7 @@ import net.apocalypse.mineblackflow.init.MBFNetwork;
 import net.apocalypse.mineblackflow.network.LivingDataMessage;
 import net.apocalypse.mineblackflow.network.PlayerDataMessage;
 import net.apocalypse.mineblackflow.network.SavedDataMessage;
+import net.apocalypse.mineblackflow.network.SimpleKeyMessage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -55,6 +56,8 @@ public class MBFCapabilities {
                 PlayerDataMessage::new, PlayerDataMessage::handler);
         MBFNetwork.addNetworkMessage(LivingDataMessage.class, LivingDataMessage::buffer,
                 LivingDataMessage::new, LivingDataMessage::handler);
+        MBFNetwork.addNetworkMessage(SimpleKeyMessage.OpenBoxMessage.class, SimpleKeyMessage.OpenBoxMessage::buffer,
+                SimpleKeyMessage.OpenBoxMessage::new, SimpleKeyMessage.OpenBoxMessage::handler);
     }
     @SubscribeEvent
     public static void register(RegisterCapabilitiesEvent event) {

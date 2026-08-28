@@ -5,6 +5,12 @@
   "entity.mine_black_flow.wind_hunter": "聆风猎手",
   "entity.mine_black_flow.huntingdog_proto": "猎犬Proto",
 
+  "container.mine_black_flow.accessory_box": "零件箱",
+  "container.mine_black_flow.evaluation_total": "↑ 总估价：",
+
+  "curios.identifier.mbf_accessory": "黑流配件",
+  "curios.modifiers.mbf_accessory": "装载为配件时：",
+
   "item.mine_black_flow.null_mask_wand": "空值权杖",
   "item.mine_black_flow.null_mask_wand.desc": "右键使生物成为空值体。",
   "item.mine_black_flow.bucket_apocata": "桶装哈基玖",
@@ -12,6 +18,10 @@
   "item.mine_black_flow.bucket_apocata.func": "每游戏刻对玩家造成5%最大生命的伤害。",
   "item.mine_black_flow.blackflowium_ingot": "黑流源石锭",
   "item.mine_black_flow.blackflowium_ingot.desc": "黑流树海内流通的货币，由居民的意识凝结而成。",
+  "item.mine_black_flow.accessory_box": "黑流配件箱",
+  "item.mine_black_flow.accessory_box.desc": "可通过按键【%1$s】打开零件箱。",
+  "item.mine_black_flow.accessory_box.desc1": "右键打开零件箱。",
+
   "block.mine_black_flow.blackflowium_cluster": "黑流源石簇",
   "block.mine_black_flow.blackflowium_block": "黑流源石块",
   "block.mine_black_flow.blackflowium.value": "价值：",
@@ -137,11 +147,16 @@
   "command.mine_black_flow.accessory.sell": "已出售 ",
   "command.mine_black_flow.accessory.sell_fail": "主手物品无法出售！",
   "command.mine_black_flow.accessory.sell_many": "出售了一背包配件！",
+  "command.mine_black_flow.accessory.sell_box": "出售了一配件箱的配件！",
+  "command.mine_black_flow.accessory.set": "将 %1$s 的零件箱容量设置为 %2$s",
+  "command.mine_black_flow.accessory.add": "将 %1$s 的零件箱容量增加 %2$s",
   "command.mine_black_flow.stalk.start": "在 x: %1$s, z: %2$s 处触发了追猎【 %3$s 】！",
   "command.mine_black_flow.stalk.fail": "未找到追猎怪物列表：",
 
   "gameplay.mine_black_flow.sell_apocata": "<Apocata> 竟敢卖我，顶死你喵",
   "gameplay.mine_black_flow.gain_acc": "你获得了 ",
+
+  "key.mine_black_flow.open_box": "打开零件箱",
 
   "stalk.mine_black_flow.blackflow_animals": "黑流动物园",
   "stalk.mine_black_flow.many_zombie": "僵尸入侵",

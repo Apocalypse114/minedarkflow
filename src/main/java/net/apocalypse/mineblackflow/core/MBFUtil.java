@@ -1,5 +1,7 @@
 package net.apocalypse.mineblackflow.core;
 
+import net.apocalypse.mineblackflow.capability.MBFCapabilities;
+import net.apocalypse.mineblackflow.core.accessory_box.AccessoryBoxHandler;
 import net.apocalypse.mineblackflow.init.MBFAttributes;
 import net.apocalypse.mineblackflow.init.MBFEntities;
 import net.minecraft.client.Minecraft;
@@ -131,6 +133,17 @@ public class MBFUtil {
             ItemStack stackGotten = inventory.getItem(i);
             action.accept(stackGotten);
         }
+    }
+    public static void forEachItemInAccessoryBox(Player player, Consumer<ItemStack> action){
+        AccessoryBoxHandler handler = MBFCapabilities.getData(player).getAccessoryBoxhandler();
+        for (int i = 0; i< handler.getSlots(); i++){
+            ItemStack stack = handler.getStackInSlot(i);
+            action.accept(stack);
+        }
+    }
+    public static void forEachInInventoryAndAccessoryBox(Player player, Consumer<ItemStack> action){
+        forEachItemInPlayerInventory(player, action);
+        forEachItemInAccessoryBox(player, action);
     }
     public static boolean isNotRealDamage(DamageSource source){
         return !(source.is(DamageTypeTags.BYPASSES_EFFECTS)

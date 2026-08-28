@@ -1,6 +1,7 @@
 package net.apocalypse.mineblackflow.init;
 
 import net.apocalypse.mineblackflow.MineBlackFlow;
+import net.apocalypse.mineblackflow.item.AccessoryBoxItem;
 import net.apocalypse.mineblackflow.item.BlackflowiumIngotItem;
 import net.apocalypse.mineblackflow.item.NullMaskWandItem;
 import net.apocalypse.mineblackflow.item.base.AccessoryBase;
@@ -29,6 +30,7 @@ public class MBFItems {
 
     public static final RegistryObject<Item> NULL_MASK_WAND = REGISTRY.register("null_mask_wand", NullMaskWandItem::new);
     public static final RegistryObject<Item> BLACKFLOWIUM_INGOT = REGISTRY.register("blackflowium_ingot", BlackflowiumIngotItem::new);
+    public static final RegistryObject<Item> ACCESSORY_BOX = REGISTRY.register("accessory_box", AccessoryBoxItem::new);
 
     public static final RegistryObject<AccessoryBase> SEEDS = ACCESSORY.register("seeds", SeedItem::new);
     public static final RegistryObject<AccessoryBase> MISTY_TUMBLEWEED = ACCESSORY.register("misty_tumbleweed", MistyTumbleweedItem::new);
@@ -72,6 +74,7 @@ public class MBFItems {
                 .withBackgroundLocation(MineBlackFlow.modLoc("textures/gui/tab/tab_items_1.png"))
                 .withTabsImage(MineBlackFlow.modLoc("textures/gui/tab/tabs.png"))
                 .displayItems((para, tab)->{
+                    tab.accept(ACCESSORY_BOX.get());
                     tab.accept(BLOOD_MUSHROOM_PLANT.get());
 
                     tab.accept(BLACKFLOWIUM_INGOT.get());

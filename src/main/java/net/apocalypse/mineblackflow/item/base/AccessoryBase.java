@@ -60,7 +60,7 @@ public abstract class AccessoryBase extends Item implements IBlackflowiumPriced{
     public abstract int getBaseEvaluation();
     public static int getEvaluation(ItemStack stack){
         if (stack.getItem() instanceof AccessoryBase obj)
-            return Math.min(999, obj.getBaseEvaluation() + stack.getOrCreateTag().getInt(TAG_CHANGE));
+            return stack.getCount() * Math.min(999, obj.getBaseEvaluation() + stack.getOrCreateTag().getInt(TAG_CHANGE));
         return 0;
     }
 
@@ -134,7 +134,7 @@ public abstract class AccessoryBase extends Item implements IBlackflowiumPriced{
     private static ItemStack giveAccessoryToRaw(AccessoryBase accessory, Player pPlayer){
         ItemStack stack = new ItemStack(accessory);
         accessory.onGain(stack, pPlayer);
-        MBFUtil.forEachItemInPlayerInventory(pPlayer, item ->{
+        MBFUtil.forEachInInventoryAndAccessoryBox(pPlayer, item ->{
             if (item.getItem() instanceof AccessoryBase base){
                 base.onOuterGain(stack, item, pPlayer);
             }

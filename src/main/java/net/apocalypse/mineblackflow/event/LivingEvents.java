@@ -69,14 +69,6 @@ public class LivingEvents {
         handleManiaHitTime(sourceEntity);
     }
 
-    @SubscribeEvent
-    public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event){
-        Player player = event.getEntity();
-        if(player != null){
-            ManiaInjury.Tool.setManiaEP(player, 0);
-        }
-    }
-
     private static void handleManiaHitTime(Entity sourceEntity){
         if (sourceEntity instanceof LivingEntity living && ManiaInjury.Tool.underManiaBreak(living)) {
             int time = living.getPersistentData().getInt(ManiaBreakEffect.TAG_HIT_TIME), limit = ConfigServer.getManiaBoostTime();

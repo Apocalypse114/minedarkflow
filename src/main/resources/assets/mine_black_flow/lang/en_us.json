@@ -5,6 +5,12 @@
   "entity.mine_black_flow.wind_hunter": "Wind Hunter",
   "entity.mine_black_flow.huntingdog_proto": "Hunting Dog Proto",
 
+  "container.mine_black_flow.accessory_box": "Accessory Kit",
+  "container.mine_black_flow.evaluation_total": "↑ Total Evaluation: ",
+
+  "curios.identifier.mbf_accessory": "Accessory",
+  "curios.modifiers.mbf_accessory": "When loaded as accessory:",
+
   "item.mine_black_flow.null_mask_wand": "Null Mask Wand",
   "item.mine_black_flow.null_mask_wand.desc": "Right-click to make entity null masked.",
   "item.mine_black_flow.bucket_apocata": "Apocata in Bucket",
@@ -12,6 +18,10 @@
   "item.mine_black_flow.bucket_apocata.func": "Deal 5% of mac health damage every tick to player.",
   "item.mine_black_flow.blackflowium_ingot": "Blackflowium Ingot",
   "item.mine_black_flow.blackflowium_ingot.desc": "Currency available in the Black Flow, congeal from mind of the resident.",
+  "item.mine_black_flow.accessory_box": "Accessory Box",
+  "item.mine_black_flow.accessory_box.desc": "Can open accessory box with key [%1$s]",
+  "item.mine_black_flow.accessory_box.desc1": "Right-click to open accessory box",
+
   "block.mine_black_flow.blackflowium_cluster": "Blackflowium Cluster",
   "block.mine_black_flow.blackflowium_block": "Blackflowium Block",
   "block.mine_black_flow.blackflowium.value": "Value: ",
@@ -140,11 +150,16 @@
   "command.mine_black_flow.accessory.sell": "Sold ",
   "command.mine_black_flow.accessory.sell_fail": "Nothing can be sold.",
   "command.mine_black_flow.accessory.sell_many": "Sell a lot!",
+  "command.mine_black_flow.accessory.sell_box": "Sell all accessories in accessory box!",
+  "command.mine_black_flow.accessory.set": "Set accessory capacity of %1$s to %2$s",
+  "command.mine_black_flow.accessory.add": "Boost accessory capacity of %1$s for %2$s",
   "command.mine_black_flow.stalk.start": "Start a stalk themed [ %3$s ] at x: %1$s, z: %2$s !",
   "command.mine_black_flow.stalk.fail": "Stalk cast not found: ",
 
   "gameplay.mine_black_flow.sell_apocata": "<Apocata> Oh no why sell me?",
   "gameplay.mine_black_flow.gain_acc": "You've gain ",
+
+  "key.mine_black_flow.open_box": "Open Accessory Box",
 
   "stalk.mine_black_flow.blackflow_animals": "Blackflow Animals",
   "stalk.mine_black_flow.many_zombie": "Zombie Invasion",

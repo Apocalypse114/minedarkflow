@@ -1,5 +1,6 @@
 package net.apocalypse.mineblackflow.command;
 
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import net.apocalypse.mineblackflow.MineBlackFlow;
@@ -25,7 +26,7 @@ public class StalkCommand {
                             .executes(StalkCommand::startStalk)
                             .then(Commands.argument("pos", Vec2Argument.vec2())
                                     .executes(StalkCommand::startStalkAt)))
-                    .then(Commands.argument("resource", ComponentArgument.textComponent())
+                    .then(Commands.argument("resource", StringArgumentType.word())
                             .executes(StalkCommand::startStalkWithResource)
                             .then(Commands.argument("pos", Vec2Argument.vec2())
                                     .executes(StalkCommand::startStalkAtWithResource)))
@@ -52,7 +53,7 @@ public class StalkCommand {
         return sendFailMessage(argument.getSource(), resource.getLocation().getPath());
     }
     private static int startStalkAtWithResource(CommandContext<CommandSourceStack> argument) {
-        String location = ComponentArgument.getComponent(argument, "resource").getString();
+        String location = StringArgumentType.getString(argument,"resource");
         Vec2 vec2 = Vec2Argument.getVec2(argument, "pos");
         ServerLevel serverLevel = argument.getSource().getLevel();
         int y = serverLevel.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (int) vec2.x, (int) vec2.y);
@@ -61,7 +62,7 @@ public class StalkCommand {
         return sendFailMessage(argument.getSource(), location);
     }
     private static int startStalkWithResource(CommandContext<CommandSourceStack> argument) {
-        String location = ComponentArgument.getComponent(argument, "resource").getString();
+        String location = StringArgumentType.getString(argument,"resource");
         Vec3 pos = argument.getSource().getPosition();
         ServerLevel serverLevel = argument.getSource().getLevel();
         int y = serverLevel.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (int) pos.x, (int) pos.z);

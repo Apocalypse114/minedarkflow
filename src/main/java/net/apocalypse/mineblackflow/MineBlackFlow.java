@@ -2,11 +2,12 @@ package net.apocalypse.mineblackflow;
 
 import com.mojang.logging.LogUtils;
 import net.apocalypse.mineblackflow.capability.MBFCapabilities;
-import net.apocalypse.mineblackflow.capability.data.DimensionData;
 import net.apocalypse.mineblackflow.capability.data.MBFDataHandler;
 import net.apocalypse.mineblackflow.config.ConfigClient;
 import net.apocalypse.mineblackflow.config.ConfigServer;
+import net.apocalypse.mineblackflow.gui.screen.AccessoryBoxScreen;
 import net.apocalypse.mineblackflow.init.*;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.api.distmarker.Dist;
@@ -73,6 +74,7 @@ public class MineBlackFlow {
         MBFPotions.REGISTRY.register(modEventBus);
         MBFBlocks.REGISTRY.register(modEventBus);
         MBFParticleTypes.REGISTRY.register(modEventBus);
+        MBFMenuType.REGISTRY.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -104,7 +106,8 @@ public class MineBlackFlow {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            }
+            event.enqueueWork(()-> MenuScreens.register(MBFMenuType.ACC_BOX.get(), AccessoryBoxScreen::new));
+        }
     }
 
     private static final Collection<AbstractMap.SimpleEntry<Runnable, Integer>> workQueue = new ConcurrentLinkedQueue<>();
