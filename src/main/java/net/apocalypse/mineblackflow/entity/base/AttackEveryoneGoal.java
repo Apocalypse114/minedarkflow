@@ -2,10 +2,14 @@ package net.apocalypse.mineblackflow.entity.base;
 
 import net.apocalypse.mineblackflow.core.MBFUtil;
 import net.apocalypse.mineblackflow.core.stalk.StalkInstance;
+import net.minecraft.client.main.Main;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.level.block.PowderSnowBlock;
+import net.minecraft.world.level.block.PowderSnowCauldronBlock;
 
 public class AttackEveryoneGoal extends NearestAttackableTargetGoal<PathfinderMob> {
     public AttackEveryoneGoal(Mob mob) {
@@ -16,6 +20,5 @@ public class AttackEveryoneGoal extends NearestAttackableTargetGoal<PathfinderMo
         return !(living instanceof IBlackFlowMonster
                 || MBFUtil.isSameTeam(mob, living, false)
                 || StalkInstance.isInStalk(living));
-
     }
 }

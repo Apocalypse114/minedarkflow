@@ -158,6 +158,7 @@
 
   "gameplay.mine_black_flow.sell_apocata": "<Apocata> Oh no why sell me?",
   "gameplay.mine_black_flow.gain_acc": "You've gain ",
+  "gameplay.mine_black_flow.stalk_title": "Stalk %1$s - %2$s enemies - %3$s second spend",
 
   "key.mine_black_flow.open_box": "Open Accessory Box",
 

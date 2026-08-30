@@ -75,6 +75,7 @@ public class StalkCommand {
         return 0;
     }
     private static int sendFailMessage(CommandSourceStack stack, String id){
+        if (stack.getLevel().isClientSide()) return 0;
         stack.sendFailure(Component.translatable("command.mine_black_flow.stalk.fail").append(id));
         return -1;
     }

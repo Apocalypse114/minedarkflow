@@ -20,7 +20,7 @@ public class SimpleKeyMessage {
     }
     public void doOnServer(Player entity, int type, int pressedms){
         if (type == 0) doOnPress(entity);
-        else doOnRelease(entity, msInPress);
+        else doOnRelease(entity, pressedms);
     }
     public void doOnPress(Player player){
     }

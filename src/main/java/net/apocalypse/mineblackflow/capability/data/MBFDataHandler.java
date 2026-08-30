@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -57,7 +58,10 @@ public class MBFDataHandler {
     public static void tickStalks(DimensionData data, ServerLevel serverLevel){
         for (StalkInstance stalkInstance: new ArrayList<>(data.TICKING_STALK)) {
             stalkInstance.tick(serverLevel);
-            if (stalkInstance.isDone()) data.TICKING_STALK.remove(stalkInstance);
+            if (stalkInstance.isDone()){
+                stalkInstance.onDone(serverLevel);
+                data.TICKING_STALK.remove(stalkInstance);
+            }
         }
         data.setDirty();
     }

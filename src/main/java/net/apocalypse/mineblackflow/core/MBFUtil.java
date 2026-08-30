@@ -2,6 +2,7 @@ package net.apocalypse.mineblackflow.core;
 
 import net.apocalypse.mineblackflow.capability.MBFCapabilities;
 import net.apocalypse.mineblackflow.core.accessory_box.AccessoryBoxHandler;
+import net.apocalypse.mineblackflow.core.stalk.StalkInstance;
 import net.apocalypse.mineblackflow.init.MBFAttributes;
 import net.apocalypse.mineblackflow.init.MBFEntities;
 import net.minecraft.client.Minecraft;
@@ -10,6 +11,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -25,7 +27,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.scores.PlayerTeam;
 import net.minecraft.world.scores.Team;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
@@ -54,14 +58,17 @@ public class MBFUtil {
         if (instance != null) instance.setBaseValue(0);
         BlockPos pos = maskedEntity.blockPosition();
         Level level = maskedEntity.level();
-        maskedEntity.setRemoved(Entity.RemovalReason.CHANGED_DIMENSION);
-        if (maskedEntity.isRemoved() && level instanceof ServerLevel serverLevel){
+        if (level instanceof ServerLevel serverLevel){
             Entity dog = MBFEntities.THE_NULL_VALUE.get().spawn(serverLevel, pos, MobSpawnType.MOB_SUMMONED);
-            if (dog != null){
+            if (dog instanceof LivingEntity living){
+                StalkInstance stalkInstance = MBFCapabilities.getLivingData(maskedEntity).joiningStalk;
+                if (stalkInstance != null) stalkInstance.joinStalk(living);
+                syncTeam(maskedEntity, living);
                 dog.setYBodyRot(maskedEntity.getYRot());
                 serverLevel.sendParticles(ParticleTypes.CLOUD, dog.getX(), dog.getY()+0.75, dog.getZ(), 32, 0.75, 0.75, 0.75, 0.1);
             }
         }
+        maskedEntity.setRemoved(Entity.RemovalReason.CHANGED_DIMENSION);
     }
     public static Holder<DamageType> damageType(ResourceKey<DamageType> typeKey, Level level){
         return level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(typeKey);
@@ -123,6 +130,26 @@ public class MBFUtil {
             return sameTeamIfNullTeam && teamA == null && teamB == null;
         }
         return teamA.isAlliedTo(teamB);
+    }
+    public static void syncTeam(@NotNull LivingEntity before, @NotNull LivingEntity after){
+        if (before instanceof Mob before1 && after instanceof Mob after1) syncTeam(before1, after1);
+    }
+    public static void syncTeam(@NotNull Mob before, @NotNull Mob after){
+        Team team = before.getTeam();
+        MinecraftServer server = after.getServer();
+        if (server != null && team instanceof PlayerTeam playerTeam){
+            server.getScoreboard().addPlayerToTeam(after.getScoreboardName(), playerTeam);
+        }
+    }
+    public static void syncTeamTargetAndTame(@NotNull Mob before, @NotNull Mob after){
+        syncTeam(before, after);
+        LivingEntity target = before.getTarget();
+        if (target != null) after.setTarget(target);
+        if (before instanceof TamableAnimal tamable
+                && tamable.getOwner() instanceof Player player
+                && after instanceof TamableAnimal ta){
+            ta.tame(player);
+        }
     }
     public static AABB aabbOnEntity(Entity entity, double size){
         return new AABB(entity.position(), entity.position()).inflate(size / 2);

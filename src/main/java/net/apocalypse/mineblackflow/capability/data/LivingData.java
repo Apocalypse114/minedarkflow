@@ -2,6 +2,7 @@ package net.apocalypse.mineblackflow.capability.data;
 
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.capability.MBFCapabilities;
+import net.apocalypse.mineblackflow.core.stalk.StalkInstance;
 import net.apocalypse.mineblackflow.init.MBFNetwork;
 import net.apocalypse.mineblackflow.network.LivingDataMessage;
 import net.minecraft.core.Direction;
@@ -18,6 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class LivingData implements INBTSerializable<CompoundTag> {
     public float MANIA_EP = 0;
+    public StalkInstance joiningStalk = null;
 
     public void sendToTracker(LivingEntity entity) {
         if (!entity.level().isClientSide()) {
@@ -34,6 +36,7 @@ public class LivingData implements INBTSerializable<CompoundTag> {
     }
     public LivingData syncFrom(LivingData data){
         this.MANIA_EP = data.MANIA_EP;
+        this.joiningStalk = data.joiningStalk;
         return this;
     }
     public Tag writeNBT() {
