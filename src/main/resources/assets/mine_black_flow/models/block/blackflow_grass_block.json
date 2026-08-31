@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_top",
+  "textures": {
+    "side": "mine_black_flow:block/blackflow_grass_side",
+    "top": "mine_black_flow:block/blackflow_grass_top"
+  }
+}

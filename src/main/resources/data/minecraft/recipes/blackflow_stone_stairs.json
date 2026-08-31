@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "b": {
+      "item": "mine_black_flow:blackflow_stone"
+    }
+  },
+  "pattern": [
+    "b  ",
+    "bb ",
+    "bbb"
+  ],
+  "result": {
+    "count": 4,
+    "item": "mine_black_flow:blackflow_stone_stairs"
+  },
+  "show_notification": true
+}

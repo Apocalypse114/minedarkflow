@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "variant=0": {
+      "model": "mine_black_flow:block/blackflow_stone_0"
+    },
+    "variant=1": {
+      "model": "mine_black_flow:block/blackflow_stone_1"
+    },
+    "variant=2": {
+      "model": "mine_black_flow:block/blackflow_stone_2"
+    }
+  }
+}

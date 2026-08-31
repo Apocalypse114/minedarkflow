@@ -1,6 +1,7 @@
 package net.apocalypse.mineblackflow.init;
 
 import net.apocalypse.mineblackflow.MineBlackFlow;
+import net.apocalypse.mineblackflow.block.entity.RedSetariaBlockEntity;
 import net.apocalypse.mineblackflow.entity.*;
 import net.apocalypse.mineblackflow.entity.projectile.WaterPraiserArrow;
 import net.apocalypse.mineblackflow.entity.technical.ProtoSignEntity;
@@ -8,15 +9,18 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MBFEntities {
     public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(Registries.ENTITY_TYPE, MineBlackFlow.MODID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, MineBlackFlow.MODID);
 
     public static final RegistryObject<EntityType<TheNullValueEntity>> THE_NULL_VALUE = register("the_null_value",
             EntityType.Builder.<TheNullValueEntity>of(TheNullValueEntity::new, MobCategory.MONSTER)
@@ -50,6 +54,9 @@ public class MBFEntities {
                 .setTrackingRange(trackRange).setUpdateInterval(3)
                 .sized(width, height).build(name));
     }
+
+    public static final RegistryObject<BlockEntityType<RedSetariaBlockEntity>> RED_SETARIA = BLOCK.register("red_setaria",
+            () -> BlockEntityType.Builder.of(RedSetariaBlockEntity::new, MBFBlocks.RED_SETARIA.get()).build(null));
 
     @SubscribeEvent
     public static void registerAttribute(EntityAttributeCreationEvent event){

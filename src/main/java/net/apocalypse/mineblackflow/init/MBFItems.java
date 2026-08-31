@@ -4,6 +4,7 @@ import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.item.AccessoryBoxItem;
 import net.apocalypse.mineblackflow.item.BlackflowiumIngotItem;
 import net.apocalypse.mineblackflow.item.NullMaskWandItem;
+import net.apocalypse.mineblackflow.item.RedSetariaBlockItem;
 import net.apocalypse.mineblackflow.item.base.AccessoryBase;
 import net.apocalypse.mineblackflow.item.natural.*;
 import net.minecraft.ChatFormatting;
@@ -11,10 +12,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -56,6 +54,12 @@ public class MBFItems {
     public static final RegistryObject<Item> BLACKFLOWIUM_CLUSTER = blockItem(MBFBlocks.BLACKFLOWIUM_CLUSTER);
     public static final RegistryObject<Item> BLACKFLOWIUM_BLOCK = blockItem(MBFBlocks.BLACKFLOWIUM_BLOCK);
     public static final RegistryObject<Item> BLOOD_MUSHROOM_PLANT = blockItem(MBFBlocks.BLOOD_MUSHROOM_BLOCK);
+    public static final RegistryObject<Item> BLACKFLOW_DIRT = blockItem(MBFBlocks.BLACKFLOW_DIRT);
+    public static final RegistryObject<Item> BLACKFLOW_GRASS_BLOCK = blockItem(MBFBlocks.BLACKFLOW_GRASS_BLOCK);
+    public static final RegistryObject<Item> BLACKFLOW_STONE = blockItem(MBFBlocks.BLACKFLOW_STONE);
+    public static final NonCubeBuildingBlockItems BLACKFLOW_STONE_SET = NonCubeBuildingBlockItems.create(MBFBlocks.BLACKFLOW_STONE_SET);
+    public static final RegistryObject<Item> BLACKFLOW_GRASS = blockItem(MBFBlocks.BLACKFLOW_GRASS);
+    public static final RegistryObject<Item> RED_SETARIA = REGISTRY.register("red_setaria", RedSetariaBlockItem::new);
 
     @SubscribeEvent
     public static void buildTabContentsVanilla(BuildCreativeModeTabContentsEvent tabData){
@@ -64,7 +68,7 @@ public class MBFItems {
     public static RegistryObject<Item> spawnEgg(String name, Supplier<? extends EntityType<? extends Mob>> type, int backColor, int spotColor){
         return REGISTRY.register(name+"_spawn_egg", ()->new ForgeSpawnEggItem(type, backColor, spotColor, new Item.Properties()));
     }
-    public static RegistryObject<Item> blockItem(RegistryObject<Block> block){
+    public static RegistryObject<Item> blockItem(RegistryObject<? extends Block> block){
         return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
@@ -76,6 +80,12 @@ public class MBFItems {
                 .displayItems((para, tab)->{
                     tab.accept(ACCESSORY_BOX.get());
                     tab.accept(BLOOD_MUSHROOM_PLANT.get());
+                    tab.accept(BLACKFLOW_GRASS_BLOCK.get());
+                    tab.accept(BLACKFLOW_DIRT.get());
+                    tab.accept(BLACKFLOW_STONE.get());
+                    acceptSet(tab, BLACKFLOW_STONE_SET);
+                    tab.accept(BLACKFLOW_GRASS.get());
+                    tab.accept(RED_SETARIA.get());
 
                     tab.accept(BLACKFLOWIUM_INGOT.get());
                     tab.accept(BLACKFLOWIUM_CLUSTER.get());
@@ -111,5 +121,19 @@ public class MBFItems {
 
                     tab.accept(BUCKET_APOCATA.get());
                 })).build();
+    }
+
+    public record NonCubeBuildingBlockItems(RegistryObject<Item> stair, RegistryObject<Item> slab, RegistryObject<Item> wall){
+        public static NonCubeBuildingBlockItems create(MBFBlocks.NonCubeBuildingBlockSet set){
+            RegistryObject<Item> stair = blockItem(set.stair());
+            RegistryObject<Item> slab = blockItem(set.slab());
+            RegistryObject<Item> wall = blockItem(set.wall());
+            return new NonCubeBuildingBlockItems(stair, slab, wall);
+        }
+    }
+    public static void acceptSet(CreativeModeTab.Output tab, NonCubeBuildingBlockItems set){
+        tab.accept(set.stair.get());
+        tab.accept(set.slab.get());
+        tab.accept(set.wall.get());
     }
 }

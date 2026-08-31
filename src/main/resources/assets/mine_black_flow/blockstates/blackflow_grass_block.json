@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "snowy=false": {
+      "model": "mine_black_flow:block/blackflow_grass_block"
+    },
+    "snowy=true": {
+      "model": "mine_black_flow:block/blackflow_grass_block_snowy"
+    }
+  }
+}

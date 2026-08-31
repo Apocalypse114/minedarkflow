@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "short=false": {
+      "model": "mine_black_flow:block/blackflow_grass"
+    },
+    "short=true": {
+      "model": "mine_black_flow:block/blackflow_grass_short"
+    }
+  }
+}

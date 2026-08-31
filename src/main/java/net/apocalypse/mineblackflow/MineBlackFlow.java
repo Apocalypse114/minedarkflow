@@ -67,6 +67,7 @@ public class MineBlackFlow {
         MBFEffects.REGISTRY.register(modEventBus);
         MBFSounds.REGISTRY.register(modEventBus);
         MBFEntities.REGISTRY.register(modEventBus);
+        MBFEntities.BLOCK.register(modEventBus);
         MBFItems.REGISTRY.register(modEventBus);
         MBFItems.ACCESSORY.register(modEventBus);
         MBFTabs.REGISTRY.register(modEventBus);

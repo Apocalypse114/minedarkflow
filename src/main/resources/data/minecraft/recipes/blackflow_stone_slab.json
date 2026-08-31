@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "b": {
+      "item": "mine_black_flow:blackflow_stone"
+    }
+  },
+  "pattern": [
+    "bb"
+  ],
+  "result": {
+    "count": 2,
+    "item": "mine_black_flow:blackflow_stone_slab"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "mine_black_flow:blackflow_stone"
+  },
+  "result": "mine_black_flow:blackflow_stone_wall"
+}

@@ -1,5 +1,8 @@
 package net.apocalypse.mineblackflow.client;
 
+import net.apocalypse.mineblackflow.block.base.SimpleGeoBlockEntityModel;
+import net.apocalypse.mineblackflow.block.base.SimpleGeoBlockRenderer;
+import net.apocalypse.mineblackflow.block.entity.RedSetariaBlockEntity;
 import net.apocalypse.mineblackflow.entity.renderer.*;
 import net.apocalypse.mineblackflow.init.MBFEntities;
 import net.minecraftforge.api.distmarker.Dist;
@@ -19,5 +22,8 @@ public class MBFRenderers {
         event.registerEntityRenderer(MBFEntities.WATER_PRAISER_ARROW.get(), (context) ->
                 new SimpleProjectileRenderer<>(context, "textures/entity/water_praiser_arrow.png"));
         event.registerEntityRenderer(MBFEntities.PROTO_SIGN.get(), ProtoSignRenderer::new);
+
+        event.registerBlockEntityRenderer(MBFEntities.RED_SETARIA.get(),
+                pContext -> new SimpleGeoBlockRenderer<>(new SimpleGeoBlockEntityModel.RedSetariaModel()));
     }
 }

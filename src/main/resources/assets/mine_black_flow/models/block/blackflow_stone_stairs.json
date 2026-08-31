@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "mine_black_flow:block/blackflow_stone_0",
+    "side": "mine_black_flow:block/blackflow_stone_0",
+    "top": "mine_black_flow:block/blackflow_stone_0"
+  }
+}

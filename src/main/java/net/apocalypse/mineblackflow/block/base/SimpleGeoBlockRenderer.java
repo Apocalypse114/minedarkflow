@@ -1,5 +1,6 @@
 package net.apocalypse.mineblackflow.block.base;
 
+import net.apocalypse.mineblackflow.block.entity.RedSetariaBlockEntity;
 import net.apocalypse.mineblackflow.block.entity.SimpleGeoBlockEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -16,5 +17,4 @@ public class SimpleGeoBlockRenderer<T extends SimpleGeoBlockEntity> extends GeoB
     public RenderType getRenderType(T animatable, ResourceLocation texture, MultiBufferSource bufferSource, float partialTick) {
         return RenderType.entityTranslucent(getTextureLocation(animatable));
     }
-
 }

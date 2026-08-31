@@ -1,0 +1,82 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "mine_black_flow:red_setaria",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "count": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "mine_black_flow:red_setaria"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "mine_black_flow:red_setaria",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "count": "2"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "mine_black_flow:red_setaria"
+        }
+      ],
+      "rolls": 2.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "mine_black_flow:red_setaria",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "count": "3"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "mine_black_flow:red_setaria"
+        }
+      ],
+      "rolls": 3.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "mine_black_flow:red_setaria",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "count": "4"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "mine_black_flow:red_setaria"
+        }
+      ],
+      "rolls": 4.0
+    }
+  ],
+  "random_sequence": "mine_black_flow:blocks/red_setaria"
+}

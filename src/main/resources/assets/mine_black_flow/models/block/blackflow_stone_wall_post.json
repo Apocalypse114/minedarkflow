@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_post",
+  "textures": {
+    "wall": "mine_black_flow:block/blackflow_stone_0"
+  }
+}

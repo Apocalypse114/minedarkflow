@@ -1,6 +1,10 @@
 {
   "values": [
     "mine_black_flow:blackflowium_cluster",
-    "mine_black_flow:blackflowium_block"
+    "mine_black_flow:blackflowium_block",
+    "mine_black_flow:blackflow_stone",
+    "mine_black_flow:blackflow_stone_stairs",
+    "mine_black_flow:blackflow_stone_slab",
+    "mine_black_flow:blackflow_stone_wall"
   ]
 }
