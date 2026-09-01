@@ -1,5 +1,6 @@
 package net.apocalypse.mineblackflow.init;
 
+import net.apocalypse.mineblackflow.block.BlackflowPropaguleBlock;
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.block.*;
 import net.apocalypse.mineblackflow.block.natural.BloodMushroomBlock;
@@ -25,6 +26,10 @@ public class MBFBlocks {
             BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(1.5F, 7.5F));
     public static final RegistryObject<Block> BLACKFLOW_GRASS = REGISTRY.register("blackflow_grass", BlackflowGrassPlant::new);
     public static final RegistryObject<Block> RED_SETARIA = REGISTRY.register("red_setaria", RedSetariaPlant::new);
+    public static final RegistryObject<Block> BLACKFLOW_LOG = REGISTRY.register("blackflow_log", BlackflowLogBlock::new);
+    public static final RegistryObject<Block> BLACKFLOW_AERIAL_ROOT = REGISTRY.register("blackflow_aerial_root", BlackflowAerialRoot::new);
+    public static final RegistryObject<Block> BLACKFLOW_LEAVE = REGISTRY.register("blackflow_leave", BlackflowLeaveBlock::new);
+    public static final RegistryObject<Block> BLACKFLOW_PROPAGULE = REGISTRY.register("blackflow_propagule", BlackflowPropaguleBlock::new);
 
     public record NonCubeBuildingBlockSet(RegistryObject<StairBlock> stair, RegistryObject<SlabBlock> slab, RegistryObject<WallBlock> wall){
         public static NonCubeBuildingBlockSet create(String name, RegistryObject<Block> base, BlockBehaviour.Properties properties){

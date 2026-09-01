@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "mine_black_flow:blackflow_propagule",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "3"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "mine_black_flow:bucket_apocata"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "mine_black_flow:blocks/blackflow_propagule"
+}

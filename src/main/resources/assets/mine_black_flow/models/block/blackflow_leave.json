@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "mine_black_flow:block/blackflow_leave"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "mine_black_flow:custom/blackflow_tree_root",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "mine_black_flow:block/blackflow_tree_sapling_0"
+  }
+}

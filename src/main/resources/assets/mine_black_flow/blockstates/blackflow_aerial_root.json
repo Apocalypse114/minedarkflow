@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "mine_black_flow:block/blackflow_aerial_root",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "mine_black_flow:block/blackflow_aerial_root"
+    },
+    "facing=south": {
+      "model": "mine_black_flow:block/blackflow_aerial_root",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "mine_black_flow:block/blackflow_aerial_root",
+      "y": 270
+    }
+  }
+}

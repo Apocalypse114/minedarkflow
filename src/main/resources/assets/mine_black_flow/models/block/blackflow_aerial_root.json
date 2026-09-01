@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/ladder",
+  "render_type": "cutout",
+  "textures": {
+    "particle": "mine_black_flow:block/blackflow_aerial_root",
+    "texture": "mine_black_flow:block/blackflow_aerial_root"
+  }
+}

@@ -60,6 +60,10 @@ public class MBFItems {
     public static final NonCubeBuildingBlockItems BLACKFLOW_STONE_SET = NonCubeBuildingBlockItems.create(MBFBlocks.BLACKFLOW_STONE_SET);
     public static final RegistryObject<Item> BLACKFLOW_GRASS = blockItem(MBFBlocks.BLACKFLOW_GRASS);
     public static final RegistryObject<Item> RED_SETARIA = REGISTRY.register("red_setaria", RedSetariaBlockItem::new);
+    public static final RegistryObject<Item> BLACKFLOW_LOG = blockItem(MBFBlocks.BLACKFLOW_LOG);
+    public static final RegistryObject<Item> BLACKFLOW_AERIAL_ROOT = blockItem(MBFBlocks.BLACKFLOW_AERIAL_ROOT);
+    public static final RegistryObject<Item> BLACKFLOW_LEAVE = blockItem(MBFBlocks.BLACKFLOW_LEAVE);
+    public static final RegistryObject<Item> BLACKFLOW_PROPAGULE = blockItem(MBFBlocks.BLACKFLOW_PROPAGULE);
 
     @SubscribeEvent
     public static void buildTabContentsVanilla(BuildCreativeModeTabContentsEvent tabData){
@@ -85,6 +89,10 @@ public class MBFItems {
                     tab.accept(BLACKFLOW_STONE.get());
                     acceptSet(tab, BLACKFLOW_STONE_SET);
                     tab.accept(BLACKFLOW_GRASS.get());
+                    tab.accept(BLACKFLOW_LOG.get());
+                    tab.accept(BLACKFLOW_AERIAL_ROOT.get());
+                    tab.accept(BLACKFLOW_LEAVE.get());
+                    tab.accept(BLACKFLOW_PROPAGULE.get());
                     tab.accept(RED_SETARIA.get());
 
                     tab.accept(BLACKFLOWIUM_INGOT.get());

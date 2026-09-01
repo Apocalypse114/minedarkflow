@@ -31,6 +31,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 MBFBlocks.BLACKFLOW_GRASS_BLOCK.get(),
                 MBFBlocks.BLACKFLOW_DIRT.get()
         );
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(
+                MBFBlocks.BLACKFLOW_LOG.get(),
+                MBFBlocks.BLACKFLOW_AERIAL_ROOT.get()
+        );
         this.tag(BlockTags.ANIMALS_SPAWNABLE_ON).add(
                 MBFBlocks.BLACKFLOW_GRASS_BLOCK.get()
         );
@@ -59,6 +63,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 MBFBlocks.BLACKFLOW_STONE_SET.stair().get(),
                 MBFBlocks.BLACKFLOW_STONE_SET.slab().get(),
                 MBFBlocks.BLACKFLOW_STONE_SET.wall().get()
+        );
+        this.tag(BlockTags.LOGS).add(
+                MBFBlocks.BLACKFLOW_LOG.get()
+        );
+        this.tag(BlockTags.LEAVES).add(
+                MBFBlocks.BLACKFLOW_LEAVE.get()
         );
     }
 }

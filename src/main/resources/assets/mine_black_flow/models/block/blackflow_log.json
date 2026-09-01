@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "mine_black_flow:block/blackflow_log_top",
+    "side": "mine_black_flow:block/blackflow_log"
+  }
+}

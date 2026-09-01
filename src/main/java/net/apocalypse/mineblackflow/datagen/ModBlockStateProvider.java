@@ -1,9 +1,7 @@
 package net.apocalypse.mineblackflow.datagen;
 
+import net.apocalypse.mineblackflow.block.BlackflowPropaguleBlock;
 import net.apocalypse.mineblackflow.MineBlackFlow;
-import net.apocalypse.mineblackflow.block.BlackflowGrassBlock;
-import net.apocalypse.mineblackflow.block.BlackflowGrassPlant;
-import net.apocalypse.mineblackflow.block.BlackflowStoneBlock;
 import net.apocalypse.mineblackflow.init.MBFBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -25,7 +23,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        genBuildingBlockSet("blackflow_stone", MBFBlocks.BLACKFLOW_STONE_SET, MineBlackFlow.modLoc("block/blackflow_stone_0"));
+       simpleBlockWithItem(MBFBlocks.BLACKFLOW_LEAVE.get(), models().leaves("blackflow_leave", MineBlackFlow.modLoc("block/blackflow_leave")));
+       multiStateBlock(MBFBlocks.BLACKFLOW_PROPAGULE.get(), state -> {
+           int age = state.getValue(BlackflowPropaguleBlock.AGE);
+           return models()
+                   .withExistingParent("blackflow_propagule_"+age, MineBlackFlow.modLoc("custom/blackflow_tree_root"))
+                   .texture("0", MineBlackFlow.modLoc("block/blackflow_tree_sapling_"+age))
+                   .renderType("cutout");
+       });
+       simpleBlockItem(MBFBlocks.BLACKFLOW_PROPAGULE.get(), itemModels().basicItem(MineBlackFlow.modLoc("blackflow_tree_propagule")));
     }
 
     private void cubeBlockWithItem(Block block){

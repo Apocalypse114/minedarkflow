@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "mine_black_flow:block/blackflow_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "mine_black_flow:block/blackflow_log"
+    },
+    "axis=z": {
+      "model": "mine_black_flow:block/blackflow_log_horizontal",
+      "x": 90
+    }
+  }
+}
