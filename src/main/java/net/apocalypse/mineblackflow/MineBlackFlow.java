@@ -7,9 +7,11 @@ import net.apocalypse.mineblackflow.config.ConfigClient;
 import net.apocalypse.mineblackflow.config.ConfigServer;
 import net.apocalypse.mineblackflow.gui.screen.AccessoryBoxScreen;
 import net.apocalypse.mineblackflow.init.*;
+import net.apocalypse.mineblackflow.worldgen.MBFSurfaceRules;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -86,7 +88,6 @@ public class MineBlackFlow {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        // Some common setup code
 
     }
 

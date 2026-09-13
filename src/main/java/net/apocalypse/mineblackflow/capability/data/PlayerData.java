@@ -1,7 +1,7 @@
 package net.apocalypse.mineblackflow.capability.data;
 
 import net.apocalypse.mineblackflow.capability.MBFCapabilities;
-import net.apocalypse.mineblackflow.core.accessory_box.AccessoryBoxHandler;
+import net.apocalypse.mineblackflow.core.handler.AccessoryBoxHandler;
 import net.apocalypse.mineblackflow.init.MBFNetwork;
 import net.apocalypse.mineblackflow.network.PlayerDataMessage;
 import net.minecraft.core.Direction;

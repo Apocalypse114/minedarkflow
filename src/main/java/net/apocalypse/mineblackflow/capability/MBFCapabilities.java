@@ -56,8 +56,8 @@ public class MBFCapabilities {
                 PlayerDataMessage::new, PlayerDataMessage::handler);
         MBFNetwork.addNetworkMessage(LivingDataMessage.class, LivingDataMessage::buffer,
                 LivingDataMessage::new, LivingDataMessage::handler);
-        MBFNetwork.addNetworkMessage(SimpleKeyMessage.OpenBoxMessage.class, SimpleKeyMessage.OpenBoxMessage::buffer,
-                SimpleKeyMessage.OpenBoxMessage::new, SimpleKeyMessage.OpenBoxMessage::handler);
+        MBFNetwork.addNetworkMessage(SimpleKeyMessage.TriggerAccessoryMessage.class, SimpleKeyMessage.TriggerAccessoryMessage::buffer,
+                SimpleKeyMessage.TriggerAccessoryMessage::new, SimpleKeyMessage.TriggerAccessoryMessage::handler);
     }
     @SubscribeEvent
     public static void register(RegisterCapabilitiesEvent event) {

@@ -1,0 +1,23 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "mine_black_flow:item/mechanist_npc",
+      "predicate": {
+        "mine_black_flow:mechanist_type": 0.0
+      }
+    },
+    {
+      "model": "mine_black_flow:item/mechanist_opr",
+      "predicate": {
+        "mine_black_flow:mechanist_type": 1.0
+      }
+    },
+    {
+      "model": "mine_black_flow:item/mechanist_enemy",
+      "predicate": {
+        "mine_black_flow:mechanist_type": 2.0
+      }
+    }
+  ]
+}

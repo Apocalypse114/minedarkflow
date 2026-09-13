@@ -8,6 +8,7 @@ import net.apocalypse.mineblackflow.config.ConfigServer;
 import net.apocalypse.mineblackflow.core.MBFUtil;
 import net.apocalypse.mineblackflow.core.mania.ManiaInjury;
 import net.apocalypse.mineblackflow.entity.base.IBlackFlowMonster;
+import net.apocalypse.mineblackflow.entity.base.NotAsTarget;
 import net.apocalypse.mineblackflow.init.MBFEffects;
 import net.apocalypse.mineblackflow.init.MBFTags;
 import net.apocalypse.mineblackflow.mobeffect.ManiaBreakEffect;
@@ -17,11 +18,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -67,6 +66,12 @@ public class LivingEvents {
         DamageSource source = event.getSource();
         Entity sourceEntity = source.getEntity();
         handleManiaHitTime(sourceEntity);
+    }
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onLivingChangeTarget(LivingChangeTargetEvent event){
+        if (event.getEntity() instanceof NotAsTarget notAsTarget && !notAsTarget.inWhiteList(event.getNewTarget())){
+            event.setCanceled(true);
+        }
     }
 
     private static void handleManiaHitTime(Entity sourceEntity){

@@ -1,0 +1,11 @@
+{
+  "type": "mine_black_flow:blackflow_type",
+  "generator": {
+    "type": "minecraft:noise",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "mine_black_flow:shallow_blackflow"
+    },
+    "settings": "minecraft:large_biomes"
+  }
+}

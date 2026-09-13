@@ -4,14 +4,27 @@ import net.apocalypse.mineblackflow.block.BlackflowPropaguleBlock;
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.block.*;
 import net.apocalypse.mineblackflow.block.natural.BloodMushroomBlock;
+import net.apocalypse.mineblackflow.core.MBFMath;
+import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
+import javax.annotation.Nullable;
+
+@Mod.EventBusSubscriber(modid = MineBlackFlow.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MBFBlocks {
     public static final DeferredRegister<Block> REGISTRY = DeferredRegister.create(Registries.BLOCK, MineBlackFlow.MODID);
 
@@ -39,5 +52,24 @@ public class MBFBlocks {
             RegistryObject<WallBlock> wall = REGISTRY.register(name+"_wall", ()->new WallBlock(properties.forceSolidOn()));
             return new NonCubeBuildingBlockSet(stair, slab, wall);
         }
+    }
+
+    @SubscribeEvent
+    public static void onBlockColorRegister(RegisterColorHandlersEvent.Block event) {
+        event.register(MBFBlocks::getBiomeColorForBlackflow, BLACKFLOW_LEAVE.get());
+    }
+    @SubscribeEvent
+    public static void onItemColorRegister(RegisterColorHandlersEvent.Item event) {
+        event.register(MBFBlocks::getItemColorForBlackflow, BLACKFLOW_LEAVE.get());
+    }
+
+    public static int getBiomeColorForBlackflow(BlockState pState, @Nullable BlockAndTintGetter pLevel, @Nullable BlockPos pPos, int pTintIndex){
+        if (pLevel != null && pPos != null){
+            return BiomeColors.getAverageFoliageColor(pLevel, pPos);
+        }
+        return MBFMath.DEEP_BLACKFLOW_FOLIAGE_COLOR;
+    }
+    public static int getItemColorForBlackflow(ItemStack pStack, int pTintIndex){
+        return MBFMath.DEEP_BLACKFLOW_FOLIAGE_COLOR;
     }
 }

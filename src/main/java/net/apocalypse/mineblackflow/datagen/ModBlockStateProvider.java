@@ -24,13 +24,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
        simpleBlockWithItem(MBFBlocks.BLACKFLOW_LEAVE.get(), models().leaves("blackflow_leave", MineBlackFlow.modLoc("block/blackflow_leave")));
-       multiStateBlock(MBFBlocks.BLACKFLOW_PROPAGULE.get(), state -> {
-           int age = state.getValue(BlackflowPropaguleBlock.AGE);
-           return models()
-                   .withExistingParent("blackflow_propagule_"+age, MineBlackFlow.modLoc("custom/blackflow_tree_root"))
-                   .texture("0", MineBlackFlow.modLoc("block/blackflow_tree_sapling_"+age))
-                   .renderType("cutout");
-       });
        simpleBlockItem(MBFBlocks.BLACKFLOW_PROPAGULE.get(), itemModels().basicItem(MineBlackFlow.modLoc("blackflow_tree_propagule")));
     }
 

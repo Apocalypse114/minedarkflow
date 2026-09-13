@@ -3,6 +3,7 @@ package net.apocalypse.mineblackflow.init;
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.block.entity.RedSetariaBlockEntity;
 import net.apocalypse.mineblackflow.entity.*;
+import net.apocalypse.mineblackflow.entity.npc.NPCMechanist;
 import net.apocalypse.mineblackflow.entity.projectile.WaterPraiserArrow;
 import net.apocalypse.mineblackflow.entity.technical.ProtoSignEntity;
 import net.minecraft.core.registries.Registries;
@@ -36,7 +37,20 @@ public class MBFEntities {
                     .setCustomClientFactory(WindHunterEntity::new), 24, 0.8f, 1.8f);
     public static final RegistryObject<EntityType<HuntingDogProtoEntity>> HUNTING_DOG_PROTO = register("huntingdog_proto",
             EntityType.Builder.<HuntingDogProtoEntity>of(HuntingDogProtoEntity::new, MobCategory.MONSTER)
-                    .setCustomClientFactory(HuntingDogProtoEntity::new), 28, 1.5f, 1.8f);
+                    .setCustomClientFactory(HuntingDogProtoEntity::new), 24, 0.8f, 1.8f);
+    public static final RegistryObject<EntityType<DynamicCageweedEntity>> DYNAMIC_CAGEWEED = register("dynamic_cageweed",
+            EntityType.Builder.<DynamicCageweedEntity>of(DynamicCageweedEntity::new, MobCategory.MONSTER)
+                    .setCustomClientFactory(DynamicCageweedEntity::new), 24, 0.8f, 1.625f);
+    public static final RegistryObject<EntityType<MotionlessCageweedEntity>> MOTIONLESS_CAGEWEED = register("motionless_cageweed",
+            EntityType.Builder.<MotionlessCageweedEntity>of(MotionlessCageweedEntity::new, MobCategory.MONSTER)
+                    .setCustomClientFactory(MotionlessCageweedEntity::new), 24, 0.625f, 1.3f);
+    public static final RegistryObject<EntityType<AberrantCageweedEntity>> ABERRANT_CAGEWEED = register("aberrant_cageweed",
+            EntityType.Builder.<AberrantCageweedEntity>of(AberrantCageweedEntity::new, MobCategory.MONSTER)
+                    .setCustomClientFactory(AberrantCageweedEntity::new), 24, 0.625f, 1.3f);
+
+    public static final RegistryObject<EntityType<NPCMechanist>> MECHANIST_NPC = register("mechanist_npc",
+            EntityType.Builder.<NPCMechanist>of(NPCMechanist::new, MobCategory.MISC)
+                    .setCustomClientFactory(NPCMechanist::new), 28, 0.6f, 1.8f);
 
     public static final RegistryObject<EntityType<WaterPraiserArrow>> WATER_PRAISER_ARROW = register("water_praiser_arrow",
             EntityType.Builder.<WaterPraiserArrow>of(WaterPraiserArrow::new, MobCategory.MISC)
@@ -65,5 +79,9 @@ public class MBFEntities {
         event.put(WATER_PRAISER.get(), WaterPraiserEntity.createAttribute().build());
         event.put(WIND_HUNTER.get(), WindHunterEntity.createAttribute().build());
         event.put(HUNTING_DOG_PROTO.get(), HuntingDogProtoEntity.createAttribute().build());
+        event.put(MECHANIST_NPC.get(), NPCMechanist.createAttribute().build());
+        event.put(DYNAMIC_CAGEWEED.get(), DynamicCageweedEntity.createAttribute().build());
+        event.put(MOTIONLESS_CAGEWEED.get(), MotionlessCageweedEntity.createAttribute().build());
+        event.put(ABERRANT_CAGEWEED.get(), MotionlessCageweedEntity.createAttribute().build());
     }
 }

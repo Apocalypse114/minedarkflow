@@ -167,7 +167,7 @@ public class HuntingDogProtoEntity extends GeoBlackFlowMonster {
     }
 
     @Override
-    public EntityDimensions getDimensions(Pose pPose) {
+    public @NotNull EntityDimensions getDimensions(Pose pPose) {
         return inSkill() ? super.getDimensions(pPose).scale(0.1f): super.getDimensions(pPose);
     }
 

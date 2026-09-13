@@ -2,14 +2,17 @@ package net.apocalypse.mineblackflow.compat.curios;
 
 import net.apocalypse.mineblackflow.MineBlackFlow;
 import net.apocalypse.mineblackflow.init.MBFItems;
+import net.apocalypse.mineblackflow.item.base.IKeyTriggerable;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
+import java.util.List;
 import java.util.Optional;
 
 public class MBFCuriosUtil {
@@ -21,5 +24,17 @@ public class MBFCuriosUtil {
             return curioFound.isPresent();
         }
         return false;
+    }
+    public static void triggerAccessory(Player player, int index){
+        LazyOptional<ICuriosItemHandler> handler = CuriosApi.getCuriosInventory(player);
+        if (handler.isPresent() && handler.resolve().isPresent()){
+            ICuriosItemHandler itemHandler = handler.resolve().get();
+            List<SlotResult> curiosFound = itemHandler.findCurios(stack -> stack.getItem() instanceof IKeyTriggerable);
+            if (curiosFound.isEmpty()) return;
+            ItemStack stack = index >= curiosFound.size() ? curiosFound.get(0).stack(): curiosFound.get(index).stack();
+            if (stack.getItem() instanceof IKeyTriggerable keyTriggerable){
+                keyTriggerable.trigger(stack, player);
+            }
+        }
     }
 }

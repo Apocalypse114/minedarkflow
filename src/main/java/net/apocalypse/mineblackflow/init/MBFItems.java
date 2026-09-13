@@ -1,10 +1,7 @@
 package net.apocalypse.mineblackflow.init;
 
 import net.apocalypse.mineblackflow.MineBlackFlow;
-import net.apocalypse.mineblackflow.item.AccessoryBoxItem;
-import net.apocalypse.mineblackflow.item.BlackflowiumIngotItem;
-import net.apocalypse.mineblackflow.item.NullMaskWandItem;
-import net.apocalypse.mineblackflow.item.RedSetariaBlockItem;
+import net.apocalypse.mineblackflow.item.*;
 import net.apocalypse.mineblackflow.item.base.AccessoryBase;
 import net.apocalypse.mineblackflow.item.natural.*;
 import net.minecraft.ChatFormatting;
@@ -50,6 +47,8 @@ public class MBFItems {
     public static final RegistryObject<Item> ELEPHANT_SPAWN_EGG = spawnEgg("forsaken_earthshaker", MBFEntities.FORSAKEN_EARTHSHAKER, 0x61797e, 0x454b4d);
     public static final RegistryObject<Item> WIND_HUNTER_SPAWN_EGG = spawnEgg("wind_hunter", MBFEntities.WIND_HUNTER, 0x90705c, 0x335f4b);
     public static final RegistryObject<Item> HUNTING_DOG_PROTO_SPAWN_EGG = spawnEgg("huntingdog_proto", MBFEntities.HUNTING_DOG_PROTO, 0x3f4244, 0x354b41);
+    public static final RegistryObject<Item> MECHANIST_SPAWN_EGG = REGISTRY.register("mechanist_spawn_egg", MechanistSpawnEgg::new);
+    public static final RegistryObject<Item> CAGEWEED_SPAWN_EGG = REGISTRY.register("cageweed_spawn_egg", CageweedSpawnEgg::new);
 
     public static final RegistryObject<Item> BLACKFLOWIUM_CLUSTER = blockItem(MBFBlocks.BLACKFLOWIUM_CLUSTER);
     public static final RegistryObject<Item> BLACKFLOWIUM_BLOCK = blockItem(MBFBlocks.BLACKFLOWIUM_BLOCK);
@@ -83,6 +82,7 @@ public class MBFItems {
                 .withTabsImage(MineBlackFlow.modLoc("textures/gui/tab/tabs.png"))
                 .displayItems((para, tab)->{
                     tab.accept(ACCESSORY_BOX.get());
+                    tab.accept(MECHANIST_SPAWN_EGG.get());
                     tab.accept(BLOOD_MUSHROOM_PLANT.get());
                     tab.accept(BLACKFLOW_GRASS_BLOCK.get());
                     tab.accept(BLACKFLOW_DIRT.get());
@@ -104,6 +104,7 @@ public class MBFItems {
                     tab.accept(WIND_HUNTER_SPAWN_EGG.get());
                     tab.accept(ELEPHANT_SPAWN_EGG.get());
                     tab.accept(HUNTING_DOG_PROTO_SPAWN_EGG.get());
+                    tab.accept(CAGEWEED_SPAWN_EGG.get());
 
                     tab.accept(NULL_MASK_WAND.get());
                 }).build();

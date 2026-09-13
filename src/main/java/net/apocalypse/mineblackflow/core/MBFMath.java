@@ -1,6 +1,8 @@
 package net.apocalypse.mineblackflow.core;
 
 public class MBFMath {
+    public static int DEEP_BLACKFLOW_FOLIAGE_COLOR = 0x435a17, LIGHT_BLACKFLOW_FOLIAGE_COLOR = 0x6f8329;
+
     public static float[] splitRGB(int rgb){
         float r = (rgb >> 16) & 0xFF;
         float g = (rgb >> 8) & 0xFF;

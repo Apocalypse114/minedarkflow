@@ -1,7 +1,6 @@
-package net.apocalypse.mineblackflow.core.accessory_box;
+package net.apocalypse.mineblackflow.core.handler;
 
 import net.apocalypse.mineblackflow.item.base.AccessoryBase;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;

@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -19,7 +20,19 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels(){
-        spawnEggItem(MBFItems.HUNTING_DOG_PROTO_SPAWN_EGG);
+        withExistingParent(MBFItems.MECHANIST_SPAWN_EGG.getId().getPath(), "item/generated")
+                .override()
+                .predicate(MineBlackFlow.modLoc("mechanist_type"), 0)
+                .model(withExistingParent("mechanist_npc", "item/generated")
+                        .texture("layer0", "item/mechanist_npc_spawn_egg"))
+                .end().override()
+                .predicate(MineBlackFlow.modLoc("mechanist_type"), 1)
+                .model(withExistingParent("mechanist_opr", "item/generated")
+                        .texture("layer0", "item/mechanist_opr_spawn_egg"))
+                .end().override()
+                .predicate(MineBlackFlow.modLoc("mechanist_type"), 2)
+                .model(withExistingParent("mechanist_enemy", "item/generated")
+                        .texture("layer0", "item/mechanist_enemy_spawn_egg"));
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<? extends Item> item) {

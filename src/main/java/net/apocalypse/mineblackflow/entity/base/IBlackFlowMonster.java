@@ -30,4 +30,10 @@ public interface IBlackFlowMonster {
     static boolean dealMagicDamage(Entity target, LivingEntity from, float amount){
         return target.hurt(new DamageSource(MBFUtil.damageType(MBFDamageTypes.BLACKFLOW_MAGIC, from.level()), from), amount);
     }
+    static boolean dealRealDamage(Entity target, LivingEntity from, float amount){
+        return target.hurt(new DamageSource(MBFUtil.damageType(MBFDamageTypes.BLACKFLOW_REAL, from.level()), from), amount);
+    }
+    static boolean dealRealDamage(Entity target, float amount){
+        return target.hurt(new DamageSource(MBFUtil.damageType(MBFDamageTypes.BLACKFLOW_REAL, target.level())), amount);
+    }
 }

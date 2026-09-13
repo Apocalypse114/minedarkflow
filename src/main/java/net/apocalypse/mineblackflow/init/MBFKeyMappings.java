@@ -14,18 +14,17 @@ import org.lwjgl.glfw.GLFW;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
 public class MBFKeyMappings {
-    public static final KeyMapping OPEN_BOX = new OpenBox();
+    public static final KeyMapping OPEN_BOX = new TriggerAccessory();
 
-    private static class OpenBox extends SimpleKeyMapping<SimpleKeyMessage.OpenBoxMessage>{
-        public OpenBox() {
-            super("open_box", GLFW.GLFW_KEY_K, "key.categories.inventory", SimpleKeyMessage.OpenBoxMessage::new);
+    private static class TriggerAccessory extends SimpleKeyMapping<SimpleKeyMessage.TriggerAccessoryMessage>{
+        public TriggerAccessory() {
+            super("trigger_accessory", GLFW.GLFW_KEY_K, "key.categories.inventory", SimpleKeyMessage.TriggerAccessoryMessage::new);
         }
 
         @Override
-        public void doOnClientPress(Player player){
-            if (MBFCuriosUtil.isAccessoryEquipped(player, MBFItems.ACCESSORY_BOX.get())){
-                player.openMenu(new AccessoryBoxMenu.Provider());
-            }
+        public void doOnClientRelease(Player player, int dms){
+            if (dms > 1000) MBFCuriosUtil.triggerAccessory(player, 1);
+            else MBFCuriosUtil.triggerAccessory(player, 0);
         }
     }
 

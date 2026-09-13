@@ -1,7 +1,6 @@
 package net.apocalypse.mineblackflow.gui;
 
-import net.apocalypse.mineblackflow.core.accessory_box.AccessoryBoxHandler;
-import net.minecraft.world.inventory.Slot;
+import net.apocalypse.mineblackflow.core.handler.AccessoryBoxHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class AccessoryBoxSlot extends SlotItemHandler {

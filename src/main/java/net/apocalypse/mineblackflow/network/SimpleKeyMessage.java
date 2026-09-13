@@ -5,9 +5,7 @@ import net.apocalypse.mineblackflow.gui.menu.AccessoryBoxMenu;
 import net.apocalypse.mineblackflow.init.MBFItems;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkEvent;
-import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 import java.util.function.Supplier;
 
@@ -45,18 +43,17 @@ public class SimpleKeyMessage {
         context.setPacketHandled(true);
     }
 
-    public static class OpenBoxMessage extends SimpleKeyMessage{
-        public OpenBoxMessage(int type, int msInPress) {
+    public static class TriggerAccessoryMessage extends SimpleKeyMessage{
+        public TriggerAccessoryMessage(int type, int msInPress) {
             super(type, msInPress);
         }
-        public OpenBoxMessage(FriendlyByteBuf buffer){
+        public TriggerAccessoryMessage(FriendlyByteBuf buffer){
             super(buffer);
         }
         @Override
-        public void doOnPress(Player player){
-            if (MBFCuriosUtil.isAccessoryEquipped(player, MBFItems.ACCESSORY_BOX.get())){
-                player.openMenu(new AccessoryBoxMenu.Provider());
-            }
+        public void doOnRelease(Player player, int dms){
+            if (dms > 1000) MBFCuriosUtil.triggerAccessory(player, 1);
+            else MBFCuriosUtil.triggerAccessory(player, 0);
         }
     }
 }

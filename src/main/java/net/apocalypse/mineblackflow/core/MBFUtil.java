@@ -1,7 +1,7 @@
 package net.apocalypse.mineblackflow.core;
 
 import net.apocalypse.mineblackflow.capability.MBFCapabilities;
-import net.apocalypse.mineblackflow.core.accessory_box.AccessoryBoxHandler;
+import net.apocalypse.mineblackflow.core.handler.AccessoryBoxHandler;
 import net.apocalypse.mineblackflow.core.stalk.StalkInstance;
 import net.apocalypse.mineblackflow.init.MBFAttributes;
 import net.apocalypse.mineblackflow.init.MBFEntities;

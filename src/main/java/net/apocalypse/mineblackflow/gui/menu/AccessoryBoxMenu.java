@@ -1,7 +1,7 @@
 package net.apocalypse.mineblackflow.gui.menu;
 
 import net.apocalypse.mineblackflow.capability.MBFCapabilities;
-import net.apocalypse.mineblackflow.core.accessory_box.AccessoryBoxHandler;
+import net.apocalypse.mineblackflow.core.handler.AccessoryBoxHandler;
 import net.apocalypse.mineblackflow.gui.AccessoryBoxSlot;
 import net.apocalypse.mineblackflow.init.MBFMenuType;
 import net.minecraft.ChatFormatting;
