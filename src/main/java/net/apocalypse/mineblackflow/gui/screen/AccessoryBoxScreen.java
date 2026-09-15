@@ -24,7 +24,11 @@ public class AccessoryBoxScreen extends AbstractContainerScreen<AccessoryBoxMenu
     @Override
     protected void renderBg(@NotNull GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY){
         this.renderBackground(pGuiGraphics);
-        pGuiGraphics.blit(BG, this.leftPos - 28, this.topPos + 8, 0, 0, 194, 171, 194, 187);
+        pGuiGraphics.blit(BG,
+                this.leftPos - 28, this.topPos + 8,
+                0, 0,
+                194, 171,
+                194, 187);
     }
 
     @Override
@@ -32,7 +36,11 @@ public class AccessoryBoxScreen extends AbstractContainerScreen<AccessoryBoxMenu
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
         for (Slot slot: this.menu.slots){
             if (!slot.isActive())
-                pGuiGraphics.blit(BG, this.leftPos + slot.x, this.topPos + slot.y, 0, 171, 16, 16, 194, 187);
+                pGuiGraphics.blit(BG,
+                        this.leftPos + slot.x, this.topPos + slot.y,
+                        0, 171,
+                        16, 16,
+                        194, 187);
         }
         this.renderTooltip(pGuiGraphics, pMouseX, pMouseY);
     }

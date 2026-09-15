@@ -2,6 +2,7 @@ package net.apocalypse.mineblackflow.capability.data;
 
 import net.apocalypse.mineblackflow.capability.MBFCapabilities;
 import net.apocalypse.mineblackflow.core.handler.AccessoryBoxHandler;
+import net.apocalypse.mineblackflow.entity.npc.NPCMechanist;
 import net.apocalypse.mineblackflow.init.MBFNetwork;
 import net.apocalypse.mineblackflow.network.PlayerDataMessage;
 import net.minecraft.core.Direction;
@@ -21,8 +22,11 @@ public class PlayerData implements INBTSerializable<CompoundTag> {
 
     protected int ACCESSORY_CAPACITY = 12;
     protected AccessoryBoxHandler ACCESSORY_BOX = new AccessoryBoxHandler();
+    protected NPCMechanist lastInteractMechanist = null;
 
     public AccessoryBoxHandler getAccessoryBoxhandler(){return ACCESSORY_BOX;}
+    public NPCMechanist getInteractingMechanist(){return lastInteractMechanist;}
+    public void setInteractingMechanist(NPCMechanist npc){this.lastInteractMechanist = npc;}
 
     public void sendToClient(Entity entity) {
         if (entity instanceof ServerPlayer serverPlayer)
@@ -42,6 +46,7 @@ public class PlayerData implements INBTSerializable<CompoundTag> {
         this.ACCESSORY_CAPACITY = data.ACCESSORY_CAPACITY;
         this.ACCESSORY_BOX.setValidSlot(data.ACCESSORY_BOX.getValidSlot());
         this.ACCESSORY_BOX.syncStacks(data.ACCESSORY_BOX);
+        this.lastInteractMechanist = data.lastInteractMechanist;
         return this;
     }
 

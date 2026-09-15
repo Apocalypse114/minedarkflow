@@ -10,6 +10,14 @@
   "entity.mine_black_flow.aberrant_cageweed": "畸变恶笼草",
 
   "container.mine_black_flow.accessory_box": "零件箱",
+  "container.mine_black_flow.shop": "秘境行商",
+  "container.mine_black_flow.shop.confirm": "点击购入选中的物品",
+  "container.mine_black_flow.shop.cancel": "取消",
+  "container.mine_black_flow.shop.buy_0": "点击选中",
+  "container.mine_black_flow.shop.buy_1": "选中后点击左侧绿色按钮购入",
+  "container.mine_black_flow.shop.rob": "“请”机械师降价",
+  "container.mine_black_flow.shop.refresh": "刷新商品",
+  "container.mine_black_flow.shop.breed": "培育种子",
   "container.mine_black_flow.evaluation_total": "↑ 总估价：",
 
   "curios.identifier.mbf_accessory": "黑流配件",
@@ -43,7 +51,7 @@
 
   "item.mine_black_flow.seeds": "种子",
   "item.mine_black_flow.seeds.desc": "它在孕育什么？",
-  "item.mine_black_flow.seeds.func": "可在滚木中培育。",
+  "item.mine_black_flow.seeds.func": "可在秘境行商中培育。",
   "item.mine_black_flow.misty_tumbleweed": "雾滚草",
   "item.mine_black_flow.misty_tumbleweed.desc": "在迷雾裹挟下，离大地与根系越来越远。",
   "item.mine_black_flow.misty_tumbleweed.func": "每发现两个新生物时估价+1。",

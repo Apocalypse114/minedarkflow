@@ -6,6 +6,7 @@ import net.apocalypse.mineblackflow.capability.data.MBFDataHandler;
 import net.apocalypse.mineblackflow.config.ConfigClient;
 import net.apocalypse.mineblackflow.config.ConfigServer;
 import net.apocalypse.mineblackflow.gui.screen.AccessoryBoxScreen;
+import net.apocalypse.mineblackflow.gui.screen.MechanistShopScreen;
 import net.apocalypse.mineblackflow.init.*;
 import net.apocalypse.mineblackflow.worldgen.MBFSurfaceRules;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -109,6 +110,7 @@ public class MineBlackFlow {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(()-> MenuScreens.register(MBFMenuType.ACC_BOX.get(), AccessoryBoxScreen::new));
+            event.enqueueWork(()-> MenuScreens.register(MBFMenuType.MECHANIST_SHOP.get(), MechanistShopScreen::new));
         }
     }
 

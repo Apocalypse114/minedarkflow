@@ -10,6 +10,14 @@
   "entity.mine_black_flow.aberrant_cageweed": "Aberrant Cageweed",
 
   "container.mine_black_flow.accessory_box": "Accessory Kit",
+  "container.mine_black_flow.shop": "Mechanist Shop",
+  "container.mine_black_flow.shop.confirm": "Click to buy",
+  "container.mine_black_flow.shop.cancel": "Cancel",
+  "container.mine_black_flow.shop.buy_0": "Click to select",
+  "container.mine_black_flow.shop.buy_1": "Click the left green button to buy",
+  "container.mine_black_flow.shop.rob": "Request Mechanist to depreciate",
+  "container.mine_black_flow.shop.refresh": "Refresh",
+  "container.mine_black_flow.shop.breed": "Cultivate seeds",
   "container.mine_black_flow.evaluation_total": "↑ Total Evaluation: ",
 
   "curios.identifier.mbf_accessory": "Accessory",

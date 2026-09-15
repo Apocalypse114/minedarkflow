@@ -5,10 +5,7 @@ import net.apocalypse.mineblackflow.capability.data.LivingData;
 import net.apocalypse.mineblackflow.capability.data.PlayerData;
 import net.apocalypse.mineblackflow.capability.data.WorldData;
 import net.apocalypse.mineblackflow.init.MBFNetwork;
-import net.apocalypse.mineblackflow.network.LivingDataMessage;
-import net.apocalypse.mineblackflow.network.PlayerDataMessage;
-import net.apocalypse.mineblackflow.network.SavedDataMessage;
-import net.apocalypse.mineblackflow.network.SimpleKeyMessage;
+import net.apocalypse.mineblackflow.network.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -58,9 +55,19 @@ public class MBFCapabilities {
                 LivingDataMessage::new, LivingDataMessage::handler);
         MBFNetwork.addNetworkMessage(SimpleKeyMessage.TriggerAccessoryMessage.class, SimpleKeyMessage.TriggerAccessoryMessage::buffer,
                 SimpleKeyMessage.TriggerAccessoryMessage::new, SimpleKeyMessage.TriggerAccessoryMessage::handler);
+        MBFNetwork.addNetworkMessage(IntButtonMessage.BuyMessage.class, IntButtonMessage.BuyMessage::buffer,
+                IntButtonMessage.BuyMessage::new, IntButtonMessage.BuyMessage::handler);
+        MBFNetwork.addNetworkMessage(IntButtonMessage.ConfirmMessage.class, IntButtonMessage.ConfirmMessage::buffer,
+                IntButtonMessage.ConfirmMessage::new, IntButtonMessage.ConfirmMessage::handler);
+        MBFNetwork.addNetworkMessage(IntButtonMessage.CancelMessage.class, IntButtonMessage.CancelMessage::buffer,
+                IntButtonMessage.CancelMessage::new, IntButtonMessage.CancelMessage::handler);
+        MBFNetwork.addNetworkMessage(IntButtonMessage.RefreshMessage.class, IntButtonMessage.RefreshMessage::buffer,
+                IntButtonMessage.RefreshMessage::new, IntButtonMessage.RefreshMessage::handler);
+        MBFNetwork.addNetworkMessage(IntButtonMessage.BreedMessage.class, IntButtonMessage.BreedMessage::buffer,
+                IntButtonMessage.BreedMessage::new, IntButtonMessage.BreedMessage::handler);
     }
     @SubscribeEvent
-    public static void register(RegisterCapabilitiesEvent event) {
+    public static void register(@NotNull RegisterCapabilitiesEvent event) {
         event.register(LivingData.class);
         event.register(PlayerData.class);
     }
